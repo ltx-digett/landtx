@@ -4,7 +4,7 @@
     "name": "Sanity Landtx"
   },
   "api": {
-    "projectId": "r255rv3b",
+    "projectId": "84iv1ine",
     "dataset": "production"
   },
   "plugins": [
@@ -12,8 +12,7 @@
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
-    "@sanity/desk-tool",
-    "@sanity/google-maps-input"
+    "@sanity/desk-tool"
   ],
   "parts": [
     {

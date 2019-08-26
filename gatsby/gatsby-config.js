@@ -1,8 +1,32 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Landtx`,
+    description: `Landtx gatsby site.`,
+    author: `Alexander Fountain`,
+    mainmenu:[
+      {
+        name:'About',
+        link:'/about'
+      },
+      {
+        name:'Property Listings',
+        link:'/property-listings'
+      },
+      {
+        name:'Market Activity',
+        link:'/market-activity'
+      },
+      {
+        name:'Resources',
+        link:'/resources'
+      },
+      {
+        name:'Contact',
+        link:'/contact'
+      },
+  ]
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -25,6 +49,18 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        projectId: '84iv1ine',
+        dataset: 'production',
+        watchMode: true,
+        overlayDrafts: true,
+        // a token with read permissions is required
+        // if you have a private dataset
+        token: process.env.SANITY_READ_TOKEN,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

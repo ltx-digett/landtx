@@ -967,12 +967,6 @@
   version "0.142.0"
   resolved "https://registry.npmjs.org/@sanity/generate-help-url/-/generate-help-url-0.142.0.tgz#ea8777b72bc9db531e25c0066407d504df91f22d"
 
-"@sanity/google-maps-input@^0.142.1":
-  version "0.142.1"
-  resolved "https://registry.npmjs.org/@sanity/google-maps-input/-/google-maps-input-0.142.1.tgz#9b12054203e4368fe565fb8993f214cf4aaf2c73"
-  dependencies:
-    in-publish "^2.0.0"
-
 "@sanity/image-url@0.140.12":
   version "0.140.12"
   resolved "https://registry.npmjs.org/@sanity/image-url/-/image-url-0.140.12.tgz#f882ad18f32b2e724c01ff692e62ae9f99702821"
@@ -6127,7 +6121,7 @@ react-icon-base@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/react-icon-base/-/react-icon-base-2.1.2.tgz#a17101dad9c1192652356096860a9ab43a0766c7"
 
-react-icons@^2.2.5, react-icons@^2.2.7:
+react-icons@^2.2.7:
   version "2.2.7"
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-2.2.7.tgz#d7860826b258557510dac10680abea5ca23cf650"
   dependencies:
