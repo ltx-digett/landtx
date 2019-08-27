@@ -1,6 +1,6 @@
 export default {
-  name: "main",
-  title: "Main",
+  name: "property",
+  title: "Property",
   type: "document",
   fields: [
     {
@@ -18,29 +18,15 @@ export default {
       }
     },
     {
-      name: "slideshow",
-      title: "Slideshow",
-      type: "array",
-      of: [
-        {
-          type: "image",
-          options: {
-            hotspot: true
-          }
-        }
-      ]
+      title: "Map Location",
+      name: "location",
+      type: "geopoint"
     },
     {
-      name: "body",
-      title: "Body",
-      type: "blockContent"
-    },
-    {
-      name: "sidebar",
-      title: "Sidebar",
+      title: "Overview",
+      name: "overview",
       type: "array",
-      of: [{ type: "sidebar" }],
-      validation: Rule => Rule.max(1)
+      of: [{ type: "overview" }]
     }
   ],
   preview: {

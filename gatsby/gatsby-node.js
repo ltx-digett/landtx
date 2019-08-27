@@ -3,10 +3,22 @@ const mkdirp = require('mkdirp')
 const path = require('path')
 
 exports.createPages = async ( { actions, graphql, reporter }, options) => {
-    console.log(options)
+    actions.createPage({
+        path:'properties',
+        component: require.resolve('./src/templates/properties.js'),
+    })
     const result = await graphql(`
         {
             page: allSanityMain {
+                nodes {
+                    title
+                    slug{
+                        current
+                    }
+                    id
+                }
+            }
+            property: allSanityProperty {
                 nodes {
                     title
                     slug{
@@ -32,6 +44,15 @@ exports.createPages = async ( { actions, graphql, reporter }, options) => {
         actions.createPage({
             path:slug,
             component: require.resolve('./src/templates/main.js'),
+            context: { id }
+        })
+    })
+    result.data.property.nodes.forEach(node =>{
+        const id = node.id
+
+        actions.createPage({
+            path:'property/'+node.slug.current,
+            component: require.resolve('./src/templates/property.js'),
             context: { id }
         })
     })

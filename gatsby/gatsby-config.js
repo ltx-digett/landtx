@@ -12,7 +12,7 @@ module.exports = {
       },
       {
         name:'Property Listings',
-        link:'/property-listings'
+        link:'/properties'
       },
       {
         name:'Market Activity',
