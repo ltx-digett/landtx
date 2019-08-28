@@ -1,8 +1,15 @@
-body, html{
-    box-sizing: border-box;
-    padding:0px;
-    margin:0px;
+* {
+  box-sizing: border-box;
 }
-img{
-    max-width:100%;
+body,
+html {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+}
+img {
+  max-width: 100%;
 }

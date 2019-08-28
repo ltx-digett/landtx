@@ -5,6 +5,7 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 import Container from "../components/container"
 import PortableText from "@sanity/block-content-to-react"
+import * as variable from "../components/variables"
 
 const MainStyle = styled.div`
   .slide {
@@ -22,9 +23,15 @@ const MainStyle = styled.div`
     }
     .sidebar {
       width: 25%;
-      text-align: center;
       .blue-cta {
         width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+      .sidebar-body {
+        text-align: center;
+        background-color: ${variable.taupe};
+        padding: 20px;
       }
     }
   }
@@ -100,6 +107,7 @@ export const MainPostTemplate = ({
           <div className="sidebar">
             <Link className="blue-cta">View Property Listings</Link>
             <PortableText
+              className="sidebar-body"
               serializers={serializers}
               blocks={sidebarBody}
               projectId="84iv1ine"

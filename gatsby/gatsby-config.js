@@ -1,32 +1,32 @@
-require('dotenv').config()
+require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
     title: `Landtx`,
     description: `Landtx gatsby site.`,
     author: `Alexander Fountain`,
-    mainmenu:[
+    mainmenu: [
       {
-        name:'About',
-        link:'/about'
+        name: "About",
+        link: "/about",
       },
       {
-        name:'Property Listings',
-        link:'/properties'
+        name: "Property Listings",
+        link: "/properties",
       },
       {
-        name:'Market Activity',
-        link:'/market-activity'
+        name: "Market Activity",
+        link: "/market-activity",
       },
       {
-        name:'Resources',
-        link:'/resources'
+        name: "Resources",
+        link: "/resources",
       },
       {
-        name:'Contact',
-        link:'/contact'
+        name: "Contact",
+        link: "/contact",
       },
-  ]
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -53,15 +53,25 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-sanity',
+      resolve: "gatsby-source-sanity",
       options: {
-        projectId: '84iv1ine',
-        dataset: 'production',
+        projectId: "84iv1ine",
+        dataset: "production",
         watchMode: true,
         overlayDrafts: true,
         // a token with read permissions is required
         // if you have a private dataset
         token: process.env.SANITY_READ_TOKEN,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Gothic A1\:400,700`,
+          `Open Sans\:300,400,400i,700`, // you can also specify font weights and styles
+        ],
+        display: "swap",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
