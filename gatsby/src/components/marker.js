@@ -9,9 +9,22 @@ import * as variable from "../components/variables"
 import "./marker.css"
 
 const MoreInfoStyle = styled.div`
-  background-color: white;
+  color: white;
   padding: 20px;
   width: 200px;
+  left: -120px;
+  position: relative;
+  top: 30px;
+  border-radius: 25px;
+  background: #7ba7cc;
+  border: 2px solid white;
+  text-align: center;
+  a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 22px;
+  }
 `
 const MarkerStyle = styled.div`
   position: absolute;
@@ -31,29 +44,55 @@ const MarkerStyle = styled.div`
 `
 
 class Marker extends React.Component {
-  state = {
-    showInfo: false,
-  }
-  markerClick = (e, property) => {
-    console.log(property)
-    this.setState({ showInfo: true })
-    {
-      this.state.showInfo
-        ? this.setState({ showInfo: false })
-        : this.setState({ showInfo: true })
+  constructor(props) {
+    super(props)
+    this.state = {
+      showInfo: false,
     }
   }
+  // markerClick = (e, property) => {
+  //   console.log(property)
+  //   this.setState({ showInfo: true })
+  //   {
+  //     this.state.showInfo
+  //       ? this.setState({ showInfo: false })
+  //       : this.setState({ showInfo: true })
+  //   }
+  // }
+  onToggle = () => {
+    // console.log(this.props.property.id)
+    this.props.onToggle(this.props.property)
+  }
+  componentDidUpdate() {
+    // console.log(this.props)
+    // {
+    //   this.props.selected === this.props.property.id &&
+    //     this.setState({ showInfo: true })
+    // }
+    {
+      if (this.state.showInfo !== true) {
+        if (this.props.selected === this.props.property.id) {
+          this.setState({ showInfo: true })
+        }
+      }
+    }
+    {
+      if (this.state.showInfo === true) {
+        if (this.props.selected !== this.props.property.id) {
+          this.setState({ showInfo: false })
+        }
+      }
+    }
+  }
+
   render() {
     const { property } = this.props
-    console.log(this.state)
     return (
       <div>
         {this.state.showInfo ? <MoreInfo property={property} /> : null}
         <MarkerStyle
           className="pin bounce"
-          onClick={e => {
-            this.markerClick(e, property)
-          }}
+          onClick={this.onToggle}
         ></MarkerStyle>
         <div className="pulse" />
       </div>
@@ -63,11 +102,10 @@ class Marker extends React.Component {
 
 class MoreInfo extends React.Component {
   render() {
-    console.log(property)
     const { property } = this.props
     const path = "/property/" + property.slug.current
     return (
-      <MoreInfoStyle>
+      <MoreInfoStyle className="more-info">
         <Link to={path}>{property.title}</Link>
       </MoreInfoStyle>
     )

@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import Container from "../container"
 import * as variable from "../variables"
-import logo from "../../images/landtxlogo.png"
+import logo from "../../images/landtx-logo-white.png"
 
 const HeaderStyle = styled.header`
   padding: 40px 0px;

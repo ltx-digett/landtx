@@ -36,11 +36,9 @@ export default {
       type: "blockContent"
     },
     {
-      name: "sidebar",
       title: "Sidebar",
-      type: "array",
-      of: [{ type: "sidebar" }],
-      validation: Rule => Rule.max(1)
+      name: "sidebar",
+      type: "blockContent"
     }
   ],
   preview: {

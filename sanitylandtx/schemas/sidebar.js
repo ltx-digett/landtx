@@ -1,7 +1,7 @@
 export default {
   name: "sidebar",
   title: "Sidebar",
-  type: "document",
+  type: "object",
   fields: [
     {
       name: "title",
@@ -13,10 +13,5 @@ export default {
       title: "Body",
       type: "blockContent"
     }
-  ],
-  preview: {
-    select: {
-      title: "title"
-    }
-  }
+  ]
 };
