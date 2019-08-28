@@ -1,4 +1,4 @@
-.pin {
+/* .pin {
   width: 30px;
   height: 30px;
   border-radius: 50% 50% 50% 0;
@@ -17,7 +17,7 @@
   background: #e6e6e6;
   position: absolute;
   border-radius: 50%;
-}
+} */
 
 .bounce {
   animation-name: bounce;

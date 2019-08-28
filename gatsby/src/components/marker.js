@@ -27,19 +27,23 @@ const MoreInfoStyle = styled.div`
   }
 `
 const MarkerStyle = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  background: #7ba7cc;
   position: absolute;
-  top: 50%;
+  transform: rotate(-45deg);
   left: 50%;
-  width: 18px;
-  height: 18px;
-  background-color: #000;
-  border: 2px solid #fff;
-  border-radius: 100%;
-  user-select: none;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  &:hover {
-    z-index: 1;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+  &:after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    margin: 8px 0 0 8px;
+    background: #e6e6e6;
+    position: absolute;
+    border-radius: 50%;
   }
 `
 

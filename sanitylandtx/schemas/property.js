@@ -23,6 +23,19 @@ export default {
       type: "geopoint"
     },
     {
+      name: "slideshow",
+      title: "Slideshow",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          options: {
+            hotspot: true
+          }
+        }
+      ]
+    },
+    {
       title: "Overview",
       name: "overview",
       type: "array",
