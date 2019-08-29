@@ -12,7 +12,7 @@ import fullscreen from "../images/fullscreen-icon.png"
 import Img from "gatsby-image"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
-import { StickyContainer, Sticky } from "react-sticky"
+import Iframe from "react-iframe"
 
 const PropertyStyle = styled.div`
   .top-property-container {
@@ -74,12 +74,10 @@ const PropertyStyle = styled.div`
       }
     }
   }
-  .sticky{
-    position: -webkit-sticky;
-    position: sticky;
-    top: 60px;
-    align-self: flex-start;
-  }
+  // iframe{
+  //   width:100%;
+  //   height:500px;
+  // }
 `
 
 const serializers = {
@@ -101,7 +99,7 @@ const properties = {
 }
 
 export const query = graphql`
-  query PropertyPostByID($id: String!) {
+  query PropertyPostInteractiveByID($id: String!) {
     allSanityProperty(filter: { id: { eq: $id } }) {
       nodes {
         slug {
@@ -197,13 +195,13 @@ class PropertyPostTemplate extends React.Component {
           <Container className="tabs" id="ltx-tabs">
             <Link
               to={"property/" + slug + "#ltx-tabs"}
-              className="overview-tab active"
+              className="overview-tab"
             >
               Overview
             </Link>
             <Link
               to={"property/" + slug + "/interactive-map#ltx-tabs"}
-              className="interactive-tab"
+              className="interactive-tab active"
             >
               Interactive Map
             </Link>
@@ -215,39 +213,16 @@ class PropertyPostTemplate extends React.Component {
             </Link>
           </Container>
           <div className="prop-brown-container">
-            <Container className="overview">
-              <div className="property-left">
-                {overview.map((overviewitem, index) => (
-                  <div>
-                    {console.log(overviewitem)}
-                    <h2 key={index} id={overviewitem._key}>
-                      {overviewitem.title}
-                    </h2>
-                    <PortableText
-                      serializers={serializers}
-                      blocks={rawoverview[index].body}
-                      projectId="84iv1ine"
-                      dataset="production"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="property-right sticky">
-                {overview.map((overviewitem, index) => (
-                  <div key={index}>
-                    <a key={index} href={"#" + overviewitem._key}>
-                      {overviewitem.title}
-                    </a>
-                  </div>
-                ))}
-                <PortableText
-                  serializers={serializers}
-                  blocks={_rawSidebar}
-                  projectId="84iv1ine"
-                  dataset="production"
-                />
-              </div>
-            </Container>
+            <div className="interactive">
+              {console.log(interactivemap)}
+              <Iframe
+                url={interactivemap}
+                width="100%"
+                height="450px"
+                display="initial"
+                position="relative"
+              />
+            </div>
           </div>
         </PropertyStyle>
       </Layout>

@@ -12,7 +12,6 @@ import fullscreen from "../images/fullscreen-icon.png"
 import Img from "gatsby-image"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
-import { StickyContainer, Sticky } from "react-sticky"
 
 const PropertyStyle = styled.div`
   .top-property-container {
@@ -74,12 +73,6 @@ const PropertyStyle = styled.div`
       }
     }
   }
-  .sticky{
-    position: -webkit-sticky;
-    position: sticky;
-    top: 60px;
-    align-self: flex-start;
-  }
 `
 
 const serializers = {
@@ -101,7 +94,7 @@ const properties = {
 }
 
 export const query = graphql`
-  query PropertyPostByID($id: String!) {
+  query PropertyPostStaticByID($id: String!) {
     allSanityProperty(filter: { id: { eq: $id } }) {
       nodes {
         slug {
@@ -113,6 +106,7 @@ export const query = graphql`
         _rawSidebar
         interactivemap
         staticmaps {
+          caption
           image {
             asset {
               url
@@ -197,7 +191,7 @@ class PropertyPostTemplate extends React.Component {
           <Container className="tabs" id="ltx-tabs">
             <Link
               to={"property/" + slug + "#ltx-tabs"}
-              className="overview-tab active"
+              className="overview-tab"
             >
               Overview
             </Link>
@@ -209,44 +203,25 @@ class PropertyPostTemplate extends React.Component {
             </Link>
             <Link
               to={"property/" + slug + "/static-maps#ltx-tabs"}
-              className="static-tab"
+              className="static-tab active"
             >
               Static Maps
             </Link>
           </Container>
           <div className="prop-brown-container">
-            <Container className="overview">
-              <div className="property-left">
-                {overview.map((overviewitem, index) => (
-                  <div>
-                    {console.log(overviewitem)}
-                    <h2 key={index} id={overviewitem._key}>
-                      {overviewitem.title}
-                    </h2>
-                    <PortableText
-                      serializers={serializers}
-                      blocks={rawoverview[index].body}
-                      projectId="84iv1ine"
-                      dataset="production"
+            <Container className="static">
+              <AliceCarousel mouseDragEnabled>
+                {staticmaps.map((slide, index) => (
+                  <div className="static-slide">
+                    <h3>{slide.caption}</h3>
+                    <img
+                      src={slide.image.asset.url + "?w=1200"}
+                      className="prop-slide"
                     />
                   </div>
                 ))}
-              </div>
-              <div className="property-right sticky">
-                {overview.map((overviewitem, index) => (
-                  <div key={index}>
-                    <a key={index} href={"#" + overviewitem._key}>
-                      {overviewitem.title}
-                    </a>
-                  </div>
-                ))}
-                <PortableText
-                  serializers={serializers}
-                  blocks={_rawSidebar}
-                  projectId="84iv1ine"
-                  dataset="production"
-                />
-              </div>
+              </AliceCarousel>
+              {console.log(staticmaps)}
             </Container>
           </div>
         </PropertyStyle>

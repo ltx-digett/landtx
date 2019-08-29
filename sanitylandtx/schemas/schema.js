@@ -10,6 +10,7 @@ import category from "./category";
 import main from "./main";
 import property from "./property";
 import sidebar from "./sidebar";
+import imageCaption from "./imageCaption";
 import overview from "./overview";
 import post from "./post";
 import author from "./author";
@@ -26,6 +27,7 @@ export default createSchema({
     main,
     sidebar,
     property,
+    imageCaption,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     overview,

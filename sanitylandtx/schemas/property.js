@@ -55,6 +55,22 @@ export default {
       name: "overview",
       type: "array",
       of: [{ type: "overview" }]
+    },
+    {
+      title: "Interactive Map",
+      name: "interactivemap",
+      type: "url"
+    },
+    {
+      title: "Static Maps",
+      name: "staticmaps",
+      type: "array",
+      of: [{ type: "imagecaption" }]
+    },
+    {
+      title: "Sidebar",
+      name: "sidebar",
+      type: "blockContent"
     }
   ],
   preview: {
