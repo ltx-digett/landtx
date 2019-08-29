@@ -24,7 +24,7 @@ const HeaderStyle = styled.header`
     }
   }
   .header-menu-logo {
-    padding: 30px 0px;
+    padding: 30px 20px;
     display: flex;
     display: flex;
     align-items: center;

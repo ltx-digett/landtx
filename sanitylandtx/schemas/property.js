@@ -18,6 +18,21 @@ export default {
       }
     },
     {
+      name: "acres",
+      title: "Acres",
+      type: "number"
+    },
+    {
+      name: "county",
+      title: "County",
+      type: "string"
+    },
+    {
+      name: "brochure",
+      title: "Brochure",
+      type: "file"
+    },
+    {
       title: "Map Location",
       name: "location",
       type: "geopoint"
