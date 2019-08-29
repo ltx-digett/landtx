@@ -10,6 +10,9 @@ html {
   font-weight: normal;
   font-size: 18px;
 }
+p {
+  line-height: 1.8;
+}
 img {
   max-width: 100%;
 }
@@ -18,6 +21,24 @@ img {
   height: 100% !important;
   max-width: 100% !important;
   max-height: 100% !important;
+}
+h1 {
+  font-family: "Gothic A1", sans-serif;
+}
+h2 {
+  font-family: "Gothic A1", sans-serif;
+}
+h3 {
+  font-family: "Gothic A1", sans-serif;
+}
+h4 {
+  font-family: "Gothic A1", sans-serif;
+}
+h5 {
+  font-family: "Gothic A1", sans-serif;
+}
+h6 {
+  font-family: "Gothic A1", sans-serif;
 }
 /* .slide-container {
   width: 70%;

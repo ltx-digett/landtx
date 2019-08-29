@@ -23,6 +23,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-alice-carousel": "^1.15.3",
+    "react-burger-menu": "^2.6.11",
     "react-controllables": "^0.6.0",
     "react-dom": "^16.9.0",
     "react-google-maps": "^9.4.5",

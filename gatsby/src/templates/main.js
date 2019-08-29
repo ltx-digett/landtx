@@ -9,29 +9,69 @@ import * as variable from "../components/variables"
 
 const MainStyle = styled.div`
   .slide {
-    height: 500px;
+    height: 550px;
     background-size: cover;
     background-repeat: no-repeat;
   }
   .body-container {
     display: flex;
     justify-content: space-between;
-    padding-top: 40px;
+    padding-top: 70px;
     padding-bottom: 40px;
     .body {
-      width: calc(75% - 40px);
+      width: calc(60% - 40px);
+      h1 {
+        margin-top: 0px;
+      }
     }
     .sidebar {
-      width: 25%;
+      width: 40%;
       .blue-cta {
         width: 100%;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         text-align: center;
       }
       .sidebar-body {
         text-align: center;
         background-color: ${variable.taupe};
-        padding: 20px;
+        padding: 40px 20px;
+        img {
+          width: 265px;
+        }
+        a {
+          color: ${variable.red};
+        }
+      }
+    }
+  }
+  @media (max-width: ${variable.tabletWidth}) {
+    .slide {
+      height: 450px;
+    }
+    .body-container {
+      .body {
+        width: calc(65% - 20px);
+      }
+      .sidebar {
+        width: 35%;
+      }
+    }
+  }
+  @media (max-width: ${variable.mobileWidth}) {
+    .slide {
+      height: 300px;
+    }
+    .body-container {
+      flex-direction: column;
+      padding-top: 40px;
+      .sidebar {
+        margin-top: 60px;
+      }
+      .body {
+        width: 100%;
+      }
+      .sidebar {
+        width: 100%;
       }
     }
   }
@@ -44,6 +84,10 @@ const serializers = {
         <code>{props.node.code}</code>
       </pre>
     ),
+    image: props =>
+      props.node.asset !== null && (
+        <img src={props.node.asset.url + "?w=700"} />
+      ),
   },
 }
 
@@ -51,8 +95,8 @@ const properties = {
   duration: 5000,
   transitionDuration: 500,
   infinite: true,
-  indicators: true,
-  arrows: true,
+  indicators: false,
+  arrows: false,
   // onChange: (oldIndex, newIndex) => {
   //   console.log(`slide transition from ${oldIndex} to ${newIndex}`);
   // }
@@ -63,8 +107,8 @@ export const query = graphql`
     allSanityMain(filter: { id: { eq: $id } }) {
       nodes {
         title
-        _rawBody
-        _rawSidebar
+        _rawBody(resolveReferences: { maxDepth: 10 })
+        _rawSidebar(resolveReferences: { maxDepth: 10 })
         slideshow {
           asset {
             url
@@ -105,7 +149,9 @@ export const MainPostTemplate = ({
             />
           </div>
           <div className="sidebar">
-            <Link className="blue-cta">View Property Listings</Link>
+            <Link className="blue-cta" to="/properties">
+              View Property Listings
+            </Link>
             <PortableText
               className="sidebar-body"
               serializers={serializers}

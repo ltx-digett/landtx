@@ -12,7 +12,6 @@ import fullscreen from "../images/fullscreen-icon.png"
 import Img from "gatsby-image"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
-import { StickyContainer, Sticky } from "react-sticky"
 
 const PropertyStyle = styled.div`
   .top-property-container {
@@ -81,7 +80,6 @@ const PropertyStyle = styled.div`
     align-self: flex-start;
   }
 `
-
 const serializers = {
   types: {
     code: props => (
@@ -89,6 +87,10 @@ const serializers = {
         <code>{props.node.code}</code>
       </pre>
     ),
+    image: props =>
+      props.node.asset !== undefined && (
+        <img src={props.node.asset.url + "?w=700"} />
+      ),
   },
 }
 
@@ -110,7 +112,7 @@ export const query = graphql`
         title
         acres
         county
-        _rawSidebar
+        _rawSidebar(resolveReferences: { maxDepth: 10 })
         interactivemap
         staticmaps {
           image {
@@ -219,7 +221,6 @@ class PropertyPostTemplate extends React.Component {
               <div className="property-left">
                 {overview.map((overviewitem, index) => (
                   <div>
-                    {console.log(overviewitem)}
                     <h2 key={index} id={overviewitem._key}>
                       {overviewitem.title}
                     </h2>

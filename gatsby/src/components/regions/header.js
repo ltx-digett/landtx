@@ -7,6 +7,8 @@ import * as variable from "../variables"
 import logo from "../../images/landtx-logo-white.png"
 import bg from "../../images/bg-topo.png"
 import tracks from "../../images/tiretracks.png"
+import MobileMenu from "../mobilemenu"
+
 const HeaderStyle = styled.header`
   background-image: url(${bg});
   background-size: cover;
@@ -20,7 +22,10 @@ const HeaderStyle = styled.header`
     font-family: "Gothic A1", sans-serif;
     li {
       list-style: none;
-      margin-left: 40px;
+      margin-left: 50px;
+      &:nth-child(1) {
+        marginpleft: 0px;
+      }
     }
   }
   .header-menu-logo {
@@ -32,10 +37,10 @@ const HeaderStyle = styled.header`
     background-image: url(${tracks});
     background-size: cover;
     img {
-      width: 200px;
+      width: 260px;
     }
     ul {
-      width: calc(100% - 200px);
+      width: calc(100% -270px);
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -43,7 +48,32 @@ const HeaderStyle = styled.header`
         a {
           color: white;
           text-decoration: none;
+          font-size: 20px;
+          font-weight: bold;
         }
+      }
+    }
+  }
+  @media (max-width: ${variable.tabletWidth}) {
+    .header-menu-logo {
+      img {
+        width: 180px;
+      }
+      ul {
+        width: calc(100% -180px);
+        li {
+          margin-left: 20px;
+          a {
+            font-size: 17px;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: ${variable.mobileWidth}) {
+    .header-menu-logo {
+      .main-menu {
+        display: none;
       }
     }
   }
@@ -64,6 +94,7 @@ export const Header = ({ mainmenu }) => {
               </li>
             ))}
           </ul>
+          <MobileMenu></MobileMenu>
         </Container>
       </div>
     </HeaderStyle>
