@@ -6,6 +6,7 @@ import Container from "../components/container"
 import GoogleMapReact from "google-map-react"
 import Marker from "../components/marker"
 import PropertyTeaser from "../components/entity/property/property-teaser"
+import * as variable from "../components/variables"
 
 // const Marker = ({ property }) => <div className="marker">{property.title}</div>
 
@@ -17,19 +18,25 @@ const PropertiesStyle = styled.div`
     display: flex;
     padding-top: 40px;
     padding-bottom: 40px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .prop-teaser {
+      width: calc(33.333% - 10px);
+    }
   }
-  .property-teaser {
-    color: white;
-    padding: 20px;
-    border-radius: 25px;
-    background: #7ba7cc;
-    border: 2px solid white;
-    text-align: center;
-    a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 22px;
+  @media (max-width: ${variable.tabletWidth}) {
+    .properties-teaser-container {
+      .prop-teaser {
+        width: calc(50% - 10px);
+      }
+    }
+  }
+  @media (max-width: ${variable.mobileWidth}) {
+    .properties-teaser-container {
+      flex-direction: column;
+      .prop-teaser {
+        width: calc(100%);
+      }
     }
   }
 `
@@ -40,6 +47,20 @@ export const query = graphql`
       nodes {
         title
         id
+        price
+        status
+        acres
+        county
+        brochure {
+          asset {
+            url
+          }
+        }
+        slideshow {
+          asset {
+            url
+          }
+        }
         slug {
           current
         }
@@ -66,7 +87,7 @@ class PropertiesPostTemplate extends React.Component {
       lat: 30.759539,
       lng: -99.222336,
     },
-    zoom: 11,
+    zoom: 9,
   }
   onChildToggle = props => {
     console.log(props)
@@ -137,7 +158,6 @@ class PropertiesPostTemplate extends React.Component {
           <Container className="properties-teaser-container">
             {properties.map((property, index) => (
               <PropertyTeaser
-                className="property-teaser"
                 key={index}
                 lat={property.location.lat}
                 lng={property.location.lng}

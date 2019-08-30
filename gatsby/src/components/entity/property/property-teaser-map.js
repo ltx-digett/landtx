@@ -9,6 +9,7 @@ import "react-alice-carousel/lib/alice-carousel.css"
 
 const PropertyTeaserStyle = styled.div`
   padding: 20px;
+  position: relative;
   .teaser-list {
     padding: 0px;
     margin: 0px;
@@ -28,26 +29,6 @@ class PropertyTeaser extends React.Component {
   numberWithCommas(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
-  onMouseEnter = () => {
-    // console.log(this.props.property.id)
-    this.props.onMouseEnter(this.props.property)
-  }
-  componentDidUpdate() {
-    {
-      if (this.state.showInfo !== true) {
-        if (this.props.selected === this.props.property.id) {
-          this.setState({ showInfo: true })
-        }
-      }
-    }
-    {
-      if (this.state.showInfo === true) {
-        if (this.props.selected !== this.props.property.id) {
-          this.setState({ showInfo: false })
-        }
-      }
-    }
-  }
 
   render() {
     const { property } = this.props
@@ -57,10 +38,7 @@ class PropertyTeaser extends React.Component {
       minimumFractionDigits: 0,
     })
     return (
-      <PropertyTeaserStyle
-        className="prop-teaser"
-        onMouseEnter={this.onMouseEnter}
-      >
+      <PropertyTeaserStyle className="prop-teaser">
         <AliceCarousel
           autoPlay
           mouseDragEnabled

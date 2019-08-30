@@ -7,6 +7,7 @@
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.6",
     "dotenv": "^8.1.0",
+    "fitvids": "^2.0.0",
     "gatsby": "^2.13.73",
     "gatsby-image": "^2.2.14",
     "gatsby-plugin-google-fonts": "^1.0.1",

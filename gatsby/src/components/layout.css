@@ -40,6 +40,11 @@ h5 {
 h6 {
   font-family: "Gothic A1", sans-serif;
 }
+.alice-carousel__dots {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
 /* .slide-container {
   width: 70%;
   margin: auto;

@@ -23,9 +23,26 @@ export default {
       type: "number"
     },
     {
+      name: "price",
+      title: "Price",
+      type: "number"
+    },
+    {
       name: "county",
       title: "County",
       type: "string"
+    },
+    {
+      title: "Status",
+      name: "status",
+      type: "string",
+      options: {
+        list: [
+          { title: "Active", value: "active" },
+          { title: "Contract Pending", value: "contractpending" }
+        ], // <-- predefined values
+        layout: "radio" // <-- defaults to 'dropdown'
+      }
     },
     {
       name: "brochure",

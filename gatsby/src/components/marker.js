@@ -6,24 +6,30 @@ import Container from "../components/container"
 import GoogleMapReact from "google-map-react"
 import property from "../../../sanitylandtx/schemas/property"
 import * as variable from "../components/variables"
+import PropertyTeaser from "../components/entity/property/property-teaser-map"
 import "./marker.css"
 
 const MoreInfoStyle = styled.div`
-  color: white;
-  padding: 20px;
   width: 200px;
-  left: -120px;
+  left: -106px;
   position: relative;
-  top: 30px;
-  border-radius: 25px;
-  background: #7ba7cc;
-  border: 2px solid white;
-  text-align: center;
-  a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 22px;
+  top: 31px;
+  background-color: white;
+  border: 2px solid ${variable.marine};
+  z-index: 99;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  &:after {
+    content: "";
+    width: 0px;
+    height: 0;
+    position: absolute;
+    top: -18px;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 17px solid ${variable.marine};
   }
 `
 const MarkerStyle = styled.div`
@@ -110,7 +116,11 @@ class MoreInfo extends React.Component {
     const path = "/property/" + property.slug.current
     return (
       <MoreInfoStyle className="more-info">
-        <Link to={path}>{property.title}</Link>
+        <PropertyTeaser
+          lat={property.location.lat}
+          lng={property.location.lng}
+          property={property}
+        ></PropertyTeaser>
       </MoreInfoStyle>
     )
   }

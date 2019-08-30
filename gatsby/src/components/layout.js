@@ -12,6 +12,9 @@ const GlobalStyles = styled.div`
   h1 {
     font-size: 44px;
   }
+  iframe {
+    border: 0px;
+  }
   .blue-cta {
     color: white;
     padding: 10px 20px;
@@ -33,6 +36,7 @@ const GlobalStyles = styled.div`
   }
   a {
     color: ${variable.red};
+    text-decoration: none;
   }
   @media (max-width: ${variable.mobileWidth}) {
     h1 {
