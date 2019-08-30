@@ -8,7 +8,7 @@ import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
 
 const PropertyTeaserStyle = styled.div`
-  padding: 20px;
+  padding: 10px;
   position: relative;
   .teaser-list {
     padding: 0px;
