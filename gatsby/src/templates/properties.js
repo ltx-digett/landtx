@@ -87,15 +87,13 @@ class PropertiesPostTemplate extends React.Component {
       lat: 30.759539,
       lng: -99.222336,
     },
-    zoom: 9,
+    zoom: 8,
   }
   onChildToggle = props => {
-    console.log(props)
     var id = props.id
     var selections = this.state.selections
 
     selections = id
-    // console.log(props)
     this.setState({
       selections: selections,
     })
@@ -137,7 +135,7 @@ class PropertiesPostTemplate extends React.Component {
             <GoogleMapReact
               // onChildClick={this._onChildClick}
               bootstrapURLKeys={{
-                key: "AIzaSyCIIP4Jn_3Fp7PoBE8at2LopBRymst4MEY",
+                key: process.env.GOOGLE_MAPS_KEY,
               }}
               defaultCenter={this.props.center}
               defaultZoom={this.props.zoom}
