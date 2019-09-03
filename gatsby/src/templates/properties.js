@@ -42,8 +42,13 @@ const PropertiesStyle = styled.div`
 `
 
 export const query = graphql`
-  query Properties {
-    allSanityProperty {
+  query {
+    site {
+      siteMetadata {
+        googleMapsKey
+      }
+    }
+    property: allSanityProperty {
       nodes {
         title
         id
@@ -127,7 +132,7 @@ class PropertiesPostTemplate extends React.Component {
   //   this.hide()
   // }
   render() {
-    const { properties } = this.props
+    const { properties, googleMapsKey } = this.props
     return (
       <Layout>
         <PropertiesStyle>
@@ -135,7 +140,7 @@ class PropertiesPostTemplate extends React.Component {
             <GoogleMapReact
               // onChildClick={this._onChildClick}
               bootstrapURLKeys={{
-                key: process.env.GOOGLE_MAPS_KEY,
+                key: googleMapsKey,
               }}
               defaultCenter={this.props.center}
               defaultZoom={this.props.zoom}
@@ -171,8 +176,11 @@ class PropertiesPostTemplate extends React.Component {
 }
 
 const Properties = ({ data }) => {
-  const { nodes } = data.allSanityProperty
-  return <PropertiesPostTemplate properties={nodes} />
+  const { nodes } = data.property
+  const { googleMapsKey } = data.site.siteMetadata
+  return (
+    <PropertiesPostTemplate properties={nodes} googleMapsKey={googleMapsKey} />
+  )
 }
 
 export default Properties

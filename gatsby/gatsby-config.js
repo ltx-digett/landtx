@@ -9,6 +9,7 @@ module.exports = {
     title: `Landtx`,
     description: `Landtx gatsby site.`,
     author: `Alexander Fountain`,
+    googleMapsKey: process.env.GOOGLE_MAPS_KEY,
     mainmenu: [
       {
         name: "About",
