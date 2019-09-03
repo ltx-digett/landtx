@@ -54,6 +54,17 @@ const PropertyStyle = styled.div`
       top: unset;
     }
   }
+  .disclaimer {
+    padding-top: 40px;
+    &:before {
+      content: "";
+      width: 75%;
+      display: block;
+      margin: 0 auto;
+      border-top: thin solid ${variable.brown};
+      margin-bottom: 50px;
+    }
+  }
 `
 const serializers = {
   types: {
@@ -106,6 +117,9 @@ export const query = graphql`
           _key
         }
         _rawOverview
+        disclaimer {
+          _rawBody
+        }
       }
     }
   }
@@ -116,7 +130,13 @@ class PropertyPostTemplate extends React.Component {
     fitvids()
   }
   render() {
-    const { property, _rawSidebar, rawoverview, overview } = this.props
+    const {
+      property,
+      _rawSidebar,
+      rawoverview,
+      overview,
+      disclaimer,
+    } = this.props
 
     return (
       <Layout>
@@ -139,6 +159,14 @@ class PropertyPostTemplate extends React.Component {
                     />
                   </div>
                 ))}
+                <div className="disclaimer">
+                  <PortableText
+                    serializers={serializers}
+                    blocks={disclaimer}
+                    projectId="84iv1ine"
+                    dataset="production"
+                  />
+                </div>
               </div>
               <div className="property-right sticky">
                 {overview.map((overviewitem, index) => (
@@ -164,6 +192,7 @@ class PropertyPostTemplate extends React.Component {
 }
 const Property = ({ data }) => {
   const { [0]: post } = data.allSanityProperty.nodes
+  console.log(post)
   return (
     <PropertyPostTemplate
       overview={post.overview}
@@ -172,6 +201,7 @@ const Property = ({ data }) => {
       _rawSidebar={post._rawSidebar}
       interactivemap={post.interactivemap}
       staticmaps={post.staticmaps}
+      disclaimer={post.disclaimer._rawBody}
       property={post}
     />
   )

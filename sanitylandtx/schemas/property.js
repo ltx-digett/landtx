@@ -74,6 +74,11 @@ export default {
       of: [{ type: "overview" }]
     },
     {
+      name: "disclaimer",
+      type: "reference",
+      to: [{ type: "blocks" }]
+    },
+    {
       title: "Interactive Map",
       name: "interactivemap",
       type: "url"

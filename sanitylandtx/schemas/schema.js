@@ -8,6 +8,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import blockContent from "./blockContent";
 import category from "./category";
 import main from "./main";
+import blocks from "./blocks";
 import property from "./property";
 import sidebar from "./sidebar";
 import imageCaption from "./imageCaption";
@@ -26,6 +27,7 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     main,
+    blocks,
     sidebar,
     property,
     imageCaption,
