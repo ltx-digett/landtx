@@ -38,7 +38,13 @@ export default {
     {
       title: "Sidebar",
       name: "sidebar",
-      type: "blockContent"
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "blocks" }]
+        }
+      ]
     }
   ],
   preview: {

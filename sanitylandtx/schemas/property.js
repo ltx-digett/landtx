@@ -38,10 +38,10 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Active", value: "active" },
-          { title: "Contract Pending", value: "contractpending" }
-        ], // <-- predefined values
-        layout: "radio" // <-- defaults to 'dropdown'
+          { title: "Active", value: "Active" },
+          { title: "Contract Pending", value: "Contract Pending" },
+          { title: "Sold", value: "Sold" }
+        ]
       }
     },
     {
@@ -92,7 +92,13 @@ export default {
     {
       title: "Sidebar",
       name: "sidebar",
-      type: "blockContent"
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "blocks" }]
+        }
+      ]
     }
   ],
   preview: {

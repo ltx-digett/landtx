@@ -88,6 +88,18 @@ const serializers = {
       props.node.asset !== null && (
         <img src={props.node.asset.url + "?w=700"} />
       ),
+    blocks: props => (
+      <div>
+        <PortableText
+          className="sidebar-body"
+          serializers={serializers}
+          blocks={props.node.body}
+          projectId="84iv1ine"
+          dataset="production"
+          imageOptions={{ w: 320, fit: "max" }}
+        />
+      </div>
+    ),
   },
 }
 

@@ -6,15 +6,45 @@ import Container from "../../container"
 import * as variable from "../../variables"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
-import fullscreen from "../../../images/fullscreen-icon.png"
+import fullscreen from "../../../images/Magnifier.png"
 import { PopupboxManager, PopupboxContainer } from "react-popupbox"
 import "react-popupbox/dist/react-popupbox.css"
 import FullSlide from "../../fullslide"
 
 const PropertyTopStyle = styled.div`
+  h1 {
+    display: inline-block;
+    margin-top: 0px;
+  }
+  .status {
+    font-style: italic;
+    margin-left: 10px;
+  }
+  ul.details {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 40px;
+    li {
+      list-style: none;
+      margin-bottom: 10px;
+      a {
+        color: ${variable.black};
+        text-decoration: none;
+      }
+    }
+  }
+  .blue-cta-prop {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+    background: ${variable.steelBlue};
+    margin-bottom: 20px;
+    text-align: center;
+  }
   .top-property-container {
     padding-top: 100px;
-    padding-bottom: 100px;
+    padding-bottom: 70px;
     display: flex;
     justify-content: space-between;
     .top-details-left {
@@ -28,8 +58,7 @@ const PropertyTopStyle = styled.div`
       width: 50px;
       height: 50px;
       cursor: pointer;
-      background-color: rgba(255, 255, 255, 0.5);
-      bottom: 40px;
+      bottom: 30px;
       padding-left: 2px;
       left: 20px;
       position: absolute;
@@ -41,6 +70,21 @@ const PropertyTopStyle = styled.div`
   }
   .popupbox-content div:not(.nav):not(.indicators) {
     height: 100%;
+  }
+  .alice-carousel__dots-item {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.75);
+    &.__active {
+      background-color: rgba(255, 255, 255, 0.4) !important;
+    }
+  }
+  .alice-carousel__dots-item:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+  .alice-carousel__dots {
+    bottom: 20px;
+    margin: 0px;
   }
   .popupbox-content {
     .indicators {
@@ -100,6 +144,7 @@ class PropertyTop extends React.Component {
   }
   render() {
     const { property } = this.props
+    console.log(property)
     const formatter = new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
@@ -111,15 +156,35 @@ class PropertyTop extends React.Component {
         <Container className="top-property-container">
           <div className="top-details-left">
             <h1>{property.title}</h1>
-            <ul>
+            {property.status && (
+              <span className="status">{property.status}</span>
+            )}
+            <ul className="details">
               {property.acres && (
                 <li>
                   {property.acres} acres in {property.county} County
                 </li>
               )}
               {property.price && <li>{formatter.format(property.price)}</li>}
-              {property.status && <li>{property.status}</li>}
+              {property.brochure && (
+                <li>
+                  <a className="brochure" href={property.brochure.asset.url}>
+                    Download Property Brochure
+                  </a>
+                </li>
+              )}
+              <li>
+                <a className="share" href="#">
+                  Share Listing
+                </a>
+              </li>
             </ul>
+            <a className="blue-cta-prop" href="">
+              Request a Bound Package
+            </a>
+            <a className="blue-cta-prop" href="">
+              Ask About this Property
+            </a>
           </div>
           <div className="top-details-right">
             <AliceCarousel

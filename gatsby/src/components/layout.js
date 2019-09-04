@@ -36,7 +36,6 @@ const GlobalStyles = styled.div`
   }
   a {
     color: ${variable.red};
-    text-decoration: none;
   }
   @media (max-width: ${variable.mobileWidth}) {
     h1 {

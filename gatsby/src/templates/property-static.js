@@ -10,29 +10,36 @@ import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
 
 const PropertyStaticStyle = styled.div`
+  .alice-carousel__prev-btn {
+    position: absolute;
+    width: 40px;
+    top: 20px;
+    right: 80px;
+    .alice-carousel__prev-btn-item {
+      color: white;
+    }
+  }
+  .alice-carousel__next-btn {
+    position: absolute;
+    width: 40px;
+    top: 20px;
+    right: 20px;
+    .alice-carousel__next-btn-item {
+      color: white;
+    }
+  }
   .prop-brown-container {
     background-color: ${variable.taupe};
-  }
-  .overview {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 40px;
     padding-bottom: 40px;
-    .property-left {
-      width: calc(75% - 40px);
-    }
-    .property-right {
-      width: 25%;
-      a {
-        color: ${variable.marine};
-      }
-    }
   }
-  .sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 60px;
-    align-self: flex-start;
+  .static-slide {
+    h3 {
+      background-color: ${variable.rosyBrown};
+      padding: 15px;
+      color: white;
+      margin-bottom: 0px;
+      margin-top: 40px;
+    }
   }
 `
 
@@ -61,6 +68,7 @@ export const query = graphql`
               url
             }
           }
+          caption
         }
         slideshow {
           asset {
@@ -80,6 +88,7 @@ export const query = graphql`
 class PropertyPostStaticTemplate extends React.Component {
   render() {
     const { property, staticmaps } = this.props
+    console.log(staticmaps)
     return (
       <Layout>
         <PropertyStaticStyle>
@@ -87,9 +96,10 @@ class PropertyPostStaticTemplate extends React.Component {
           <Tabs property={property} active="tab-container-static"></Tabs>
           <div className="prop-brown-container">
             <Container className="static">
-              <AliceCarousel mouseDragEnabled>
+              <AliceCarousel mouseDragEnabled dotsDisabled>
                 {staticmaps.map((slide, index) => (
                   <div className="static-slide">
+                    {console.log(slide)}
                     <h3>{slide.caption}</h3>
                     <img
                       src={slide.image.asset.url + "?w=1200"}

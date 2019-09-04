@@ -93,7 +93,7 @@ class PropertyPostInteractiveTemplate extends React.Component {
               <Iframe
                 url={property.interactivemap}
                 width="100%"
-                height="450px"
+                height="1400px"
                 display="initial"
                 position="relative"
               />

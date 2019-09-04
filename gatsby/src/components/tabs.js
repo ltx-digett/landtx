@@ -11,7 +11,7 @@ const TabsStyle = styled.div`
     a {
       width: calc(33.333% - 10px);
       color: white;
-      background-color: ${variable.brown};
+      background-color: ${variable.rosyBrown};
       padding: 20px;
       text-decoration: none;
     }

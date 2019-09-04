@@ -19,16 +19,15 @@ const PropertyStyle = styled.div`
     padding-top: 40px;
     padding-bottom: 40px;
     .property-left {
-      width: calc(75% - 40px);
+      width: 60%;
     }
     .property-right {
-      width: 25%;
+      width: calc(40% - 100px);
       padding-top: 40px;
       a {
         color: ${variable.marine};
         margin-bottom: 10px;
         display: block;
-        text-align: right;
         font-size: 22px;
       }
     }
@@ -38,6 +37,13 @@ const PropertyStyle = styled.div`
     position: sticky;
     top: 60px;
     align-self: flex-start;
+  }
+  .sidebar-body {
+    text-align: center;
+    margin-top: 60px;
+    img {
+      max-width: 220px;
+    }
   }
   @media (max-width: ${variable.mobileWidth}) {
     .overview {
@@ -78,6 +84,18 @@ const serializers = {
         <img src={props.node.asset.url + "?w=700"} />
       ),
     youtube: props => <iframe src={props.node.url}></iframe>,
+    blocks: props => (
+      <div>
+        <PortableText
+          className="sidebar-body"
+          serializers={serializers}
+          blocks={props.node.body}
+          projectId="84iv1ine"
+          dataset="production"
+          imageOptions={{ w: 320, fit: "max" }}
+        />
+      </div>
+    ),
   },
 }
 
