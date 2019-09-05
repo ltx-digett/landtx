@@ -12,6 +12,33 @@ import "react-popupbox/dist/react-popupbox.css"
 import FullSlide from "../../fullslide"
 
 const PropertyTopStyle = styled.div`
+  .popclose-parent {
+    filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+    z-index: 99999999999999;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  .popclose {
+    height: 60px !important;
+    width: 60px !important;
+    clip-path: polygon(
+      20% 0%,
+      0% 20%,
+      30% 50%,
+      0% 80%,
+      20% 100%,
+      50% 70%,
+      80% 100%,
+      100% 80%,
+      70% 50%,
+      100% 20%,
+      80% 0%,
+      50% 30%
+    );
+    background-color: white;
+    cursor: pointer;
+  }
   h1 {
     display: inline-block;
     margin-top: 0px;
@@ -43,8 +70,8 @@ const PropertyTopStyle = styled.div`
     text-align: center;
   }
   .top-property-container {
-    padding-top: 100px;
-    padding-bottom: 70px;
+    padding-top: 72px;
+    padding-bottom: 72px;
     display: flex;
     justify-content: space-between;
     .top-details-left {
@@ -55,8 +82,8 @@ const PropertyTopStyle = styled.div`
       position: relative;
     }
     .fullscreen {
-      width: 50px;
-      height: 50px;
+      width: 35px;
+      height: 35px;
       cursor: pointer;
       bottom: 30px;
       padding-left: 2px;
@@ -70,6 +97,9 @@ const PropertyTopStyle = styled.div`
   }
   .popupbox-content div:not(.nav):not(.indicators) {
     height: 100%;
+  }
+  .popupbox-content {
+    padding: 0px;
   }
   .alice-carousel__dots-item {
     width: 20px;
@@ -130,16 +160,28 @@ class PropertyTop extends React.Component {
     }
   }
   openPopupbox(e, slideshow, title) {
-    const content = <FullSlide slideshow={slideshow}></FullSlide>
+    const content = (
+      <div>
+        <FullSlide slideshow={slideshow}></FullSlide>
+        <div className="popclose-parent">
+          <div
+            className="popclose"
+            onClick={e => {
+              this.closePopupbox(e)
+            }}
+          ></div>
+        </div>
+      </div>
+    )
     PopupboxManager.open({
       content,
       fadeInSpeed: 10,
-      config: {
-        titleBar: {
-          enable: true,
-          text: title + " Images",
-        },
-      },
+      config: {},
+    })
+  }
+  closePopupbox(e) {
+    PopupboxManager.close({
+      fadeInSpeed: 10,
     })
   }
   render() {
@@ -192,6 +234,7 @@ class PropertyTop extends React.Component {
               mouseDragEnabled
               buttonsDisabled
               autoPlayInterval={5000}
+              duration={1000}
             >
               {property.slideshow.map((slide, index) => (
                 <img src={slide.asset.url + "?w=800"} className="prop-slide" />

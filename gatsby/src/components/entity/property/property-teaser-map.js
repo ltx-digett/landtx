@@ -15,7 +15,14 @@ const PropertyTeaserStyle = styled.div`
     margin: 0px;
     li {
       list-style: none;
+      margin-bottom: 5px;
     }
+  }
+  a {
+    text-decoration: none;
+  }
+  h3 {
+    font-size: 16px;
   }
 `
 
@@ -39,16 +46,6 @@ class PropertyTeaser extends React.Component {
     })
     return (
       <PropertyTeaserStyle className="prop-teaser">
-        <AliceCarousel
-          autoPlay
-          mouseDragEnabled
-          buttonsDisabled
-          autoPlayInterval={5000}
-        >
-          {property.slideshow.map((slide, index) => (
-            <img src={slide.asset.url + "?w=800"} className="prop-slide" />
-          ))}
-        </AliceCarousel>
         <h3>
           <Link to={"/property/" + property.slug.current}>
             {property.title}

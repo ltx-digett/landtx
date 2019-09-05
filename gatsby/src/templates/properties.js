@@ -14,20 +14,19 @@ const PropertiesStyle = styled.div`
   .marker {
     cursor: pointer;
   }
-  .properties-teaser-container {
+  .properties-teaser-container-flex {
     display: flex;
-    padding-top: 40px;
     padding-bottom: 40px;
     justify-content: space-between;
     flex-wrap: wrap;
     .prop-teaser {
-      width: calc(33.333% - 10px);
+      width: calc(33.333% - 15px);
     }
   }
   @media (max-width: ${variable.tabletWidth}) {
     .properties-teaser-container {
       .prop-teaser {
-        width: calc(50% - 10px);
+        width: calc(50% - 15px);
       }
     }
   }
@@ -56,6 +55,7 @@ export const query = graphql`
         status
         acres
         county
+        description
         brochure {
           asset {
             url
@@ -159,15 +159,18 @@ class PropertiesPostTemplate extends React.Component {
           </div>
 
           <Container className="properties-teaser-container">
-            {properties.map((property, index) => (
-              <PropertyTeaser
-                key={index}
-                lat={property.location.lat}
-                lng={property.location.lng}
-                property={property}
-                onMouseEnter={this.onChildHover}
-              />
-            ))}
+            <h1>Properties</h1>
+            <div className="properties-teaser-container-flex">
+              {properties.map((property, index) => (
+                <PropertyTeaser
+                  key={index}
+                  lat={property.location.lat}
+                  lng={property.location.lng}
+                  property={property}
+                  onMouseEnter={this.onChildHover}
+                />
+              ))}
+            </div>
           </Container>
         </PropertiesStyle>
       </Layout>

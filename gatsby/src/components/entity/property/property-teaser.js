@@ -8,11 +8,20 @@ import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
 
 const PropertyTeaserStyle = styled.div`
+  margin-bottom: 60px;
   .teaser-list {
     padding: 0px;
     margin: 0px;
     li {
       list-style: none;
+      margin-bottom: 5px;
+    }
+  }
+  h3 {
+    font-size: 28px;
+    margin: 20px 0px 10px 0px;
+    a {
+      text-decoration: none;
     }
   }
 `
@@ -60,12 +69,7 @@ class PropertyTeaser extends React.Component {
         className="prop-teaser"
         onMouseEnter={this.onMouseEnter}
       >
-        <AliceCarousel
-          autoPlay
-          mouseDragEnabled
-          buttonsDisabled
-          autoPlayInterval={5000}
-        >
+        <AliceCarousel mouseDragEnabled buttonsDisabled duration={1000}>
           {property.slideshow.map((slide, index) => (
             <img src={slide.asset.url + "?w=800"} className="prop-slide" />
           ))}
@@ -76,6 +80,7 @@ class PropertyTeaser extends React.Component {
           </Link>
         </h3>
         <ul className="teaser-list">
+          {property.description && <li>{property.description}</li>}
           {property.acres && <li>{property.acres} Acres</li>}
           {property.county && <li>{property.county} County</li>}
           {property.price && <li>{formatter.format(property.price)}</li>}

@@ -18,6 +18,12 @@ export default {
       }
     },
     {
+      name: "description",
+      title: "Description",
+      type: "text",
+      rows: 3
+    },
+    {
       name: "acres",
       title: "Acres",
       type: "number"

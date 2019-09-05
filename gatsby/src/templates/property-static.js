@@ -133,7 +133,12 @@ class PropertyPostStaticTemplate extends React.Component {
           <Tabs property={property} active="tab-container-static"></Tabs>
           <div className="prop-brown-container">
             <Container className="static">
-              <AliceCarousel mouseDragEnabled dotsDisabled showSlideInfo>
+              <AliceCarousel
+                mouseDragEnabled
+                dotsDisabled
+                showSlideInfo
+                duration={1000}
+              >
                 {staticmaps.map((slide, index) => (
                   <div className="static-slide">
                     {console.log(slide)}
