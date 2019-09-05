@@ -12,21 +12,57 @@ import "react-alice-carousel/lib/alice-carousel.css"
 const PropertyStaticStyle = styled.div`
   .alice-carousel__prev-btn {
     position: absolute;
-    width: 40px;
-    top: 20px;
-    right: 80px;
+    width: 25px;
+    top: 55px;
+    right: 100px;
+    padding: 0px;
+    margin: 0px;
     .alice-carousel__prev-btn-item {
-      color: white;
+      color: transparent;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      margin: 0px;
+      clip-path: polygon(
+        40% 0%,
+        40% 20%,
+        100% 20%,
+        100% 80%,
+        40% 80%,
+        40% 100%,
+        0% 50%
+      );
     }
   }
   .alice-carousel__next-btn {
     position: absolute;
-    width: 40px;
-    top: 20px;
+    width: 25px;
+    top: 55px;
     right: 20px;
+    padding: 0px;
+    margin: 0px;
     .alice-carousel__next-btn-item {
-      color: white;
+      color: transparent;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      margin: 0px;
+      clip-path: polygon(
+        0% 20%,
+        60% 20%,
+        60% 0%,
+        100% 50%,
+        60% 100%,
+        60% 80%,
+        0% 80%
+      );
     }
+  }
+  .alice-carousel__slide-info {
+    top: 48px;
+    right: 50px;
+    color: white;
+    background-color: transparent;
   }
   .prop-brown-container {
     background-color: ${variable.taupe};
@@ -39,6 +75,7 @@ const PropertyStaticStyle = styled.div`
       color: white;
       margin-bottom: 0px;
       margin-top: 40px;
+      font-weight: 400;
     }
   }
 `
@@ -96,7 +133,7 @@ class PropertyPostStaticTemplate extends React.Component {
           <Tabs property={property} active="tab-container-static"></Tabs>
           <div className="prop-brown-container">
             <Container className="static">
-              <AliceCarousel mouseDragEnabled dotsDisabled>
+              <AliceCarousel mouseDragEnabled dotsDisabled showSlideInfo>
                 {staticmaps.map((slide, index) => (
                   <div className="static-slide">
                     {console.log(slide)}
