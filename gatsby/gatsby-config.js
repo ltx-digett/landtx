@@ -70,15 +70,23 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
-        fonts: [
-          `Gothic A1\:400,700`,
-          `Open Sans\:300,400,400i,700`, // you can also specify font weights and styles
-        ],
-        display: "swap",
+        google: {
+          families: ["Gothic A1:400,700", "Open Sans:300,400,400i,700"],
+        },
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       `Gothic A1\:400,700`,
+    //       `Open Sans\:300,400,400i,700`, // you can also specify font weights and styles
+    //     ],
+    //     display: "swap",
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
