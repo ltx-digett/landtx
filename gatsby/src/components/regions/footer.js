@@ -3,10 +3,9 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import Container from "../container"
 import * as variable from "../variables"
-import digettlogo from "../../images/digett_white.png"
-import bg from "../../images/bg-topo.png"
 import BackgroundImage from "gatsby-background-image"
 import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 const FooterStyle = styled.footer`
   background-size: cover;
@@ -78,9 +77,18 @@ export const Footer = ({ mainmenu }) => {
           }
         }
       }
+      digettlogo: file(relativePath: { eq: "digett_white.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 1920) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   `)
   const footerbg = data.footerbg.childImageSharp.fluid
+  const digettlogo = data.digettlogo.childImageSharp.fluid
+
   return (
     <FooterStyle className="ltx-footer">
       <BackgroundImage fluid={footerbg} style={{ backgroundSize: "cover" }}>
@@ -112,7 +120,7 @@ export const Footer = ({ mainmenu }) => {
                 © 2019 - Culver/LANDTX, Inc. - All Rights Reserved
               </div>
               <a href="https://www.digett.com">
-                <img src={digettlogo} />
+                <Img fluid={digettlogo} />
               </a>
             </div>
           </Container>

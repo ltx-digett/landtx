@@ -4,12 +4,10 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import Container from "../container"
 import * as variable from "../variables"
-import logo from "../../images/landtx-logo-white.png"
-import bg from "../../images/bg-topo.png"
-import tracks from "../../images/tiretracks.png"
 import MobileMenu from "../mobilemenu"
 import BackgroundImage from "gatsby-background-image"
 import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 const HeaderStyle = styled.header`
   background-size: cover;
@@ -96,10 +94,18 @@ export const Header = ({ mainmenu }) => {
           }
         }
       }
+      logo: file(relativePath: { eq: "landtx-logo-white.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 600) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   `)
   const headerbg = data.headerbg.childImageSharp.fluid
   const headerbgtracks = data.headerbgtracks.childImageSharp.fluid
+  const logo = data.logo.childImageSharp.fluid
 
   return (
     <HeaderStyle className="ltx-header">
@@ -111,7 +117,7 @@ export const Header = ({ mainmenu }) => {
           >
             <Container className="header-menu-logo">
               <Link to="/">
-                <img src={logo} />
+                <Img fluid={logo} />
               </Link>
               <ul className="main-menu">
                 {mainmenu.map((menuitem, index) => (
