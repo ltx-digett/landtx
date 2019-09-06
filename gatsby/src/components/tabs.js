@@ -34,12 +34,20 @@ const TabsStyle = styled.div`
       color: ${variable.black};
     }
   }
+  @media (max-width: ${variable.tabletWidth}) {
+    .tabs {
+      a {
+        text-align: center;
+        padding: 15px;
+      }
+    }
+  }
   @media (max-width: ${variable.mobileWidth}) {
     .tabs {
-      flex-direction: column;
       a {
-        width: 100%;
-        margin-bottom: 40px;
+        padding: 10px 5px;
+        font-size: 16px;
+        width: calc(33.333% - 5px);
       }
     }
   }

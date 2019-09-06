@@ -8,9 +8,10 @@ import logo from "../../images/landtx-logo-white.png"
 import bg from "../../images/bg-topo.png"
 import tracks from "../../images/tiretracks.png"
 import MobileMenu from "../mobilemenu"
+import BackgroundImage from "gatsby-background-image"
+import { useStaticQuery, graphql } from "gatsby"
 
 const HeaderStyle = styled.header`
-  background-image: url(${bg});
   background-size: cover;
   .header-bg {
     background-color: rgba(128, 119, 90, 0.7);
@@ -34,7 +35,6 @@ const HeaderStyle = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-image: url(${tracks});
     background-size: cover;
     img {
       width: 260px;
@@ -80,23 +80,51 @@ const HeaderStyle = styled.header`
 `
 
 export const Header = ({ mainmenu }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      headerbg: file(relativePath: { eq: "bg-topo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 1920) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      headerbgtracks: file(relativePath: { eq: "tiretracks.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 1920) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
+  const headerbg = data.headerbg.childImageSharp.fluid
+  const headerbgtracks = data.headerbgtracks.childImageSharp.fluid
+
   return (
     <HeaderStyle className="ltx-header">
-      <div className="header-bg">
-        <Container className="header-menu-logo">
-          <Link to="/">
-            <img src={logo} />
-          </Link>
-          <ul className="main-menu">
-            {mainmenu.map((menuitem, index) => (
-              <li key={index}>
-                <Link to={menuitem.link}>{menuitem.name}</Link>
-              </li>
-            ))}
-          </ul>
-          <MobileMenu></MobileMenu>
-        </Container>
-      </div>
+      <BackgroundImage fluid={headerbg} style={{ backgroundSize: "cover" }}>
+        <div className="header-bg">
+          <BackgroundImage
+            fluid={headerbgtracks}
+            style={{ backgroundSize: "cover" }}
+          >
+            <Container className="header-menu-logo">
+              <Link to="/">
+                <img src={logo} />
+              </Link>
+              <ul className="main-menu">
+                {mainmenu.map((menuitem, index) => (
+                  <li key={index}>
+                    <Link to={menuitem.link}>{menuitem.name}</Link>
+                  </li>
+                ))}
+              </ul>
+              <MobileMenu></MobileMenu>
+            </Container>
+          </BackgroundImage>
+        </div>
+      </BackgroundImage>
     </HeaderStyle>
   )
 }

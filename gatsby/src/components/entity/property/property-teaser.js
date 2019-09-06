@@ -9,6 +9,11 @@ import "react-alice-carousel/lib/alice-carousel.css"
 
 const PropertyTeaserStyle = styled.div`
   margin-bottom: 60px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  .prop-teaser-bottom {
+    padding: 30px 30px 30px 30px;
+  }
   .teaser-list {
     padding: 0px;
     margin: 0px;
@@ -19,7 +24,7 @@ const PropertyTeaserStyle = styled.div`
   }
   h3 {
     font-size: 28px;
-    margin: 20px 0px 10px 0px;
+    margin: 0px 0px 10px 0px;
     a {
       text-decoration: none;
     }
@@ -31,6 +36,7 @@ class PropertyTeaser extends React.Component {
     super(props)
     this.state = {
       showInfo: false,
+      autoplay: false,
     }
   }
   numberWithCommas(price) {
@@ -39,6 +45,11 @@ class PropertyTeaser extends React.Component {
   onMouseEnter = () => {
     // console.log(this.props.property.id)
     this.props.onMouseEnter(this.props.property)
+    this.state.autoplay = true
+  }
+  onMouseLeave = () => {
+    // console.log(this.props.property.id)
+    this.state.autoplay = false
   }
   componentDidUpdate() {
     {
@@ -59,6 +70,7 @@ class PropertyTeaser extends React.Component {
 
   render() {
     const { property } = this.props
+    const { autoplay } = this.state
     const formatter = new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
@@ -68,24 +80,34 @@ class PropertyTeaser extends React.Component {
       <PropertyTeaserStyle
         className="prop-teaser"
         onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
       >
-        <AliceCarousel mouseDragEnabled buttonsDisabled duration={1000}>
+        <AliceCarousel
+          mouseDragEnabled
+          buttonsDisabled
+          duration={1000}
+          stopAutoPlayOnHover={false}
+          autoPlay={autoplay}
+          autoPlayInterval={1500}
+        >
           {property.slideshow.map((slide, index) => (
             <img src={slide.asset.url + "?w=800"} className="prop-slide" />
           ))}
         </AliceCarousel>
-        <h3>
-          <Link to={"/property/" + property.slug.current}>
-            {property.title}
-          </Link>
-        </h3>
-        <ul className="teaser-list">
-          {property.description && <li>{property.description}</li>}
-          {property.acres && <li>{property.acres} Acres</li>}
-          {property.county && <li>{property.county} County</li>}
-          {property.price && <li>{formatter.format(property.price)}</li>}
-          {property.status && <li>{property.status}</li>}
-        </ul>
+        <div className="prop-teaser-bottom">
+          <h3>
+            <Link to={"/property/" + property.slug.current}>
+              {property.title}
+            </Link>
+          </h3>
+          <ul className="teaser-list">
+            {property.description && <li>{property.description}</li>}
+            {property.acres && <li>{property.acres} Acres</li>}
+            {property.county && <li>{property.county} County</li>}
+            {property.price && <li>{formatter.format(property.price)}</li>}
+            {property.status && <li>{property.status}</li>}
+          </ul>
+        </div>
       </PropertyTeaserStyle>
     )
   }

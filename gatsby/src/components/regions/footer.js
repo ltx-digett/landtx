@@ -5,9 +5,10 @@ import Container from "../container"
 import * as variable from "../variables"
 import digettlogo from "../../images/digett_white.png"
 import bg from "../../images/bg-topo.png"
+import BackgroundImage from "gatsby-background-image"
+import { useStaticQuery, graphql } from "gatsby"
 
 const FooterStyle = styled.footer`
-  background-image: url(${bg});
   background-size: cover;
   .footer-bg {
     background-color: rgba(128, 119, 90, 0.7);
@@ -68,41 +69,55 @@ const FooterStyle = styled.footer`
 `
 
 export const Footer = ({ mainmenu }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      footerbg: file(relativePath: { eq: "bg-topo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 1920) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
+  const footerbg = data.footerbg.childImageSharp.fluid
   return (
     <FooterStyle className="ltx-footer">
-      <div className="footer-bg">
-        <Container className="footer-container">
-          <div className="footer-left">
-            <ul>
-              <li>Read About LANDTX</li>
-              <li>View our Property Listings </li>
-              <li>Read our Market Activity Reports </li>
-              <li>More Resources </li>
-              <li>Contact LANDTX</li>
-            </ul>
-          </div>
-          <div className="footer-right">
-            <ul>
-              <li>Culver/LANDTX, Inc.</li>
-              <li>PO Box 860</li>
-              <li>954 San Antonio St.</li>
-              <li>Mason, TX 76856</li>
-              <li>Phone (325) 294-4616</li>
-              <li>Fax: (325) 294-4618</li>
-            </ul>
-          </div>
-        </Container>
-        <Container>
-          <div className="digett">
-            <div className="copy">
-              © 2019 - Culver/LANDTX, Inc. - All Rights Reserved
+      <BackgroundImage fluid={footerbg} style={{ backgroundSize: "cover" }}>
+        <div className="footer-bg">
+          <Container className="footer-container">
+            <div className="footer-left">
+              <ul>
+                <li>Read About LANDTX</li>
+                <li>View our Property Listings </li>
+                <li>Read our Market Activity Reports </li>
+                <li>More Resources </li>
+                <li>Contact LANDTX</li>
+              </ul>
             </div>
-            <a href="https://www.digett.com">
-              <img src={digettlogo} />
-            </a>
-          </div>
-        </Container>
-      </div>
+            <div className="footer-right">
+              <ul>
+                <li>Culver/LANDTX, Inc.</li>
+                <li>PO Box 860</li>
+                <li>954 San Antonio St.</li>
+                <li>Mason, TX 76856</li>
+                <li>Phone (325) 294-4616</li>
+                <li>Fax: (325) 294-4618</li>
+              </ul>
+            </div>
+          </Container>
+          <Container>
+            <div className="digett">
+              <div className="copy">
+                © 2019 - Culver/LANDTX, Inc. - All Rights Reserved
+              </div>
+              <a href="https://www.digett.com">
+                <img src={digettlogo} />
+              </a>
+            </div>
+          </Container>
+        </div>
+      </BackgroundImage>
     </FooterStyle>
   )
 }

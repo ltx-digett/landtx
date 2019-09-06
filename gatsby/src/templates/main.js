@@ -6,6 +6,8 @@ import Layout from "../components/layout"
 import Container from "../components/container"
 import PortableText from "@sanity/block-content-to-react"
 import * as variable from "../components/variables"
+import BackgroundImage from "gatsby-background-image"
+import RawImage from "../components/rawImage"
 
 const MainStyle = styled.div`
   .slide {
@@ -26,6 +28,10 @@ const MainStyle = styled.div`
     }
     .sidebar {
       width: 40%;
+      .gatsby-image-wrapper {
+        max-width: 265px;
+        margin: 0 auto;
+      }
       .blue-cta {
         width: 100%;
         margin-bottom: 50px;
@@ -84,10 +90,14 @@ const serializers = {
         <code>{props.node.code}</code>
       </pre>
     ),
-    image: props =>
-      props.node.asset !== null && (
-        <img src={props.node.asset.url + "?w=700"} />
-      ),
+    image: props => (
+      // props.node.asset !== null && <div>{console.log(props.node.asset)}
+
+      // </div>
+      <div>
+        <RawImage id={props.node.asset.id} />
+      </div>
+    ),
     blocks: props => (
       <div>
         <PortableText
@@ -124,6 +134,15 @@ export const query = graphql`
         slideshow {
           asset {
             url
+            fluid {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
           }
         }
       }
@@ -143,10 +162,10 @@ export const MainPostTemplate = ({
         <Slide {...properties}>
           {slideshow.map((slide, index) => (
             <div className="each-slide">
-              <div
+              <BackgroundImage
                 className="slide"
-                style={{ backgroundImage: `url(${slide.asset.url})` }}
-              ></div>
+                fluid={slide.asset.fluid}
+              ></BackgroundImage>
             </div>
           ))}
         </Slide>
@@ -170,7 +189,6 @@ export const MainPostTemplate = ({
               blocks={sidebarBody}
               projectId="84iv1ine"
               dataset="production"
-              imageOptions={{ w: 320, fit: "max" }}
             />
           </div>
         </Container>
