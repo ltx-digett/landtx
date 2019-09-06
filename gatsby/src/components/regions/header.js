@@ -34,6 +34,9 @@ const HeaderStyle = styled.header`
     align-items: center;
     justify-content: space-between;
     background-size: cover;
+    .logo {
+      flex-grow: 1;
+    }
     img {
       width: 260px;
     }
@@ -116,7 +119,7 @@ export const Header = ({ mainmenu }) => {
             style={{ backgroundSize: "cover" }}
           >
             <Container className="header-menu-logo">
-              <Link to="/">
+              <Link className="logo" to="/">
                 <Img fluid={logo} />
               </Link>
               <ul className="main-menu">

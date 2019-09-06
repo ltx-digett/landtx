@@ -65,6 +65,15 @@ export const query = graphql`
         slideshow {
           asset {
             url
+            fluid {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
           }
         }
         slug {

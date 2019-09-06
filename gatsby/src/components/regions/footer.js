@@ -46,13 +46,10 @@ const FooterStyle = styled.footer`
     flex-direction: column;
     text-align: center;
     padding: 20px 0px;
-    img {
-      max-width: 100px;
-      margin-top: 20px;
-    }
   }
   .copy {
     color: white;
+    margin-bottom: 20px;
   }
   @media (max-width: ${variable.mobileWidth}) {
     .footer-container {
@@ -79,15 +76,15 @@ export const Footer = ({ mainmenu }) => {
       }
       digettlogo: file(relativePath: { eq: "digett_white.png" }) {
         childImageSharp {
-          fluid(maxWidth: 1920) {
-            ...GatsbyImageSharpFluid
+          fixed(width: 100) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
     }
   `)
   const footerbg = data.footerbg.childImageSharp.fluid
-  const digettlogo = data.digettlogo.childImageSharp.fluid
+  const digettlogo = data.digettlogo.childImageSharp.fixed
 
   return (
     <FooterStyle className="ltx-footer">
@@ -120,7 +117,7 @@ export const Footer = ({ mainmenu }) => {
                 © 2019 - Culver/LANDTX, Inc. - All Rights Reserved
               </div>
               <a href="https://www.digett.com">
-                <Img fluid={digettlogo} />
+                <Img fixed={digettlogo} />
               </a>
             </div>
           </Container>

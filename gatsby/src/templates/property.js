@@ -92,7 +92,6 @@ const serializers = {
           blocks={props.node.body}
           projectId="84iv1ine"
           dataset="production"
-          imageOptions={{ w: 320, fit: "max" }}
         />
       </div>
     ),
@@ -101,7 +100,25 @@ const serializers = {
 
 export const query = graphql`
   query PropertyPostByID($id: String!) {
-    allSanityProperty(filter: { id: { eq: $id } }) {
+    large: allSanityProperty(filter: { id: { eq: $id } }) {
+      nodes {
+        slideshow {
+          asset {
+            url
+            fluid(maxWidth: 1920) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          }
+        }
+      }
+    }
+    content: allSanityProperty(filter: { id: { eq: $id } }) {
       nodes {
         slug {
           current
@@ -122,12 +139,30 @@ export const query = graphql`
           image {
             asset {
               url
+              fluid {
+                base64
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+              }
             }
           }
         }
         slideshow {
           asset {
             url
+            fluid(maxWidth: 800) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
           }
         }
         overview {
@@ -154,12 +189,13 @@ class PropertyPostTemplate extends React.Component {
       rawoverview,
       overview,
       disclaimer,
+      large,
     } = this.props
-
+    console.log(large)
     return (
       <Layout>
         <PropertyStyle>
-          <PropertyTop property={property}></PropertyTop>
+          <PropertyTop property={property} large={large}></PropertyTop>
           <Tabs property={property} active="tab-container-overview"></Tabs>
           <div className="prop-brown-container">
             <Container className="overview">
@@ -209,8 +245,9 @@ class PropertyPostTemplate extends React.Component {
   }
 }
 const Property = ({ data }) => {
-  const { [0]: post } = data.allSanityProperty.nodes
-  console.log(post)
+  const { [0]: post } = data.content.nodes
+  const { [0]: large } = data.large.nodes
+  console.log(large)
   return (
     <PropertyPostTemplate
       overview={post.overview}
@@ -221,6 +258,7 @@ const Property = ({ data }) => {
       staticmaps={post.staticmaps}
       disclaimer={post.disclaimer._rawBody}
       property={post}
+      large={large}
     />
   )
 }

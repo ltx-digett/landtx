@@ -10,6 +10,7 @@ import fullscreen from "../../../images/Magnifier.png"
 import { PopupboxManager, PopupboxContainer } from "react-popupbox"
 import "react-popupbox/dist/react-popupbox.css"
 import FullSlide from "../../fullslide"
+import Img from "gatsby-image"
 
 const PropertyTopStyle = styled.div`
   .popclose-parent {
@@ -185,7 +186,7 @@ class PropertyTop extends React.Component {
     })
   }
   render() {
-    const { property } = this.props
+    const { property, large } = this.props
     console.log(property)
     const formatter = new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -237,7 +238,7 @@ class PropertyTop extends React.Component {
               duration={1000}
             >
               {property.slideshow.map((slide, index) => (
-                <img src={slide.asset.url + "?w=800"} className="prop-slide" />
+                <Img fluid={slide.asset.fluid} className="prop-slide" />
               ))}
             </AliceCarousel>
 
@@ -245,7 +246,7 @@ class PropertyTop extends React.Component {
               className="fullscreen"
               src={fullscreen}
               onClick={e => {
-                this.openPopupbox(e, property.slideshow, property.title)
+                this.openPopupbox(e, large.slideshow, property.title)
               }}
             ></img>
           </div>

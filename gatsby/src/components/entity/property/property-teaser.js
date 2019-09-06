@@ -6,6 +6,7 @@ import Container from "../../container"
 import * as variable from "../../variables"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
+import Img from "gatsby-image"
 
 const PropertyTeaserStyle = styled.div`
   margin-bottom: 60px;
@@ -39,18 +40,18 @@ class PropertyTeaser extends React.Component {
       autoplay: false,
     }
   }
+  componentDidMount() {
+    console.log(this.state)
+  }
   numberWithCommas(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
+
   onMouseEnter = () => {
     // console.log(this.props.property.id)
     this.props.onMouseEnter(this.props.property)
-    this.state.autoplay = true
   }
-  onMouseLeave = () => {
-    // console.log(this.props.property.id)
-    this.state.autoplay = false
-  }
+
   componentDidUpdate() {
     {
       if (this.state.showInfo !== true) {
@@ -79,8 +80,8 @@ class PropertyTeaser extends React.Component {
     return (
       <PropertyTeaserStyle
         className="prop-teaser"
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
+        onMouseEnter={() => this.setState({ autoplay: true })}
+        onMouseLeave={() => this.setState({ autoplay: false })}
       >
         <AliceCarousel
           mouseDragEnabled
@@ -91,7 +92,8 @@ class PropertyTeaser extends React.Component {
           autoPlayInterval={1500}
         >
           {property.slideshow.map((slide, index) => (
-            <img src={slide.asset.url + "?w=800"} className="prop-slide" />
+            // <img src={slide.asset.url + "?w=800"} className="prop-slide" />
+            <Img fluid={slide.asset.fluid} className="prop-slide" />
           ))}
         </AliceCarousel>
         <div className="prop-teaser-bottom">
