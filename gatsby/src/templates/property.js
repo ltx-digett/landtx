@@ -138,7 +138,6 @@ export const query = graphql`
         staticmaps {
           image {
             asset {
-              url
               fluid {
                 base64
                 aspectRatio

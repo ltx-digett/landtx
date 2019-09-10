@@ -18,6 +18,12 @@ export default {
       }
     },
     {
+      title: "Meta Description",
+      name: "metadescription",
+      type: "text",
+      rows: 3
+    },
+    {
       name: "slideshow",
       title: "Slideshow",
       type: "array",

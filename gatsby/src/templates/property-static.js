@@ -8,6 +8,7 @@ import PropertyTop from "../components/entity/property/property-top"
 import Tabs from "../components/tabs"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
+import Img from "gatsby-image"
 
 const PropertyStaticStyle = styled.div`
   .alice-carousel__prev-btn {
@@ -82,7 +83,25 @@ const PropertyStaticStyle = styled.div`
 
 export const query = graphql`
   query PropertyPostStaticByID($id: String!) {
-    allSanityProperty(filter: { id: { eq: $id } }) {
+    large: allSanityProperty(filter: { id: { eq: $id } }) {
+      nodes {
+        slideshow {
+          asset {
+            url
+            fluid(maxWidth: 1920) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          }
+        }
+      }
+    }
+    content: allSanityProperty(filter: { id: { eq: $id } }) {
       nodes {
         slug {
           current
@@ -103,6 +122,15 @@ export const query = graphql`
           image {
             asset {
               url
+              fluid(maxWidth: 1200) {
+                base64
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+              }
             }
           }
           caption
@@ -110,6 +138,15 @@ export const query = graphql`
         slideshow {
           asset {
             url
+            fluid {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
           }
         }
         overview {
@@ -124,12 +161,12 @@ export const query = graphql`
 
 class PropertyPostStaticTemplate extends React.Component {
   render() {
-    const { property, staticmaps } = this.props
-    console.log(staticmaps)
+    const { property, staticmaps, large } = this.props
+
     return (
       <Layout>
         <PropertyStaticStyle>
-          <PropertyTop property={property}></PropertyTop>
+          <PropertyTop property={property} large={large}></PropertyTop>
           <Tabs property={property} active="tab-container-static"></Tabs>
           <div className="prop-brown-container">
             <Container className="static">
@@ -139,16 +176,17 @@ class PropertyPostStaticTemplate extends React.Component {
                 showSlideInfo
                 duration={1000}
               >
-                {staticmaps.map((slide, index) => (
-                  <div className="static-slide">
-                    {console.log(slide)}
-                    <h3>{slide.caption}</h3>
-                    <img
-                      src={slide.image.asset.url + "?w=1200"}
-                      className="prop-slide"
-                    />
-                  </div>
-                ))}
+                {staticmaps !== null &&
+                  staticmaps.map((slide, index) => (
+                    <div className="static-slide">
+                      {console.log(slide)}
+                      <h3>{slide.caption}</h3>
+                      <Img
+                        fluid={slide.image.asset.fluid}
+                        className="prop-slide"
+                      />
+                    </div>
+                  ))}
               </AliceCarousel>
             </Container>
           </div>
@@ -158,7 +196,8 @@ class PropertyPostStaticTemplate extends React.Component {
   }
 }
 const PropertyStatic = ({ data }) => {
-  const { [0]: post } = data.allSanityProperty.nodes
+  const { [0]: post } = data.content.nodes
+  const { [0]: large } = data.large.nodes
   return (
     <PropertyPostStaticTemplate
       overview={post.overview}
@@ -168,6 +207,7 @@ const PropertyStatic = ({ data }) => {
       interactivemap={post.interactivemap}
       staticmaps={post.staticmaps}
       property={post}
+      large={large}
     />
   )
 }

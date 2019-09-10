@@ -41,7 +41,25 @@ const PropertyInteractiveStyle = styled.div`
 
 export const query = graphql`
   query PropertyPostInteractiveByID($id: String!) {
-    allSanityProperty(filter: { id: { eq: $id } }) {
+    large: allSanityProperty(filter: { id: { eq: $id } }) {
+      nodes {
+        slideshow {
+          asset {
+            url
+            fluid(maxWidth: 1920) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          }
+        }
+      }
+    }
+    content: allSanityProperty(filter: { id: { eq: $id } }) {
       nodes {
         slug {
           current
@@ -68,6 +86,15 @@ export const query = graphql`
         slideshow {
           asset {
             url
+            fluid {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
           }
         }
         overview {
@@ -82,7 +109,7 @@ export const query = graphql`
 
 class PropertyPostInteractiveTemplate extends React.Component {
   render() {
-    const { property } = this.props
+    const { property, large } = this.props
     return (
       <Layout>
         <PropertyInteractiveStyle>
@@ -105,7 +132,9 @@ class PropertyPostInteractiveTemplate extends React.Component {
   }
 }
 const PropertyInteractive = ({ data }) => {
-  const { [0]: post } = data.allSanityProperty.nodes
+  const { [0]: post } = data.content.nodes
+  const { [0]: large } = data.large.nodes
+
   return (
     <PropertyPostInteractiveTemplate
       overview={post.overview}
@@ -115,6 +144,7 @@ const PropertyInteractive = ({ data }) => {
       interactivemap={post.interactivemap}
       staticmaps={post.staticmaps}
       property={post}
+      large={large}
     />
   )
 }

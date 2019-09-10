@@ -8,6 +8,7 @@ import PortableText from "@sanity/block-content-to-react"
 import * as variable from "../components/variables"
 import BackgroundImage from "gatsby-background-image"
 import RawImage from "../components/rawImage"
+import { Helmet } from "react-helmet"
 
 const MainStyle = styled.div`
   .slide {
@@ -126,9 +127,19 @@ const properties = {
 
 export const query = graphql`
   query MainPostByID($id: String!) {
-    allSanityMain(filter: { id: { eq: $id } }) {
+    site: site {
+      siteMetadata {
+        title
+        url
+      }
+    }
+    main: allSanityMain(filter: { id: { eq: $id } }) {
       nodes {
         title
+        slug {
+          current
+        }
+        metadescription
         _rawBody(resolveReferences: { maxDepth: 10 })
         _rawSidebar(resolveReferences: { maxDepth: 10 })
         slideshow {
@@ -155,9 +166,20 @@ export const MainPostTemplate = ({
   slideshow,
   _rawBody,
   sidebarBody,
+  metadescription,
+  site,
+  slug,
 }) => {
   return (
     <Layout>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>
+          {title} | {site.title}
+        </title>
+        <meta property="og:description" content={metadescription} />
+        <link rel="canonical" href={site.url + "/" + slug} />
+      </Helmet>
       <MainStyle>
         <Slide {...properties}>
           {slideshow.map((slide, index) => (
@@ -198,13 +220,18 @@ export const MainPostTemplate = ({
 }
 
 const Main = ({ data }) => {
-  const { [0]: post } = data.allSanityMain.nodes
+  const { [0]: post } = data.main.nodes
+  const { siteMetadata } = data.site
+  console.log(post.metadescription)
   return (
     <MainPostTemplate
       title={post.title}
       slideshow={post.slideshow}
       _rawBody={post._rawBody}
       sidebarBody={post._rawSidebar}
+      metadescription={post.metadescription}
+      site={siteMetadata}
+      slug={post.slug.current}
     />
   )
 }
