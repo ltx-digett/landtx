@@ -74,7 +74,7 @@ export const Footer = ({ mainmenu }) => {
           }
         }
       }
-      digettlogo: file(relativePath: { eq: "digett_white.png" }) {
+      digettlogo: file(relativePath: { eq: "digett-logo-all-white.png" }) {
         childImageSharp {
           fixed(width: 100) {
             ...GatsbyImageSharpFixed

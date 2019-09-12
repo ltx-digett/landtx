@@ -23,6 +23,36 @@ module.exports = {
       {
         name: "Market Activity",
         link: "/market-activity",
+        submenu: [
+          {
+            name: "Trend Graph '04-Present",
+            link: "/market-activity",
+          },
+          {
+            name: "Market Summary '04-Present",
+            link: "/market-summary-04-present",
+          },
+          {
+            name: "Southwest Texas '04-Present",
+            link: "/southwest-texas-04-present",
+          },
+          {
+            name: "Western & Northern Hill Country '04-Present",
+            link: "/western-northern-hill-country-04-present",
+          },
+          {
+            name: "Central & Eastern Hill Country '04-Present",
+            link: "/central-eastern-southern-hill-country-04-present",
+          },
+          {
+            name: "Inland Plains & Upper South Texas '04-Present",
+            link: "/inland-plains-upper-south-texas-04-present",
+          },
+          {
+            name: "Sold Properties",
+            link: "/sold-properties",
+          },
+        ],
       },
       {
         name: "Resources",

@@ -22,8 +22,44 @@ const HeaderStyle = styled.header`
     li {
       list-style: none;
       margin-left: 50px;
+      transition-duration: 0.5s;
+      position: relative;
       &:nth-child(1) {
-        marginpleft: 0px;
+        margin-left: 0px;
+      }
+      &:hover > ul {
+        visibility: visible;
+        opacity: 1;
+        display: block;
+        transition-duration: 0.5s;
+      }
+      ul {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        transition: all 0.5s ease;
+        margin-top: 1rem;
+        left: -15px;
+        top: 0;
+        display: none;
+        z-index: 999999999999999;
+        padding: 15px;
+        width: 300px;
+        li {
+          background-color: rgba(255, 255, 255, 0.8);
+          margin: 0px;
+          padding: 10px 20px;
+          border-bottom: thin solid ${variable.black};
+          a {
+            color: ${variable.black};
+            font-size: 14px;
+          }
+        }
+        &:hover {
+          visibility: visible;
+          opacity: 1;
+          display: block;
+        }
       }
     }
   }
@@ -36,12 +72,14 @@ const HeaderStyle = styled.header`
     background-size: cover;
     .logo {
       flex-grow: 1;
+      max-width: 260px;
+      margin-right: 20px;
     }
     img {
       width: 260px;
     }
     ul {
-      width: calc(100% -270px);
+      width: calc(100% - 270px);
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -55,6 +93,7 @@ const HeaderStyle = styled.header`
       }
     }
   }
+
   @media (max-width: ${variable.tabletWidth}) {
     .header-menu-logo {
       img {
@@ -126,6 +165,17 @@ export const Header = ({ mainmenu }) => {
                 {mainmenu.map((menuitem, index) => (
                   <li key={index}>
                     <Link to={menuitem.link}>{menuitem.name}</Link>
+                    {menuitem.submenu && (
+                      <ul className="sub-menu">
+                        {menuitem.submenu.map((submenuitem, index) => (
+                          <li key={index}>
+                            <Link to={submenuitem.link}>
+                              {submenuitem.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>

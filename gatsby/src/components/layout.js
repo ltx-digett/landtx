@@ -9,6 +9,7 @@ import "./layout.css"
 import arrow from "../images/arrow.png"
 
 const GlobalStyles = styled.div`
+  color: ${variable.black};
   h1 {
     font-size: 44px;
   }
@@ -53,6 +54,10 @@ const Layout = ({ children }) => (
             mainmenu {
               name
               link
+              submenu {
+                name
+                link
+              }
             }
           }
         }

@@ -9,6 +9,11 @@ export default {
       type: "string"
     },
     {
+      name: "blockid",
+      title: "Block ID",
+      type: "string"
+    },
+    {
       name: "body",
       title: "Body",
       type: "blockContent"

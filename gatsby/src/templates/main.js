@@ -9,8 +9,51 @@ import * as variable from "../components/variables"
 import BackgroundImage from "gatsby-background-image"
 import RawImage from "../components/rawImage"
 import { Helmet } from "react-helmet"
+import arrow from "../images/arrow.png"
+import ScrollableAnchor from "react-scrollable-anchor"
+import ScrollUpButton from "react-scroll-up-button"
 
 const MainStyle = styled.div`
+  .body {
+    a {
+      width: 100%;
+      margin-bottom: 50px;
+      text-align: center;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: block;
+      background: ${variable.steelBlue};
+      &:after {
+        content: "d";
+        color: transparent;
+        width: 15px;
+        height: 15px;
+        margin-left: 10px;
+        background-image: url(${arrow});
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+  }
+  .sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+    align-self: flex-start;
+    a {
+      color: ${variable.marine};
+      margin-bottom: 10px;
+      display: block;
+      font-size: 22px;
+    }
+  }
+  .react-slideshow-container {
+    position: relative;
+    z-index: -1;
+  }
   .slide {
     height: 550px;
     background-size: cover;
@@ -33,12 +76,32 @@ const MainStyle = styled.div`
         max-width: 265px;
         margin: 0 auto;
       }
-      .blue-cta {
-        width: 100%;
-        margin-bottom: 50px;
-        text-align: center;
+      #properties-cta {
+        a {
+          width: 100%;
+          margin-bottom: 50px;
+          text-align: center;
+          color: white;
+          padding: 10px 20px;
+          text-decoration: none;
+          display: block;
+          background: ${variable.steelBlue};
+          &:after {
+            content: "d";
+            color: transparent;
+            width: 15px;
+            height: 15px;
+            margin-left: 10px;
+            background-image: url(${arrow});
+            background-size: contain;
+            background-repeat: no-repeat;
+            display: inline-flex;
+            align-items: center;
+          }
+        }
       }
-      .sidebar-body {
+
+      #contact {
         text-align: center;
         background-color: ${variable.taupe};
         padding: 40px 20px;
@@ -70,9 +133,14 @@ const MainStyle = styled.div`
     }
     .body-container {
       flex-direction: column;
+      flex-direction: column-reverse;
       padding-top: 40px;
       .sidebar {
-        margin-top: 60px;
+        margin: 40px 0px;
+        .sticky {
+          position: relative;
+          top: unset;
+        }
       }
       .body {
         width: 100%;
@@ -100,9 +168,8 @@ const serializers = {
       </div>
     ),
     blocks: props => (
-      <div>
+      <div id={props.node.blockid && props.node.blockid}>
         <PortableText
-          className="sidebar-body"
           serializers={serializers}
           blocks={props.node.body}
           projectId="84iv1ine"
@@ -142,6 +209,11 @@ export const query = graphql`
         metadescription
         _rawBody(resolveReferences: { maxDepth: 10 })
         _rawSidebar(resolveReferences: { maxDepth: 10 })
+        overview {
+          title
+          _key
+        }
+        _rawOverview
         slideshow {
           asset {
             url
@@ -169,6 +241,8 @@ export const MainPostTemplate = ({
   metadescription,
   site,
   slug,
+  rawoverview,
+  overview,
 }) => {
   return (
     <Layout>
@@ -191,7 +265,7 @@ export const MainPostTemplate = ({
             </div>
           ))}
         </Slide>
-        <Container className="body-container">
+        <Container className={slug + " body-container"}>
           <div className="body">
             <h1>{title}</h1>
             <PortableText
@@ -200,19 +274,38 @@ export const MainPostTemplate = ({
               projectId="84iv1ine"
               dataset="production"
             />
+            {overview.map((overviewitem, index) => (
+              <div>
+                <h2 key={index} id={overviewitem._key}>
+                  {overviewitem.title}
+                </h2>
+                <PortableText
+                  serializers={serializers}
+                  blocks={rawoverview[index].body}
+                  projectId="84iv1ine"
+                  dataset="production"
+                />
+              </div>
+            ))}
           </div>
           <div className="sidebar">
-            <Link className="blue-cta" to="/properties">
-              View Property Listings
-            </Link>
+            <div className="sticky">
+              {overview.map((overviewitem, index) => (
+                <div key={index}>
+                  <a key={index} href={"#" + overviewitem._key}>
+                    {overviewitem.title}
+                  </a>
+                </div>
+              ))}
+            </div>
             <PortableText
-              className="sidebar-body"
               serializers={serializers}
               blocks={sidebarBody}
               projectId="84iv1ine"
               dataset="production"
             />
           </div>
+          <ScrollUpButton />
         </Container>
       </MainStyle>
     </Layout>
@@ -222,12 +315,14 @@ export const MainPostTemplate = ({
 const Main = ({ data }) => {
   const { [0]: post } = data.main.nodes
   const { siteMetadata } = data.site
-  console.log(post.metadescription)
+  console.log(post)
   return (
     <MainPostTemplate
       title={post.title}
       slideshow={post.slideshow}
       _rawBody={post._rawBody}
+      overview={post.overview}
+      rawoverview={post._rawOverview}
       sidebarBody={post._rawSidebar}
       metadescription={post.metadescription}
       site={siteMetadata}

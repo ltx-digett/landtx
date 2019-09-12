@@ -45,6 +45,9 @@ h6 {
   bottom: 0px;
   width: 100%;
 }
+.top-details-right {
+  z-index: -1;
+}
 /* .slide-container {
   width: 70%;
   margin: auto;

@@ -42,6 +42,12 @@ export default {
       type: "blockContent"
     },
     {
+      title: "Linked Title",
+      name: "overview",
+      type: "array",
+      of: [{ type: "overview" }]
+    },
+    {
       title: "Sidebar",
       name: "sidebar",
       type: "array",

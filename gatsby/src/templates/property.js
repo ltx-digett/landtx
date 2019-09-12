@@ -9,6 +9,9 @@ import "react-popupbox/dist/react-popupbox.css"
 import PropertyTop from "../components/entity/property/property-top"
 import Tabs from "../components/tabs"
 import fitvids from "fitvids"
+import ScrollableAnchor from "react-scrollable-anchor"
+import ScrollUpButton from "react-scroll-up-button"
+
 const PropertyStyle = styled.div`
   .prop-brown-container {
     background-color: ${variable.taupe};
@@ -190,7 +193,6 @@ class PropertyPostTemplate extends React.Component {
       disclaimer,
       large,
     } = this.props
-    console.log(large)
     return (
       <Layout>
         <PropertyStyle>
@@ -236,6 +238,7 @@ class PropertyPostTemplate extends React.Component {
                   dataset="production"
                 />
               </div>
+              <ScrollUpButton />
             </Container>
           </div>
         </PropertyStyle>
@@ -246,7 +249,6 @@ class PropertyPostTemplate extends React.Component {
 const Property = ({ data }) => {
   const { [0]: post } = data.content.nodes
   const { [0]: large } = data.large.nodes
-  console.log(large)
   return (
     <PropertyPostTemplate
       overview={post.overview}
