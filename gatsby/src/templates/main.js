@@ -47,6 +47,7 @@ const MainStyle = styled.div`
     align-self: flex-start;
     border: thin solid ${variable.marine};
     padding: 15px;
+    height: 600px;
     ul {
       padding: 0px;
       margin: 0px;
@@ -262,11 +263,6 @@ class MainPostTemplate extends React.Component {
       overview,
     } = this.props
 
-    if (typeof window !== "undefined") {
-      var myInnerHeight = window.innerHeight - 120
-      console.log(myInnerHeight)
-    }
-
     return (
       <Layout>
         <Helmet>
@@ -312,7 +308,7 @@ class MainPostTemplate extends React.Component {
               ))}
             </div>
             <div className="sidebar">
-              <div className="sticky" style={{ height: myInnerHeight + "px" }}>
+              <div className="sticky">
                 {overview.map((overviewitem, index) => (
                   <Scrollspy
                     items={[overviewitem._key]}
