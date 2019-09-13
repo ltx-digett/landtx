@@ -53,9 +53,9 @@ const MainStyle = styled.div`
         list-style: none;
         a {
           color: ${variable.marine};
-          margin-bottom: 10px;
+          margin-bottom: 8px;
           display: block;
-          font-size: 18px;
+          font-size: 17px;
         }
         &.is-current {
           a {
