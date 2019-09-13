@@ -43,7 +43,7 @@ const PropertiesStyle = styled.div`
 
 export const query = graphql`
   query {
-    site {
+    site: site {
       siteMetadata {
         googleMapsKey
       }
