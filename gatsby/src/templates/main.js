@@ -249,16 +249,6 @@ export const query = graphql`
   }
 `
 class MainPostTemplate extends React.Component {
-  componentDidMount() {
-    if (typeof window == "undefined") {
-      var myInnerHeight = 600
-      console.log(myInnerHeight)
-    }
-    if (typeof window !== "undefined") {
-      var myInnerHeight = window.innerHeight - 120
-      console.log(myInnerHeight)
-    }
-  }
   render() {
     const {
       title,
@@ -271,10 +261,7 @@ class MainPostTemplate extends React.Component {
       rawoverview,
       overview,
     } = this.props
-    if (typeof window == "undefined") {
-      var myInnerHeight = 600
-      console.log(myInnerHeight)
-    }
+
     if (typeof window !== "undefined") {
       var myInnerHeight = window.innerHeight - 120
       console.log(myInnerHeight)
