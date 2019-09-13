@@ -260,8 +260,9 @@ export const MainPostTemplate = ({
   rawoverview,
   overview,
 }) => {
+  var myInnerHeight = 500
   if (typeof window !== "undefined") {
-    const innerHeight = window.innerHeight - 120
+    myInnerHeight = window.innerHeight - 120
   }
 
   return (
@@ -309,7 +310,7 @@ export const MainPostTemplate = ({
             ))}
           </div>
           <div className="sidebar">
-            <div className="sticky" style={{ height: innerHeight }}>
+            <div className="sticky" style={{ height: myInnerHeight + "px" }}>
               {overview.map((overviewitem, index) => (
                 <Scrollspy
                   items={[overviewitem._key]}
