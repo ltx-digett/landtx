@@ -260,9 +260,12 @@ export const MainPostTemplate = ({
   rawoverview,
   overview,
 }) => {
-  var myInnerHeight = 500
   if (typeof window !== "undefined") {
-    myInnerHeight = window.innerHeight - 120
+    var myInnerHeight = window.innerHeight - 120
+    console.log(myInnerHeight)
+  } else {
+    var myInnerHeight = 500
+    console.log(myInnerHeight)
   }
 
   return (
