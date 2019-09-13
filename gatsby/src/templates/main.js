@@ -45,8 +45,6 @@ const MainStyle = styled.div`
     top: 60px;
     overflow-y: scroll;
     align-self: flex-start;
-    border: thin solid ${variable.marine};
-    padding: 15px;
     height: 600px;
     ul {
       padding: 0px;
@@ -55,9 +53,9 @@ const MainStyle = styled.div`
         list-style: none;
         a {
           color: ${variable.marine};
-          margin-bottom: 20px;
+          margin-bottom: 10px;
           display: block;
-          font-size: 22px;
+          font-size: 18px;
         }
         &.is-current {
           a {
