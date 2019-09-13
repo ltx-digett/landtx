@@ -248,101 +248,112 @@ export const query = graphql`
     }
   }
 `
-
-export const MainPostTemplate = ({
-  title,
-  slideshow,
-  _rawBody,
-  sidebarBody,
-  metadescription,
-  site,
-  slug,
-  rawoverview,
-  overview,
-}) => {
-  if (typeof window == "undefined") {
-    var myInnerHeight = 600
-    console.log(myInnerHeight)
+class MainPostTemplate extends React.Component {
+  componentDidMount() {
+    if (typeof window == "undefined") {
+      var myInnerHeight = 600
+      console.log(myInnerHeight)
+    }
+    if (typeof window !== "undefined") {
+      var myInnerHeight = window.innerHeight - 120
+      console.log(myInnerHeight)
+    }
   }
-  if (typeof window !== "undefined") {
-    var myInnerHeight = window.innerHeight - 120
-    console.log(myInnerHeight)
-  }
+  render() {
+    const {
+      title,
+      slideshow,
+      _rawBody,
+      sidebarBody,
+      metadescription,
+      site,
+      slug,
+      rawoverview,
+      overview,
+    } = this.props
+    if (typeof window == "undefined") {
+      var myInnerHeight = 600
+      console.log(myInnerHeight)
+    }
+    if (typeof window !== "undefined") {
+      var myInnerHeight = window.innerHeight - 120
+      console.log(myInnerHeight)
+    }
 
-  return (
-    <Layout>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>
-          {title} | {site.title}
-        </title>
-        <meta property="og:description" content={metadescription} />
-        <link rel="canonical" href={site.url + "/" + slug} />
-      </Helmet>
-      <MainStyle>
-        <Slide {...properties}>
-          {slideshow.map((slide, index) => (
-            <div className="each-slide">
-              <BackgroundImage
-                className="slide"
-                fluid={slide.asset.fluid}
-              ></BackgroundImage>
-            </div>
-          ))}
-        </Slide>
-        <Container className={slug + " body-container"}>
-          <div className="body">
-            <h1>{title}</h1>
-            <PortableText
-              serializers={serializers}
-              blocks={_rawBody}
-              projectId="84iv1ine"
-              dataset="production"
-            />
-            {overview.map((overviewitem, index) => (
-              <div>
-                <div key={index} id={overviewitem._key}>
-                  <h2>{overviewitem.title}</h2>
-                  <PortableText
-                    serializers={serializers}
-                    blocks={rawoverview[index].body}
-                    projectId="84iv1ine"
-                    dataset="production"
-                  />
-                </div>
+    return (
+      <Layout>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+            {title} | {site.title}
+          </title>
+          <meta property="og:description" content={metadescription} />
+          <link rel="canonical" href={site.url + "/" + slug} />
+        </Helmet>
+        <MainStyle>
+          <Slide {...properties}>
+            {slideshow.map((slide, index) => (
+              <div className="each-slide">
+                <BackgroundImage
+                  className="slide"
+                  fluid={slide.asset.fluid}
+                ></BackgroundImage>
               </div>
             ))}
-          </div>
-          <div className="sidebar">
-            <div className="sticky" style={{ height: myInnerHeight + "px" }}>
+          </Slide>
+          <Container className={slug + " body-container"}>
+            <div className="body">
+              <h1>{title}</h1>
+              <PortableText
+                serializers={serializers}
+                blocks={_rawBody}
+                projectId="84iv1ine"
+                dataset="production"
+              />
               {overview.map((overviewitem, index) => (
-                <Scrollspy
-                  items={[overviewitem._key]}
-                  currentClassName="is-current"
-                  className="scrollspy"
-                >
-                  <li key={index}>
-                    <a key={index} href={"#" + overviewitem._key}>
-                      {overviewitem.title}
-                    </a>
-                  </li>
-                </Scrollspy>
+                <div>
+                  <div key={index} id={overviewitem._key}>
+                    <h2>{overviewitem.title}</h2>
+                    <PortableText
+                      serializers={serializers}
+                      blocks={rawoverview[index].body}
+                      projectId="84iv1ine"
+                      dataset="production"
+                    />
+                  </div>
+                </div>
               ))}
             </div>
-            <PortableText
-              serializers={serializers}
-              blocks={sidebarBody}
-              projectId="84iv1ine"
-              dataset="production"
-            />
-          </div>
-          <ScrollUpButton />
-        </Container>
-      </MainStyle>
-    </Layout>
-  )
+            <div className="sidebar">
+              <div className="sticky" style={{ height: myInnerHeight + "px" }}>
+                {overview.map((overviewitem, index) => (
+                  <Scrollspy
+                    items={[overviewitem._key]}
+                    currentClassName="is-current"
+                    className="scrollspy"
+                  >
+                    <li key={index}>
+                      <a key={index} href={"#" + overviewitem._key}>
+                        {overviewitem.title}
+                      </a>
+                    </li>
+                  </Scrollspy>
+                ))}
+              </div>
+              <PortableText
+                serializers={serializers}
+                blocks={sidebarBody}
+                projectId="84iv1ine"
+                dataset="production"
+              />
+            </div>
+            <ScrollUpButton />
+          </Container>
+        </MainStyle>
+      </Layout>
+    )
+  }
 }
-
 const Main = ({ data }) => {
   const { [0]: post } = data.main.nodes
   const { siteMetadata } = data.site
