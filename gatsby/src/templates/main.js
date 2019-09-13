@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet"
 import arrow from "../images/arrow.png"
 import ScrollableAnchor from "react-scrollable-anchor"
 import ScrollUpButton from "react-scroll-up-button"
+import Scrollspy from "react-scrollspy"
 
 const MainStyle = styled.div`
   .body {
@@ -42,12 +43,27 @@ const MainStyle = styled.div`
     position: -webkit-sticky;
     position: sticky;
     top: 60px;
+    overflow-y: scroll;
     align-self: flex-start;
-    a {
-      color: ${variable.marine};
-      margin-bottom: 10px;
-      display: block;
-      font-size: 22px;
+    border: thin solid ${variable.marine};
+    padding: 15px;
+    ul {
+      padding: 0px;
+      margin: 0px;
+      li {
+        list-style: none;
+        a {
+          color: ${variable.marine};
+          margin-bottom: 20px;
+          display: block;
+          font-size: 22px;
+        }
+        &.is-current {
+          a {
+            color: ${variable.red};
+          }
+        }
+      }
     }
   }
   .react-slideshow-container {
@@ -244,6 +260,7 @@ export const MainPostTemplate = ({
   rawoverview,
   overview,
 }) => {
+  const innerHeight = window.innerHeight - 120
   return (
     <Layout>
       <Helmet>
@@ -276,26 +293,32 @@ export const MainPostTemplate = ({
             />
             {overview.map((overviewitem, index) => (
               <div>
-                <h2 key={index} id={overviewitem._key}>
-                  {overviewitem.title}
-                </h2>
-                <PortableText
-                  serializers={serializers}
-                  blocks={rawoverview[index].body}
-                  projectId="84iv1ine"
-                  dataset="production"
-                />
+                <div key={index} id={overviewitem._key}>
+                  <h2>{overviewitem.title}</h2>
+                  <PortableText
+                    serializers={serializers}
+                    blocks={rawoverview[index].body}
+                    projectId="84iv1ine"
+                    dataset="production"
+                  />
+                </div>
               </div>
             ))}
           </div>
           <div className="sidebar">
-            <div className="sticky">
+            <div className="sticky" style={{ height: innerHeight }}>
               {overview.map((overviewitem, index) => (
-                <div key={index}>
-                  <a key={index} href={"#" + overviewitem._key}>
-                    {overviewitem.title}
-                  </a>
-                </div>
+                <Scrollspy
+                  items={[overviewitem._key]}
+                  currentClassName="is-current"
+                  className="scrollspy"
+                >
+                  <li key={index}>
+                    <a key={index} href={"#" + overviewitem._key}>
+                      {overviewitem.title}
+                    </a>
+                  </li>
+                </Scrollspy>
               ))}
             </div>
             <PortableText
