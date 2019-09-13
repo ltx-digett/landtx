@@ -260,7 +260,10 @@ export const MainPostTemplate = ({
   rawoverview,
   overview,
 }) => {
-  const innerHeight = window.innerHeight - 120
+  if (typeof window !== "undefined") {
+    const innerHeight = window.innerHeight - 120
+  }
+
   return (
     <Layout>
       <Helmet>
