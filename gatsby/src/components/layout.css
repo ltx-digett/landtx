@@ -9,6 +9,7 @@ html {
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
+  font-display: swap;
 }
 p {
   line-height: 1.8;
@@ -24,21 +25,27 @@ img {
 }
 h1 {
   font-family: "Gothic A1", sans-serif;
+  font-display: swap;
 }
 h2 {
   font-family: "Gothic A1", sans-serif;
+  font-display: swap;
 }
 h3 {
   font-family: "Gothic A1", sans-serif;
+  font-display: swap;
 }
 h4 {
   font-family: "Gothic A1", sans-serif;
+  font-display: swap;
 }
 h5 {
   font-family: "Gothic A1", sans-serif;
+  font-display: swap;
 }
 h6 {
   font-family: "Gothic A1", sans-serif;
+  font-display: swap;
 }
 .alice-carousel__dots {
   position: absolute;

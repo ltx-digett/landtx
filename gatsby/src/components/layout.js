@@ -7,6 +7,7 @@ import styled from "styled-components"
 import * as variable from "./variables"
 import "./layout.css"
 import arrow from "../images/arrow.png"
+import { Helmet } from "react-helmet"
 
 const GlobalStyles = styled.div`
   color: ${variable.black};
@@ -65,6 +66,9 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <GlobalStyles>
+        <Helmet>
+          <html lang="en" />
+        </Helmet>
         <Header mainmenu={data.site.siteMetadata.mainmenu} />
         <div className="main">{children}</div>
         <Footer></Footer>

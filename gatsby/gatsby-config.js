@@ -122,6 +122,12 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
     {
+      resolve: "gatsby-plugin-preconnect",
+      options: {
+        domains: ["https://www.googletagmanager.com"],
+      },
+    },
+    {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
         id: "GTM-NTJTH2M",
