@@ -25,6 +25,10 @@ const FooterStyle = styled.footer`
         padding: 0px;
         li {
           list-style: none;
+          a {
+            color: white;
+            text-decoration: none;
+          }
         }
       }
     }
@@ -93,11 +97,23 @@ export const Footer = ({ mainmenu }) => {
           <Container className="footer-container">
             <div className="footer-left">
               <ul>
-                <li>Read About LANDTX</li>
-                <li>View our Property Listings </li>
-                <li>Read our Market Activity Reports </li>
-                <li>More Resources </li>
-                <li>Contact LANDTX</li>
+                <li>
+                  <Link to="/about">Read About LANDTX</Link>
+                </li>
+                <li>
+                  <Link to="/properties">View our Property Listings</Link>
+                </li>
+                <li>
+                  <Link to="/market-activity">
+                    Read our Market Activity Reports
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/resources">More Resources</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact LANDTX</Link>
+                </li>
               </ul>
             </div>
             <div className="footer-right">
