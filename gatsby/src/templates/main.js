@@ -154,6 +154,7 @@ const MainStyle = styled.div`
         .sticky {
           position: relative;
           top: unset;
+          height: auto !important;
         }
       }
       .body {

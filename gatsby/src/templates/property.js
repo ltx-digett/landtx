@@ -11,6 +11,7 @@ import Tabs from "../components/tabs"
 import fitvids from "fitvids"
 import ScrollUpButton from "react-scroll-up-button"
 import Scrollspy from "react-scrollspy"
+import { Helmet } from "react-helmet"
 
 const PropertyStyle = styled.div`
   .prop-brown-container {
@@ -115,6 +116,12 @@ const serializers = {
 
 export const query = graphql`
   query PropertyPostByID($id: String!) {
+    site: site {
+      siteMetadata {
+        title
+        url
+      }
+    }
     large: allSanityProperty(filter: { id: { eq: $id } }) {
       nodes {
         slideshow {
@@ -143,6 +150,7 @@ export const query = graphql`
         county
         price
         status
+        metadescription
         brochure {
           asset {
             url
@@ -204,9 +212,20 @@ class PropertyPostTemplate extends React.Component {
       overview,
       disclaimer,
       large,
+      metadescription,
+      slug,
+      site,
     } = this.props
     return (
       <Layout>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+            {property.title} | {site.title}
+          </title>
+          <meta property="og:description" content={metadescription} />
+          <link rel="canonical" href={site.url + "/property/" + slug.current} />
+        </Helmet>
         <PropertyStyle>
           <PropertyTop property={property} large={large}></PropertyTop>
           <Tabs property={property} active="tab-container-overview"></Tabs>
@@ -267,6 +286,7 @@ class PropertyPostTemplate extends React.Component {
 const Property = ({ data }) => {
   const { [0]: post } = data.content.nodes
   const { [0]: large } = data.large.nodes
+  const { siteMetadata } = data.site
   return (
     <PropertyPostTemplate
       overview={post.overview}
@@ -278,6 +298,9 @@ const Property = ({ data }) => {
       disclaimer={post.disclaimer._rawBody}
       property={post}
       large={large}
+      metadescription={post.metadescription}
+      slug={post.slug}
+      site={siteMetadata}
     />
   )
 }

@@ -24,6 +24,12 @@ export default {
       rows: 3
     },
     {
+      title: "Meta Description",
+      name: "metadescription",
+      type: "text",
+      rows: 3
+    },
+    {
       name: "acres",
       title: "Acres",
       type: "number"

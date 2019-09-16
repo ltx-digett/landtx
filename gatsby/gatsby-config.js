@@ -124,7 +124,10 @@ module.exports = {
     {
       resolve: "gatsby-plugin-preconnect",
       options: {
-        domains: ["https://www.googletagmanager.com"],
+        domains: [
+          "https://www.googletagmanager.com",
+          "https://fonts.googleapis.com",
+        ],
       },
     },
     {

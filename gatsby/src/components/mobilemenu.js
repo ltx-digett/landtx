@@ -22,6 +22,7 @@ const MobileContainer = styled.div`
     font-weight: 600;
     margin: 0px 0px 20px 0px !important;
     padding: 0px;
+    list-style: none;
     &:focus {
       outline: none !important;
     }
@@ -31,6 +32,13 @@ const MobileContainer = styled.div`
       &:focus {
         outline: none !important;
       }
+    }
+    ul {
+      flex-direction: column;
+      justify-content: center !important;
+      width: 100% !important;
+      margin: 0px;
+      padding: 0px;
     }
   }
   @media (max-width: ${variable.mobileWidth}) {
@@ -86,6 +94,10 @@ class Mobilemenu extends React.Component {
                 mainmenu {
                   name
                   link
+                  submenu {
+                    name
+                    link
+                  }
                 }
               }
             }
@@ -111,6 +123,20 @@ class Mobilemenu extends React.Component {
                     <Link to={menuitem.link} onClick={() => this.toggleMenu()}>
                       {menuitem.name}
                     </Link>
+                    {menuitem.submenu && (
+                      <ul>
+                        {menuitem.submenu.map((subitem, index) => (
+                          <li key={index}>
+                            <Link
+                              to={subitem.link}
+                              onClick={() => this.toggleMenu()}
+                            >
+                              {subitem.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </Menu>
