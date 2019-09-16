@@ -10,7 +10,6 @@ import BackgroundImage from "gatsby-background-image"
 import RawImage from "../components/rawImage"
 import { Helmet } from "react-helmet"
 import arrow from "../images/arrow.png"
-import ScrollableAnchor from "react-scrollable-anchor"
 import ScrollUpButton from "react-scroll-up-button"
 import Scrollspy from "react-scrollspy"
 

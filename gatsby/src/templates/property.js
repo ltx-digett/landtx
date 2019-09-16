@@ -9,8 +9,8 @@ import "react-popupbox/dist/react-popupbox.css"
 import PropertyTop from "../components/entity/property/property-top"
 import Tabs from "../components/tabs"
 import fitvids from "fitvids"
-import ScrollableAnchor from "react-scrollable-anchor"
 import ScrollUpButton from "react-scroll-up-button"
+import Scrollspy from "react-scrollspy"
 
 const PropertyStyle = styled.div`
   .prop-brown-container {
@@ -27,11 +27,23 @@ const PropertyStyle = styled.div`
     .property-right {
       width: calc(40% - 100px);
       padding-top: 40px;
-      a {
-        color: ${variable.marine};
-        margin-bottom: 10px;
-        display: block;
-        font-size: 22px;
+      ul {
+        padding: 0px;
+        margin: 0px;
+        li {
+          list-style: none;
+          a {
+            color: ${variable.marine};
+            margin-bottom: 8px;
+            display: block;
+            font-size: 17px;
+          }
+          &.is-current {
+            a {
+              color: ${variable.red};
+            }
+          }
+        }
       }
     }
   }
@@ -225,11 +237,17 @@ class PropertyPostTemplate extends React.Component {
               </div>
               <div className="property-right sticky">
                 {overview.map((overviewitem, index) => (
-                  <div key={index}>
-                    <a key={index} href={"#" + overviewitem._key}>
-                      {overviewitem.title}
-                    </a>
-                  </div>
+                  <Scrollspy
+                    items={[overviewitem._key]}
+                    currentClassName="is-current"
+                    className="scrollspy"
+                  >
+                    <li key={index}>
+                      <a key={index} href={"#" + overviewitem._key}>
+                        {overviewitem.title}
+                      </a>
+                    </li>
+                  </Scrollspy>
                 ))}
                 <PortableText
                   serializers={serializers}
