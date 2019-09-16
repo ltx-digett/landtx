@@ -248,6 +248,19 @@ export const query = graphql`
   }
 `
 class MainPostTemplate extends React.Component {
+  constructor(props) {
+    super(props)
+    if (typeof window !== "undefined") {
+      this.state = {
+        innerHeight: window.innerHeight - 100,
+      }
+    } else {
+      this.state = {
+        innerHeight: 600,
+      }
+    }
+  }
+
   render() {
     const {
       title,
@@ -306,21 +319,28 @@ class MainPostTemplate extends React.Component {
               ))}
             </div>
             <div className="sidebar">
-              <div className="sticky">
-                {overview.map((overviewitem, index) => (
-                  <Scrollspy
-                    items={[overviewitem._key]}
-                    currentClassName="is-current"
-                    className="scrollspy"
-                  >
-                    <li key={index}>
-                      <a key={index} href={"#" + overviewitem._key}>
-                        {overviewitem.title}
-                      </a>
-                    </li>
-                  </Scrollspy>
-                ))}
-              </div>
+              {console.log(this.props)}
+
+              {rawoverview && (
+                <div
+                  className="sticky"
+                  style={{ height: this.state.innerHeight }}
+                >
+                  {overview.map((overviewitem, index) => (
+                    <Scrollspy
+                      items={[overviewitem._key]}
+                      currentClassName="is-current"
+                      className="scrollspy"
+                    >
+                      <li key={index}>
+                        <a key={index} href={"#" + overviewitem._key}>
+                          {overviewitem.title}
+                        </a>
+                      </li>
+                    </Scrollspy>
+                  ))}
+                </div>
+              )}
               <PortableText
                 serializers={serializers}
                 blocks={sidebarBody}
@@ -338,7 +358,6 @@ class MainPostTemplate extends React.Component {
 const Main = ({ data }) => {
   const { [0]: post } = data.main.nodes
   const { siteMetadata } = data.site
-  console.log(post)
   return (
     <MainPostTemplate
       title={post.title}
