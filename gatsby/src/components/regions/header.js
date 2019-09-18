@@ -12,7 +12,7 @@ import Img from "gatsby-image"
 const HeaderStyle = styled.header`
   background-size: cover;
   position: relative;
-  z-index: 99999;
+  z-index: 999;
   .header-bg {
     background-color: rgba(128, 119, 90, 0.7);
   }

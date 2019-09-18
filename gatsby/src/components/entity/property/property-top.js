@@ -11,7 +11,8 @@ import { PopupboxManager, PopupboxContainer } from "react-popupbox"
 import "react-popupbox/dist/react-popupbox.css"
 import FullSlide from "../../fullslide"
 import Img from "gatsby-image"
-
+import { FaEnvelope } from "react-icons/fa"
+import { ShareButton } from "react-custom-share"
 const PropertyTopStyle = styled.div`
   .popclose-parent {
     filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
@@ -160,6 +161,7 @@ class PropertyTop extends React.Component {
       showInfo: false,
     }
   }
+
   openPopupbox(e, slideshow, title) {
     const content = (
       <div>
@@ -188,6 +190,10 @@ class PropertyTop extends React.Component {
   render() {
     const { property, large } = this.props
     console.log(property)
+    const shareButtonProps = {
+      url: "https://landtx.netlify.com/property/" + property.slug.current,
+      network: "Email",
+    }
     const formatter = new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
@@ -217,9 +223,9 @@ class PropertyTop extends React.Component {
                 </li>
               )}
               <li>
-                <a className="share" href="#">
+                <ShareButton {...shareButtonProps} className="share">
                   Share Listing
-                </a>
+                </ShareButton>
               </li>
             </ul>
             <a className="blue-cta-prop" href="">

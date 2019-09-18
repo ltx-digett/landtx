@@ -7,6 +7,10 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
     path: "properties",
     component: require.resolve("./src/templates/properties.js"),
   })
+  actions.createPage({
+    path: "sold-properties",
+    component: require.resolve("./src/templates/sold-properties.js"),
+  })
   const result = await graphql(`
     {
       page: allSanityMain {

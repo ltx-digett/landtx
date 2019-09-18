@@ -11,11 +11,15 @@ import { Helmet } from "react-helmet"
 
 // const Marker = ({ property }) => <div className="marker">{property.title}</div>
 
-const PropertiesStyle = styled.div`
+const SoldPropertiesStyle = styled.div`
   .marker {
     cursor: pointer;
   }
   background-color: ${variable.taupe};
+  padding-top: 60px;
+  h1 {
+    margin-top: 0px;
+  }
   .properties-teaser-container-flex {
     display: flex;
     padding-bottom: 40px;
@@ -51,7 +55,7 @@ export const query = graphql`
         url
       }
     }
-    property: allSanityProperty(filter: { status: { eq: "Active" } }) {
+    property: allSanityProperty(filter: { status: { eq: "Sold" } }) {
       nodes {
         title
         id
@@ -91,7 +95,7 @@ export const query = graphql`
   }
 `
 
-class PropertiesPostTemplate extends React.Component {
+class SoldPropertiesPostTemplate extends React.Component {
   state = {
     selections: "",
     center: {
@@ -150,38 +154,16 @@ class PropertiesPostTemplate extends React.Component {
       <Layout>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Properties | {site.title}</title>
+          <title>Sold Properties | {site.title}</title>
           <meta
             property="og:description"
             content="Investment, recreational, ranch and farmland in an area comprising 45 counties in central Texas."
           />
-          <link rel="canonical" href={site.url + "/properties"} />
+          <link rel="canonical" href={site.url + "/sold-properties"} />
         </Helmet>
-        <PropertiesStyle>
-          <div style={{ height: "500px", width: "100%" }}>
-            <GoogleMapReact
-              // onChildClick={this._onChildClick}
-              bootstrapURLKeys={{
-                key: googleMapsKey,
-              }}
-              defaultCenter={this.props.center}
-              defaultZoom={this.props.zoom}
-              center={this.state.center}
-            >
-              {properties.map((property, index) => (
-                <Marker
-                  lat={property.location.lat}
-                  lng={property.location.lng}
-                  property={property}
-                  onToggle={this.onChildToggle}
-                  selected={this.state.selections}
-                />
-              ))}
-            </GoogleMapReact>
-          </div>
-
+        <SoldPropertiesStyle>
           <Container className="properties-teaser-container">
-            <h1>Properties</h1>
+            <h1>Sold Properties</h1>
             <div className="properties-teaser-container-flex">
               {properties.map((property, index) => (
                 <PropertyTeaser
@@ -194,19 +176,19 @@ class PropertiesPostTemplate extends React.Component {
               ))}
             </div>
           </Container>
-        </PropertiesStyle>
+        </SoldPropertiesStyle>
       </Layout>
     )
   }
 }
 
-const Properties = ({ data }) => {
+const SoldProperties = ({ data }) => {
   const { nodes } = data.property
   const { googleMapsKey } = data.site.siteMetadata
   const { siteMetadata } = data.site
 
   return (
-    <PropertiesPostTemplate
+    <SoldPropertiesPostTemplate
       properties={nodes}
       googleMapsKey={googleMapsKey}
       site={siteMetadata}
@@ -214,4 +196,4 @@ const Properties = ({ data }) => {
   )
 }
 
-export default Properties
+export default SoldProperties
