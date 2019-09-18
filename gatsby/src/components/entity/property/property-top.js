@@ -14,6 +14,16 @@ import Img from "gatsby-image"
 import { FaEnvelope } from "react-icons/fa"
 import { ShareButton } from "react-custom-share"
 const PropertyTopStyle = styled.div`
+  .share {
+    -webkit-appearance: none;
+    border: 0px;
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    padding: 0px;
+    cursor: pointer;
+  }
   .popclose-parent {
     filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
     z-index: 99999999999999;
@@ -228,12 +238,16 @@ class PropertyTop extends React.Component {
                 </ShareButton>
               </li>
             </ul>
-            <a className="blue-cta-prop" href="">
-              Request a Bound Package
-            </a>
-            <a className="blue-cta-prop" href="">
-              Ask About this Property
-            </a>
+            {property.status == "Active" && (
+              <div>
+                <a className="blue-cta-prop" href="">
+                  Request a Bound Package
+                </a>
+                <a className="blue-cta-prop" href="">
+                  Ask About this Property
+                </a>
+              </div>
+            )}
           </div>
           <div className="top-details-right">
             <AliceCarousel
