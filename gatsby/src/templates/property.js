@@ -65,13 +65,27 @@ const PropertyStyle = styled.div`
     .overview {
       flex-direction: column-reverse;
       h2 {
-        margin: 10px 0px;
+        margin: 60px 0px 0px 0px;
       }
+      .property-left {
+        div:first-of-type {
+          h2 {
+            margin-top: 40px;
+          }
+        }
+        div {
+          p:first-of-type {
+            margin-top: 10px;
+          }
+        }
+      }
+
       .property-left {
         width: 100%;
       }
       .property-right {
         width: 100%;
+        padding-top: 0px;
       }
     }
     .sticky {

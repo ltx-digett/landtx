@@ -232,7 +232,7 @@ export const query = graphql`
         slideshow {
           asset {
             url
-            fluid {
+            fluid(maxWidth: 1920) {
               base64
               aspectRatio
               src

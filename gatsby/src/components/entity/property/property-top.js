@@ -23,6 +23,24 @@ const PropertyTopStyle = styled.div`
     font-size: 18px;
     padding: 0px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: ${variable.steelBlue};
+    svg {
+      margin-right: 10px;
+    }
+  }
+  .title-status {
+    clear: both;
+    h1 {
+      width: calc(100% - 60px);
+      display: inline;
+      margin-right: 10px;
+    }
+    .status {
+      width: 60px;
+      display: inline;
+    }
   }
   .popclose-parent {
     filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
@@ -152,6 +170,8 @@ const PropertyTopStyle = styled.div`
     .top-property-container {
       padding-top: 40px;
       padding-bottom: 40px;
+      padding-left: 0px;
+      padding-right: 0px;
       flex-direction: column;
       .top-details-left {
         width: 100%;
@@ -160,6 +180,9 @@ const PropertyTopStyle = styled.div`
         width: 100%;
         position: relative;
       }
+    }
+    .title-details {
+      padding: 0px 15px;
     }
   }
 `
@@ -214,32 +237,37 @@ class PropertyTop extends React.Component {
         <PopupboxContainer />
         <Container className="top-property-container">
           <div className="top-details-left">
-            <h1>{property.title}</h1>
-            {property.status && (
-              <span className="status">{property.status}</span>
-            )}
-            <ul className="details">
-              {console.log(property)}
-              {property.description && <li>{property.description}</li>}
-              {property.acres && (
+            <div className="title-details">
+              <div className="title-status">
+                <h1>{property.title}</h1>
+
+                {property.status && (
+                  <span className="status">{property.status}</span>
+                )}
+              </div>
+              <ul className="details">
+                {console.log(property)}
+                {property.description && <li>{property.description}</li>}
+                {property.acres && (
+                  <li>
+                    {property.acres} acres in {property.county} County
+                  </li>
+                )}
+                {property.price && <li>{formatter.format(property.price)}</li>}
+                {property.brochure && (
+                  <li>
+                    <a className="brochure" href={property.brochure.asset.url}>
+                      Download Property Brochure
+                    </a>
+                  </li>
+                )}
                 <li>
-                  {property.acres} acres in {property.county} County
+                  <ShareButton {...shareButtonProps} className="share">
+                    <FaEnvelope /> Share This
+                  </ShareButton>
                 </li>
-              )}
-              {property.price && <li>{formatter.format(property.price)}</li>}
-              {property.brochure && (
-                <li>
-                  <a className="brochure" href={property.brochure.asset.url}>
-                    Download Property Brochure
-                  </a>
-                </li>
-              )}
-              <li>
-                <ShareButton {...shareButtonProps} className="share">
-                  Share Listing
-                </ShareButton>
-              </li>
-            </ul>
+              </ul>
+            </div>
             {property.status == "Active" && (
               <div>
                 <a className="blue-cta-prop" href="">
