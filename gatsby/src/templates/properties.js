@@ -15,6 +15,9 @@ const PropertiesStyle = styled.div`
   .marker {
     cursor: pointer;
   }
+  h1 {
+    padding: 0px 15px;
+  }
   background-color: ${variable.taupe};
   .properties-teaser-container-flex {
     display: flex;

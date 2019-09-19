@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import { Slide } from "react-slideshow-image"
+import { Fade } from "react-slideshow-image"
 import styled from "styled-components"
 import Layout from "../components/layout"
 import Container from "../components/container"
@@ -146,8 +146,9 @@ const MainStyle = styled.div`
       height: 300px;
     }
     .body-container {
+      padding-left: 0px;
+      padding-right: 0px;
       flex-direction: column;
-      flex-direction: column-reverse;
       padding-top: 40px;
       .sidebar {
         margin: 40px 0px;
@@ -159,9 +160,20 @@ const MainStyle = styled.div`
       }
       .body {
         width: 100%;
+        padding: 0px 15px;
       }
+
       .sidebar {
         width: 100%;
+        #properties-cta {
+          a {
+            margin-bottom: 0px;
+          }
+          p {
+            margin: 0px;
+            padding: 0px;
+          }
+        }
       }
     }
   }
@@ -197,8 +209,8 @@ const serializers = {
 }
 
 const properties = {
-  duration: 5000,
-  transitionDuration: 1000,
+  duration: 7000,
+  transitionDuration: 1500,
   infinite: true,
   indicators: false,
   arrows: false,
@@ -285,7 +297,7 @@ class MainPostTemplate extends React.Component {
           <link rel="canonical" href={site.url + "/" + slug} />
         </Helmet>
         <MainStyle>
-          <Slide {...properties}>
+          <Fade {...properties}>
             {slideshow.map((slide, index) => (
               <div className="each-slide">
                 <BackgroundImage
@@ -294,7 +306,7 @@ class MainPostTemplate extends React.Component {
                 ></BackgroundImage>
               </div>
             ))}
-          </Slide>
+          </Fade>
           <Container className={slug + " body-container"}>
             <div className="body">
               <h1>{title}</h1>

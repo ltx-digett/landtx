@@ -19,6 +19,7 @@ const SoldPropertiesStyle = styled.div`
   padding-top: 60px;
   h1 {
     margin-top: 0px;
+    padding: 0px 15px;
   }
   .properties-teaser-container-flex {
     display: flex;
