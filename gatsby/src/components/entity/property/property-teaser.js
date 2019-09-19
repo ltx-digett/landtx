@@ -11,7 +11,7 @@ import Img from "gatsby-image"
 const PropertyTeaserStyle = styled.div`
   margin-bottom: 60px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  background-color: ${variable.gray};
   .prop-teaser-bottom {
     padding: 30px 30px 30px 30px;
   }
@@ -28,7 +28,11 @@ const PropertyTeaserStyle = styled.div`
     margin: 0px 0px 10px 0px;
     a {
       text-decoration: none;
+      color: ${variable.black};
     }
+  }
+  @media (max-width: ${variable.mobileWidth}) {
+    margin-bottom: 15px;
   }
 `
 

@@ -35,6 +35,7 @@ const PropertiesStyle = styled.div`
   @media (max-width: ${variable.mobileWidth}) {
     .properties-teaser-container {
       flex-direction: column;
+      padding: 0px;
       .prop-teaser {
         width: calc(100%);
       }
@@ -150,7 +151,7 @@ class PropertiesPostTemplate extends React.Component {
       <Layout>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Properties | {site.title}</title>
+          <title>Property Listings | {site.title}</title>
           <meta
             property="og:description"
             content="Investment, recreational, ranch and farmland in an area comprising 45 counties in central Texas."
@@ -181,7 +182,7 @@ class PropertiesPostTemplate extends React.Component {
           </div>
 
           <Container className="properties-teaser-container">
-            <h1>Properties</h1>
+            <h1>Property Listings</h1>
             <div className="properties-teaser-container-flex">
               {properties.map((property, index) => (
                 <PropertyTeaser

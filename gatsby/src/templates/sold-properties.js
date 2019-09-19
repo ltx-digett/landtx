@@ -39,6 +39,7 @@ const SoldPropertiesStyle = styled.div`
   @media (max-width: ${variable.mobileWidth}) {
     .properties-teaser-container {
       flex-direction: column;
+      padding: 0px;
       .prop-teaser {
         width: calc(100%);
       }

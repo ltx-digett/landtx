@@ -64,6 +64,9 @@ const PropertyStyle = styled.div`
   @media (max-width: ${variable.mobileWidth}) {
     .overview {
       flex-direction: column-reverse;
+      h2 {
+        margin: 10px 0px;
+      }
       .property-left {
         width: 100%;
       }
@@ -151,6 +154,7 @@ export const query = graphql`
         price
         status
         metadescription
+        description
         brochure {
           asset {
             url

@@ -65,7 +65,7 @@ const PropertyTopStyle = styled.div`
     margin-bottom: 40px;
     li {
       list-style: none;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       a {
         color: ${variable.black};
         text-decoration: none;
@@ -219,6 +219,8 @@ class PropertyTop extends React.Component {
               <span className="status">{property.status}</span>
             )}
             <ul className="details">
+              {console.log(property)}
+              {property.description && <li>{property.description}</li>}
               {property.acres && (
                 <li>
                   {property.acres} acres in {property.county} County
