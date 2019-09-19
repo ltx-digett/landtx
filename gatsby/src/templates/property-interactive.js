@@ -108,6 +108,18 @@ export const query = graphql`
 `
 
 class PropertyPostInteractiveTemplate extends React.Component {
+  constructor(props) {
+    super(props)
+    if (typeof window !== "undefined") {
+      this.state = {
+        innerHeight: window.innerHeight,
+      }
+    } else {
+      this.state = {
+        innerHeight: 600,
+      }
+    }
+  }
   render() {
     const { property, large } = this.props
     return (
@@ -120,7 +132,7 @@ class PropertyPostInteractiveTemplate extends React.Component {
               <Iframe
                 url={property.interactivemap}
                 width="100%"
-                height="1400px"
+                height={this.state.innerHeight}
                 display="initial"
                 position="relative"
               />
