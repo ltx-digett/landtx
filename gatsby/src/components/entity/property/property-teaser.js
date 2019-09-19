@@ -20,7 +20,7 @@ const PropertyTeaserStyle = styled.div`
     margin: 0px;
     li {
       list-style: none;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
     }
   }
   h3 {
