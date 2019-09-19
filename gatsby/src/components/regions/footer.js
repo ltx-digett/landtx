@@ -28,6 +28,9 @@ const FooterStyle = styled.footer`
           a {
             color: white;
             text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }

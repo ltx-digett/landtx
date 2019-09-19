@@ -92,7 +92,7 @@ const HeaderStyle = styled.header`
           font-size: 20px;
           font-weight: bold;
           &:hover {
-            color: ${variable.marine};
+            text-decoration: underline;
           }
         }
       }
