@@ -16,25 +16,9 @@ import Scrollspy from "react-scrollspy"
 const MainStyle = styled.div`
   .body {
     a {
-      width: 100%;
-      margin-bottom: 50px;
-      text-align: center;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      display: block;
-      background: ${variable.steelBlue};
-      &:after {
-        content: "d";
-        color: transparent;
-        width: 15px;
-        height: 15px;
-        margin-left: 10px;
-        background-image: url(${arrow});
-        background-size: contain;
-        background-repeat: no-repeat;
-        display: inline-flex;
-        align-items: center;
+      color: ${variable.steelBlue};
+      &:hover {
+        color: ${variable.marine};
       }
     }
   }

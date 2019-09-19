@@ -91,6 +91,9 @@ const HeaderStyle = styled.header`
           text-decoration: none;
           font-size: 20px;
           font-weight: bold;
+          &:hover {
+            color: ${variable.marine};
+          }
         }
       }
     }
