@@ -37,7 +37,7 @@ const GlobalStyles = styled.div`
     }
   }
   a {
-    color: ${variable.red};
+    color: ${variable.steelBlue};
   }
   @media (max-width: ${variable.mobileWidth}) {
     h1 {
