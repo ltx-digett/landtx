@@ -120,6 +120,12 @@ class PropertyPostInteractiveTemplate extends React.Component {
       }
     }
   }
+  componentDidMount() {
+    window.addEventListener("resize", this.handleWindowSizeChange)
+  }
+  handleWindowSizeChange = () => {
+    this.setState({ innerHeight: window.innerHeight })
+  }
   render() {
     const { property, large } = this.props
     return (
