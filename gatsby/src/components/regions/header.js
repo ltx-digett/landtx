@@ -169,12 +169,20 @@ export const Header = ({ mainmenu }) => {
               <ul className="main-menu">
                 {mainmenu.map((menuitem, index) => (
                   <li key={index}>
-                    <Link to={menuitem.link}>{menuitem.name}</Link>
+                    <Link
+                      activeStyle={{ color: variable.black }}
+                      to={menuitem.link}
+                    >
+                      {menuitem.name}
+                    </Link>
                     {menuitem.submenu && (
                       <ul className="sub-menu">
                         {menuitem.submenu.map((submenuitem, index) => (
                           <li key={index}>
-                            <Link to={submenuitem.link}>
+                            <Link
+                              activeStyle={{ color: variable.black }}
+                              to={submenuitem.link}
+                            >
                               {submenuitem.name}
                             </Link>
                           </li>

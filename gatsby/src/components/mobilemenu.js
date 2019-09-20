@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import * as variable from "../components/variables"
+import bgimage from "../images/bg-topo.png"
 
 const MobileContainer = styled.div`
   display: none;
@@ -29,6 +30,8 @@ const MobileContainer = styled.div`
     a {
       display: block !important;
       text-align: center;
+      color: white;
+      text-decoration: none;
       &:focus {
         outline: none !important;
       }
@@ -43,24 +46,36 @@ const MobileContainer = styled.div`
   }
   @media (max-width: ${variable.mobileWidth}) {
     display: block;
-  }
-  .bm-menu-wrap {
-    top: 0px;
-    width: 100% !important;
-  }
-  .bm-overlay {
-    left: 0;
-    top: 0;
-  }
-  .bm-cross {
-    background: #bdc3c7;
-  }
-  .bm-burger-bars {
-    background: white;
-    border-radius: 10px;
-  }
-  .bm-menu {
-    background-color: ${variable.marine};
+    .bm-menu-wrap {
+      top: 0px;
+      width: 100% !important;
+      ul {
+        margin-top: 10px;
+        li {
+          a {
+            font-size: 14px !important;
+          }
+        }
+      }
+    }
+    .bm-overlay {
+      left: 0;
+      top: 0;
+    }
+    .bm-cross {
+      background: #bdc3c7;
+    }
+    .bm-burger-bars {
+      background: white;
+      border-radius: 10px;
+    }
+    .bm-menu {
+      background-image: url(${bgimage});
+      background-size: cover;
+    }
+    .bm-item-list {
+      background-color: rgba(128, 119, 90, 0.7);
+    }
   }
 `
 
@@ -120,7 +135,11 @@ class Mobilemenu extends React.Component {
                 </li>
                 {data.site.siteMetadata.mainmenu.map((menuitem, index) => (
                   <li key={index}>
-                    <Link to={menuitem.link} onClick={() => this.toggleMenu()}>
+                    <Link
+                      activeStyle={{ color: variable.black }}
+                      to={menuitem.link}
+                      onClick={() => this.toggleMenu()}
+                    >
                       {menuitem.name}
                     </Link>
                     {menuitem.submenu && (
