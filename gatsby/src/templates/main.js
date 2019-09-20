@@ -67,6 +67,12 @@ const MainStyle = styled.div`
       h1 {
         margin-top: 0px;
       }
+      h2 {
+        margin: 60px 0px 0px 0px;
+      }
+      p {
+        margin: 10px 0px;
+      }
     }
     .sidebar {
       width: 40%;

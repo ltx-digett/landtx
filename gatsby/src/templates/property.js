@@ -22,8 +22,14 @@ const PropertyStyle = styled.div`
     justify-content: space-between;
     padding-top: 40px;
     padding-bottom: 40px;
+    h2 {
+      margin: 40px 0px 0px 0px;
+    }
     .property-left {
       width: 60%;
+    }
+    p {
+      margin: 10px 0px;
     }
     .property-right {
       width: calc(40% - 100px);
@@ -64,9 +70,7 @@ const PropertyStyle = styled.div`
   @media (max-width: ${variable.mobileWidth}) {
     .overview {
       flex-direction: column-reverse;
-      h2 {
-        margin: 60px 0px 0px 0px;
-      }
+
       .property-left {
         div:first-of-type {
           h2 {
