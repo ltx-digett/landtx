@@ -104,7 +104,6 @@ const MainStyle = styled.div`
           }
         }
       }
-
       #contact {
         text-align: center;
         background-color: ${variable.taupe};
@@ -112,15 +111,93 @@ const MainStyle = styled.div`
         img {
           width: 265px;
         }
-        a {
-          color: ${variable.red};
-        }
       }
     }
   }
+  .form-group {
+    margin-bottom: 20px;
+    label {
+      display: block;
+    }
+    input {
+      width: 100%;
+      padding: 10px 10px;
+    }
+    textarea {
+      width: 100%;
+    }
+    &.opt {
+      input {
+        width: auto;
+        margin-right: 10px;
+      }
+    }
+  }
+  .btn {
+    background-color: ${variable.steelBlue};
+    -webkit-appearance: none;
+    color: white;
+    border: 0px;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .main-slide {
+    position: relative;
+  }
+  .main-slide-text-inner {
+    max-width: 50%;
+    text-shadow: 1px 1px ${variable.black};
+  }
+  .main-slide-text {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    color: white;
+    .main-slide-text-title {
+      padding: 20px 0px;
+      background: rgba(63, 67, 53, 0.5);
+      h2 {
+        margin-top: 0px;
+      }
+    }
+    .main-slide-text-button {
+      padding: 20px 0px;
+      background: rgba(63, 67, 53, 0.9);
+
+      a {
+        width: auto;
+        text-align: center;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        background: ${variable.steelBlue};
+        &:after {
+          content: "d";
+          color: transparent;
+          width: 15px;
+          height: 15px;
+          margin-left: 10px;
+          background-image: url(${arrow});
+          background-size: contain;
+          background-repeat: no-repeat;
+          display: inline-flex;
+          align-items: center;
+        }
+      }
+    }
+    .main-slide-button-container {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
   @media (max-width: ${variable.tabletWidth}) {
+    .main-slide-text-inner {
+      max-width: 100%;
+    }
     .slide {
-      height: 450px;
+      height: 500px;
     }
     .body-container {
       .body {
@@ -133,7 +210,7 @@ const MainStyle = styled.div`
   }
   @media (max-width: ${variable.mobileWidth}) {
     .slide {
-      height: 300px;
+      height: 400px;
     }
     .body-container {
       padding-left: 0px;
@@ -287,16 +364,37 @@ class MainPostTemplate extends React.Component {
           <link rel="canonical" href={site.url + "/" + slug} />
         </Helmet>
         <MainStyle>
-          <Fade {...properties}>
-            {slideshow.map((slide, index) => (
-              <div className="each-slide">
-                <BackgroundImage
-                  className="slide"
-                  fluid={slide.asset.fluid}
-                ></BackgroundImage>
+          <div className="main-slide">
+            <div className="main-slide-text">
+              <div className="main-slide-text-title">
+                <Container>
+                  <div className="main-slide-text-inner">
+                    <h2>Welcome to "Solid Ground"</h2>
+                    We welcome you to our highly functional, user-friendly
+                    website, and invite you to examine the full scope of
+                    services we provide, and the properties we offer for sale.
+                  </div>
+                </Container>
               </div>
-            ))}
-          </Fade>
+              <div className="main-slide-text-button">
+                <Container>
+                  <div className="main-slide-button-container">
+                    <Link to="/properties">View Property Listings</Link>
+                  </div>
+                </Container>
+              </div>
+            </div>
+            <Fade {...properties}>
+              {slideshow.map((slide, index) => (
+                <div className="each-slide">
+                  <BackgroundImage
+                    className="slide"
+                    fluid={slide.asset.fluid}
+                  ></BackgroundImage>
+                </div>
+              ))}
+            </Fade>
+          </div>
           <Container className={slug + " body-container"}>
             <div className="body">
               <h1>{title}</h1>
@@ -306,6 +404,119 @@ class MainPostTemplate extends React.Component {
                 projectId="84iv1ine"
                 dataset="production"
               />
+              {slug == "contact-us" && (
+                <form
+                  name="contact"
+                  method="post"
+                  netlify-honeypot="bot-field"
+                  data-netlify="true"
+                >
+                  <input type="hidden" name="form-name" value="contact" />
+                  <p hidden>
+                    <label htmlFor="bot-field">
+                      Don’t fill this out: <input name="bot-field" />
+                    </label>
+                  </p>
+                  <div class="form-group">
+                    <label for="name" class="lb-name">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      class="form-control"
+                      data-required="true"
+                      data-interactive="true"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="address" class="lb-address">
+                      Address
+                    </label>
+                    <textarea
+                      rows="5"
+                      name="address"
+                      id="address"
+                      class="form-control"
+                      data-interactive="true"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="phone" class="lb-phone">
+                      Phone
+                    </label>
+                    <input
+                      type="text"
+                      name="phone"
+                      id="phone"
+                      class="form-control"
+                      data-interactive="true"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="lb-email">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      class="form-control"
+                      data-required="true"
+                      data-interactive="true"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="limits" class="lb-limits">
+                      $ Limits
+                    </label>
+                    <input
+                      type="text"
+                      name="limits"
+                      id="limits"
+                      class="form-control"
+                      data-interactive="true"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="location" class="lb-location">
+                      Preferred Location
+                    </label>
+                    <input
+                      type="text"
+                      name="location"
+                      id="location"
+                      class="form-control"
+                      data-interactive="true"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="features" class="lb-features">
+                      Desired features
+                    </label>
+                    <textarea
+                      rows="5"
+                      name="features"
+                      id="features"
+                      class="form-control"
+                      data-interactive="true"
+                    />
+                  </div>
+                  <div class="form-group opt">
+                    <label for="features" class="lb-features">
+                      Opt in
+                    </label>
+                    <input type="checkbox" name="optin" value="yes" />
+                    Yes, sign me up for quarterly updates!
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-submit">
+                      Send Message
+                    </button>
+                  </div>
+                </form>
+              )}
               {overview.map((overviewitem, index) => (
                 <div>
                   <div key={index} id={overviewitem._key}>
@@ -322,7 +533,6 @@ class MainPostTemplate extends React.Component {
             </div>
             <div className="sidebar">
               {console.log(this.props)}
-
               {rawoverview && (
                 <div
                   className="sticky"

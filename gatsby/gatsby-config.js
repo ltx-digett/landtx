@@ -60,7 +60,7 @@ module.exports = {
       },
       {
         name: "Contact",
-        link: "/contact",
+        link: "/contact-us",
       },
     ],
   },
