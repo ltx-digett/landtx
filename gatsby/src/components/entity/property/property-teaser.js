@@ -12,6 +12,10 @@ const PropertyTeaserStyle = styled.div`
   margin-bottom: 60px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   background-color: ${variable.gray};
+  a {
+    text-decoration: none;
+    color: ${variable.black};
+  }
   .prop-teaser-bottom {
     padding: 30px 30px 30px 30px;
   }
@@ -87,33 +91,35 @@ class PropertyTeaser extends React.Component {
         onMouseEnter={() => this.setState({ autoplay: true })}
         onMouseLeave={() => this.setState({ autoplay: false })}
       >
-        <AliceCarousel
-          mouseDragEnabled
-          buttonsDisabled
-          duration={1000}
-          stopAutoPlayOnHover={false}
-          autoPlay={autoplay}
-          autoPlayInterval={1500}
-        >
-          {property.slideshow.map((slide, index) => (
-            // <img src={slide.asset.url + "?w=800"} className="prop-slide" />
-            <Img fluid={slide.asset.fluid} className="prop-slide" />
-          ))}
-        </AliceCarousel>
-        <div className="prop-teaser-bottom">
-          <h3>
-            <Link to={"/property/" + property.slug.current}>
-              {property.title}
-            </Link>
-          </h3>
-          <ul className="teaser-list">
-            {property.description && <li>{property.description}</li>}
-            {property.acres && <li>{property.acres} Acres</li>}
-            {property.county && <li>{property.county} County</li>}
-            {property.price && <li>{formatter.format(property.price)}</li>}
-            {property.status && <li>{property.status}</li>}
-          </ul>
-        </div>
+        <Link to={"/property/" + property.slug.current}>
+          <AliceCarousel
+            mouseDragEnabled
+            buttonsDisabled
+            duration={1000}
+            stopAutoPlayOnHover={false}
+            autoPlay={autoplay}
+            autoPlayInterval={1500}
+          >
+            {property.slideshow.map((slide, index) => (
+              // <img src={slide.asset.url + "?w=800"} className="prop-slide" />
+              <Img fluid={slide.asset.fluid} className="prop-slide" />
+            ))}
+          </AliceCarousel>
+          <div className="prop-teaser-bottom">
+            <h3>
+              <Link to={"/property/" + property.slug.current}>
+                {property.title}
+              </Link>
+            </h3>
+            <ul className="teaser-list">
+              {property.description && <li>{property.description}</li>}
+              {property.acres && <li>{property.acres} Acres</li>}
+              {property.county && <li>{property.county} County</li>}
+              {property.price && <li>{formatter.format(property.price)}</li>}
+              {property.status && <li>{property.status}</li>}
+            </ul>
+          </div>
+        </Link>
       </PropertyTeaserStyle>
     )
   }

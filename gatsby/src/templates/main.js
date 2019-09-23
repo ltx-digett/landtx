@@ -149,6 +149,7 @@ const MainStyle = styled.div`
   .main-slide-text-inner {
     max-width: 50%;
     text-shadow: 1px 1px ${variable.black};
+    width: calc(100% - 300px);
   }
   .main-slide-text {
     position: absolute;
@@ -162,9 +163,9 @@ const MainStyle = styled.div`
         margin-top: 0px;
       }
     }
-    .main-slide-text-button {
+    .main-slide-text-title {
       padding: 20px 0px;
-      background: rgba(63, 67, 53, 0.9);
+      background: rgba(63, 67, 53, 0.6);
 
       a {
         width: auto;
@@ -173,6 +174,8 @@ const MainStyle = styled.div`
         padding: 10px 20px;
         text-decoration: none;
         background: ${variable.steelBlue};
+        display: table;
+        width: 250px;
         &:after {
           content: "d";
           color: transparent;
@@ -192,6 +195,11 @@ const MainStyle = styled.div`
       justify-content: flex-end;
     }
   }
+  .main-slide-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   @media (max-width: ${variable.tabletWidth}) {
     .main-slide-text-inner {
       max-width: 100%;
@@ -209,6 +217,18 @@ const MainStyle = styled.div`
     }
   }
   @media (max-width: ${variable.mobileWidth}) {
+    .main-slide-container {
+      flex-direction: column;
+    }
+    .main-slide-text-inner {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .main-slide-text-title {
+      a {
+        align-self: flex-start;
+      }
+    }
     .slide {
       height: 400px;
     }
@@ -365,25 +385,21 @@ class MainPostTemplate extends React.Component {
         </Helmet>
         <MainStyle>
           <div className="main-slide">
-            <div className="main-slide-text">
-              <div className="main-slide-text-title">
-                <Container>
-                  <div className="main-slide-text-inner">
-                    <h2>Welcome to "Solid Ground"</h2>
-                    We welcome you to our highly functional, user-friendly
-                    website, and invite you to examine the full scope of
-                    services we provide, and the properties we offer for sale.
-                  </div>
-                </Container>
-              </div>
-              <div className="main-slide-text-button">
-                <Container>
-                  <div className="main-slide-button-container">
+            {slug == "front" && (
+              <div className="main-slide-text">
+                <div className="main-slide-text-title">
+                  <Container className="main-slide-container">
+                    <div className="main-slide-text-inner">
+                      <h2>Welcome to "Solid Ground"</h2>
+                      We welcome you to our highly functional, user-friendly
+                      website, and invite you to examine the full scope of
+                      services we provide, and the properties we offer for sale.
+                    </div>
                     <Link to="/properties">View Property Listings</Link>
-                  </div>
-                </Container>
+                  </Container>
+                </div>
               </div>
-            </div>
+            )}
             <Fade {...properties}>
               {slideshow.map((slide, index) => (
                 <div className="each-slide">
