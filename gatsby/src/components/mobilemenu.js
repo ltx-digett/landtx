@@ -70,11 +70,11 @@ const MobileContainer = styled.div`
       border-radius: 10px;
     }
     .bm-menu {
+      background-color: rgba(128, 119, 90, 0.7);
+    }
+    .bm-menu-wrap {
       background-image: url(${bgimage});
       background-size: cover;
-    }
-    .bm-item-list {
-      background-color: rgba(128, 119, 90, 0.7);
     }
   }
 `
