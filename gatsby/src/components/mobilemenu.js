@@ -147,6 +147,7 @@ class Mobilemenu extends React.Component {
                         {menuitem.submenu.map((subitem, index) => (
                           <li key={index}>
                             <Link
+                              activeStyle={{ color: variable.black }}
                               to={subitem.link}
                               onClick={() => this.toggleMenu()}
                             >
