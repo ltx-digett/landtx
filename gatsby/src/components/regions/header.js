@@ -180,7 +180,7 @@ export const Header = ({ mainmenu }) => {
                         {menuitem.submenu.map((submenuitem, index) => (
                           <li key={index}>
                             <Link
-                              activeStyle={{ color: variable.black }}
+                              activeStyle={{ color: variable.steelBlue }}
                               to={submenuitem.link}
                             >
                               {submenuitem.name}
