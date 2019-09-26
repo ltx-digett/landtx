@@ -1,6 +1,3 @@
-import "core-js/es/map"
-import "core-js/es/set"
-import "raf/polyfill"
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
