@@ -74,7 +74,7 @@ const FooterStyle = styled.footer`
 export const Footer = ({ mainmenu }) => {
   const data = useStaticQuery(graphql`
     query {
-      footerbg: file(relativePath: { eq: "bg-topo.png" }) {
+      footerbg: file(relativePath: { eq: "topo-1250.webp" }) {
         childImageSharp {
           fluid(maxWidth: 1920) {
             ...GatsbyImageSharpFluid

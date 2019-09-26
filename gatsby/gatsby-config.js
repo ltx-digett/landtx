@@ -90,6 +90,7 @@ module.exports = {
         modules: [`react-dom`],
       },
     },
+    `gatsby-plugin-flow`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,

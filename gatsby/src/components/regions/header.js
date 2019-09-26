@@ -127,7 +127,7 @@ const HeaderStyle = styled.header`
 export const Header = ({ mainmenu }) => {
   const data = useStaticQuery(graphql`
     query {
-      headerbg: file(relativePath: { eq: "bg-topo.png" }) {
+      headerbg: file(relativePath: { eq: "topo-1250.webp" }) {
         childImageSharp {
           fluid(maxWidth: 1920) {
             ...GatsbyImageSharpFluid
