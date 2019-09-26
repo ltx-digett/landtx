@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import * as variable from "../components/variables"
-import bgimage from "../images/bg-topo.png"
+import bgimage from "../images/topo-1250.webp"
 
 const MobileContainer = styled.div`
   display: none;
