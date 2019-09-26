@@ -421,6 +421,7 @@ class MainPostTemplate extends React.Component {
       var sidebar = true
       var bodyclass = "has-sidebar"
     }
+
     return (
       <Layout>
         <Helmet>
@@ -429,7 +430,14 @@ class MainPostTemplate extends React.Component {
             {title} | {site.title}
           </title>
           <meta property="og:description" content={metadescription} />
-          <link rel="canonical" href={site.url + "/" + slug} />
+          {slug == "front" && <link rel="canonical" href={site.url} />}
+          {slug !== "front" && (
+            <link rel="canonical" href={site.url + "/" + slug} />
+          )}
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+          />
         </Helmet>
         <MainStyle>
           <div className="main-slide">
