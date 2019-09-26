@@ -6,8 +6,8 @@ require("dotenv").config({
 })
 module.exports = {
   siteMetadata: {
-    title: `Landtx`,
-    description: `Landtx gatsby site.`,
+    title: `LANDTX`,
+    description: `LANDTX gatsby site.`,
     author: `Alexander Fountain`,
     googleMapsKey: process.env.GOOGLE_MAPS_KEY,
     url: `https://landtx.sanity.com`,
