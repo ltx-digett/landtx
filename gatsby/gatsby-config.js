@@ -14,7 +14,25 @@ module.exports = {
     mainmenu: [
       {
         name: "About",
-        link: "/about",
+        link: "/mission-goals",
+        submenu: [
+          {
+            name: "Mission & Goals",
+            link: "/mission-goals",
+          },
+          {
+            name: "Our Services",
+            link: "/our-services",
+          },
+          {
+            name: "Territory",
+            link: "/territory",
+          },
+          {
+            name: "Team",
+            link: "/team",
+          },
+        ],
       },
       {
         name: "Property Listings",

@@ -14,6 +14,36 @@ import ScrollUpButton from "react-scroll-up-button"
 import Scrollspy from "react-scrollspy"
 
 const MainStyle = styled.div`
+  .team {
+    .body-outer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .rawimage {
+        width: calc(30%);
+      }
+      .group {
+        width: calc(70% - 40px);
+        h2 {
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+  .territory {
+    ul {
+      margin: 0px;
+      padding: 0px;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      height: 330px;
+      li {
+        margin: 20px 20px 20px 0px;
+        list-style: none;
+      }
+    }
+  }
   .body {
     a {
       color: ${variable.steelBlue};
@@ -63,7 +93,7 @@ const MainStyle = styled.div`
     padding-top: 70px;
     padding-bottom: 40px;
     .body {
-      width: calc(60% - 40px);
+      width: calc(100%);
       h1 {
         margin-top: 0px;
       }
@@ -73,6 +103,9 @@ const MainStyle = styled.div`
       p {
         margin: 10px 0px;
       }
+    }
+    .has-sidebar {
+      width: calc(60% - 40px);
     }
     .sidebar {
       width: 40%;
@@ -207,16 +240,24 @@ const MainStyle = styled.div`
     .slide {
       height: 500px;
     }
-    .body-container {
-      .body {
-        width: calc(65% - 20px);
-      }
-      .sidebar {
-        width: 35%;
-      }
-    }
   }
   @media (max-width: ${variable.mobileWidth}) {
+    .team {
+      .body-outer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .rawimage {
+          width: calc(100%);
+        }
+        .group {
+          width: calc(100%);
+          h2 {
+            margin-top: 40px;
+          }
+        }
+      }
+    }
     .main-slide-container {
       flex-direction: column;
     }
@@ -249,7 +290,6 @@ const MainStyle = styled.div`
         width: 100%;
         padding: 0px 15px;
       }
-
       .sidebar {
         width: 100%;
         #properties-cta {
@@ -277,8 +317,13 @@ const serializers = {
       // props.node.asset !== null && <div>{console.log(props.node.asset)}
 
       // </div>
-      <div>
+      <div className="rawimage">
         <RawImage id={props.node.asset.id} />
+      </div>
+    ),
+    group: props => (
+      <div className="group">
+        <PortableText serializers={serializers} blocks={props.node.group} />
       </div>
     ),
     blocks: props => (
@@ -372,7 +417,10 @@ class MainPostTemplate extends React.Component {
       rawoverview,
       overview,
     } = this.props
-
+    if (rawoverview != null || sidebarBody != null) {
+      var sidebar = true
+      var bodyclass = "has-sidebar"
+    }
     return (
       <Layout>
         <Helmet>
@@ -412,13 +460,14 @@ class MainPostTemplate extends React.Component {
             </Fade>
           </div>
           <Container className={slug + " body-container"}>
-            <div className="body">
+            <div className={bodyclass + " body"}>
               <h1>{title}</h1>
               <PortableText
                 serializers={serializers}
                 blocks={_rawBody}
                 projectId="84iv1ine"
                 dataset="production"
+                className="body-outer"
               />
               {slug == "contact-us" && (
                 <form
@@ -547,35 +596,36 @@ class MainPostTemplate extends React.Component {
                 </div>
               ))}
             </div>
-            <div className="sidebar">
-              {console.log(this.props)}
-              {rawoverview && (
-                <div
-                  className="sticky"
-                  style={{ height: this.state.innerHeight }}
-                >
-                  {overview.map((overviewitem, index) => (
-                    <Scrollspy
-                      items={[overviewitem._key]}
-                      currentClassName="is-current"
-                      className="scrollspy"
-                    >
-                      <li key={index}>
-                        <a key={index} href={"#" + overviewitem._key}>
-                          {overviewitem.title}
-                        </a>
-                      </li>
-                    </Scrollspy>
-                  ))}
-                </div>
-              )}
-              <PortableText
-                serializers={serializers}
-                blocks={sidebarBody}
-                projectId="84iv1ine"
-                dataset="production"
-              />
-            </div>
+            {sidebar && (
+              <div className="sidebar">
+                {rawoverview && (
+                  <div
+                    className="sticky"
+                    style={{ height: this.state.innerHeight }}
+                  >
+                    {overview.map((overviewitem, index) => (
+                      <Scrollspy
+                        items={[overviewitem._key]}
+                        currentClassName="is-current"
+                        className="scrollspy"
+                      >
+                        <li key={index}>
+                          <a key={index} href={"#" + overviewitem._key}>
+                            {overviewitem.title}
+                          </a>
+                        </li>
+                      </Scrollspy>
+                    ))}
+                  </div>
+                )}
+                <PortableText
+                  serializers={serializers}
+                  blocks={sidebarBody}
+                  projectId="84iv1ine"
+                  dataset="production"
+                />
+              </div>
+            )}
             <ScrollUpButton />
           </Container>
         </MainStyle>

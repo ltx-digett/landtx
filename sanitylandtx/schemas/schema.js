@@ -16,7 +16,7 @@ import overview from "./overview";
 import post from "./post";
 import author from "./author";
 import youtube from "./youtube";
-
+import group from "./group";
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -35,6 +35,7 @@ export default createSchema({
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     overview,
-    blockContent
+    blockContent,
+    group
   ])
 });

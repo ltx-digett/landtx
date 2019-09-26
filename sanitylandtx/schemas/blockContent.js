@@ -66,6 +66,11 @@ export default {
       title: "Youtube",
       name: "youtube",
       type: "youtube"
+    },
+    {
+      title: "Group",
+      name: "group",
+      type: "group"
     }
   ]
 };
