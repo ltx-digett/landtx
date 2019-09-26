@@ -84,6 +84,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-netlify-headers`,
     {
       resolve: `gatsby-plugin-compile-es6-packages`,
       options: {
