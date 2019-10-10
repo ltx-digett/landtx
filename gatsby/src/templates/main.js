@@ -37,10 +37,11 @@ const MainStyle = styled.div`
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
-      height: 330px;
+      height: 400px;
       li {
-        margin: 20px 20px 20px 0px;
+        padding: 20px 20px 20px 0px;
         list-style: none;
+        box-sizing: border-box;
       }
     }
   }
@@ -240,8 +241,19 @@ const MainStyle = styled.div`
     .slide {
       height: 500px;
     }
+    .territory {
+      ul {
+        height: 600px;
+      }
+    }
   }
   @media (max-width: ${variable.mobileWidth}) {
+    .territory {
+      ul {
+        flex-direction: row;
+        height: auto;
+      }
+    }
     .team {
       .body-outer {
         display: flex;

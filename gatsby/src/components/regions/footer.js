@@ -115,7 +115,7 @@ export const Footer = ({ mainmenu }) => {
                   <Link to="/resources">More Resources</Link>
                 </li>
                 <li>
-                  <Link to="/contact">Contact LANDTX</Link>
+                  <Link to="/contact-us">Contact LANDTX</Link>
                 </li>
               </ul>
             </div>
