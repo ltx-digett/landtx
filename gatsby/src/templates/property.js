@@ -245,7 +245,7 @@ class PropertyPostTemplate extends React.Component {
           <title>
             {property.title} | {site.title}
           </title>
-          <meta property="og:description" content={metadescription} />
+          <meta name="description" content={metadescription} />
           <link rel="canonical" href={site.url + "/property/" + slug.current} />
         </Helmet>
         <PropertyStyle>

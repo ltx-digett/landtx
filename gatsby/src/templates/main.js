@@ -441,7 +441,7 @@ class MainPostTemplate extends React.Component {
           <title>
             {title} | {site.title}
           </title>
-          <meta property="og:description" content={metadescription} />
+          <meta name="description" content={metadescription} />
           {slug == "front" && <link rel="canonical" href={site.url} />}
           {slug !== "front" && (
             <link rel="canonical" href={site.url + "/" + slug} />
