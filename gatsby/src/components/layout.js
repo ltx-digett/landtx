@@ -10,7 +10,7 @@ import arrow from "../images/arrow.png"
 import { Helmet } from "react-helmet"
 
 const GlobalStyles = styled.div`
-  color: ${variable.black};
+  color: white;
   h1 {
     font-size: 44px;
   }
@@ -23,18 +23,6 @@ const GlobalStyles = styled.div`
     text-decoration: none;
     display: block;
     background: linear-gradient(180deg, ${variable.marine} 0%, #4b7ca5 100%);
-    &:after {
-      content: "d";
-      color: transparent;
-      width: 15px;
-      height: 15px;
-      margin-left: 10px;
-      background-image: url(${arrow});
-      background-size: contain;
-      background-repeat: no-repeat;
-      display: inline-flex;
-      align-items: center;
-    }
   }
   a {
     color: ${variable.steelBlue};

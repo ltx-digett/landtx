@@ -14,6 +14,9 @@ import ScrollUpButton from "react-scroll-up-button"
 import Scrollspy from "react-scrollspy"
 
 const MainStyle = styled.div`
+  .body-container-container {
+    background-color: rgba(33, 35, 30, 0.9);
+  }
   .team {
     .body-outer {
       display: flex;
@@ -124,24 +127,14 @@ const MainStyle = styled.div`
           text-decoration: none;
           display: block;
           background: ${variable.steelBlue};
-          &:after {
-            content: "d";
-            color: transparent;
-            width: 15px;
-            height: 15px;
-            margin-left: 10px;
-            background-image: url(${arrow});
-            background-size: contain;
-            background-repeat: no-repeat;
-            display: inline-flex;
-            align-items: center;
-          }
         }
       }
       #contact {
         text-align: center;
         background-color: ${variable.taupe};
         padding: 40px 20px;
+        border-radius: 5px;
+        color: ${variable.black};
         img {
           width: 265px;
         }
@@ -210,18 +203,6 @@ const MainStyle = styled.div`
         background: ${variable.steelBlue};
         display: table;
         width: 250px;
-        &:after {
-          content: "d";
-          color: transparent;
-          width: 15px;
-          height: 15px;
-          margin-left: 10px;
-          background-image: url(${arrow});
-          background-size: contain;
-          background-repeat: no-repeat;
-          display: inline-flex;
-          align-items: center;
-        }
       }
     }
     .main-slide-button-container {
@@ -479,175 +460,177 @@ class MainPostTemplate extends React.Component {
               ))}
             </Fade>
           </div>
-          <Container className={slug + " body-container"}>
-            <div className={bodyclass + " body"}>
-              <h1>{title}</h1>
-              <PortableText
-                serializers={serializers}
-                blocks={_rawBody}
-                projectId="84iv1ine"
-                dataset="production"
-                className="body-outer"
-              />
-              {slug == "contact-us" && (
-                <form
-                  name="contact"
-                  method="post"
-                  netlify-honeypot="bot-field"
-                  data-netlify="true"
-                >
-                  <input type="hidden" name="form-name" value="contact" />
-                  <p hidden>
-                    <label htmlFor="bot-field">
-                      Don’t fill this out: <input name="bot-field" />
-                    </label>
-                  </p>
-                  <div class="form-group">
-                    <label for="name" class="lb-name">
-                      Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      class="form-control"
-                      data-required="true"
-                      data-interactive="true"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="address" class="lb-address">
-                      Address
-                    </label>
-                    <textarea
-                      rows="5"
-                      name="address"
-                      id="address"
-                      class="form-control"
-                      data-interactive="true"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="phone" class="lb-phone">
-                      Phone
-                    </label>
-                    <input
-                      type="text"
-                      name="phone"
-                      id="phone"
-                      class="form-control"
-                      data-interactive="true"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="email" class="lb-email">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      class="form-control"
-                      data-required="true"
-                      data-interactive="true"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="limits" class="lb-limits">
-                      $ Limits
-                    </label>
-                    <input
-                      type="text"
-                      name="limits"
-                      id="limits"
-                      class="form-control"
-                      data-interactive="true"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="location" class="lb-location">
-                      Preferred Location
-                    </label>
-                    <input
-                      type="text"
-                      name="location"
-                      id="location"
-                      class="form-control"
-                      data-interactive="true"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="features" class="lb-features">
-                      Desired features
-                    </label>
-                    <textarea
-                      rows="5"
-                      name="features"
-                      id="features"
-                      class="form-control"
-                      data-interactive="true"
-                    />
-                  </div>
-                  <div class="form-group opt">
-                    <label for="features" class="lb-features">
-                      Opt in
-                    </label>
-                    <input type="checkbox" name="optin" value="yes" />
-                    Yes, sign me up for quarterly updates!
-                  </div>
-                  <div>
-                    <button type="submit" class="btn btn-submit">
-                      Send Message
-                    </button>
-                  </div>
-                </form>
-              )}
-              {overview.map((overviewitem, index) => (
-                <div>
-                  <div key={index} id={overviewitem._key}>
-                    <h2>{overviewitem.title}</h2>
-                    <PortableText
-                      serializers={serializers}
-                      blocks={rawoverview[index].body}
-                      projectId="84iv1ine"
-                      dataset="production"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-            {sidebar && (
-              <div className="sidebar">
-                {rawoverview && (
-                  <div
-                    className="sticky"
-                    style={{ height: this.state.innerHeight }}
-                  >
-                    {overview.map((overviewitem, index) => (
-                      <Scrollspy
-                        items={[overviewitem._key]}
-                        currentClassName="is-current"
-                        className="scrollspy"
-                      >
-                        <li key={index}>
-                          <a key={index} href={"#" + overviewitem._key}>
-                            {overviewitem.title}
-                          </a>
-                        </li>
-                      </Scrollspy>
-                    ))}
-                  </div>
-                )}
+          <div className="body-container-container">
+            <Container className={slug + " body-container"}>
+              <div className={bodyclass + " body"}>
+                <h1>{title}</h1>
                 <PortableText
                   serializers={serializers}
-                  blocks={sidebarBody}
+                  blocks={_rawBody}
                   projectId="84iv1ine"
                   dataset="production"
+                  className="body-outer"
                 />
+                {slug == "contact-us" && (
+                  <form
+                    name="contact"
+                    method="post"
+                    netlify-honeypot="bot-field"
+                    data-netlify="true"
+                  >
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p hidden>
+                      <label htmlFor="bot-field">
+                        Don’t fill this out: <input name="bot-field" />
+                      </label>
+                    </p>
+                    <div class="form-group">
+                      <label for="name" class="lb-name">
+                        Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        class="form-control"
+                        data-required="true"
+                        data-interactive="true"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="address" class="lb-address">
+                        Address
+                      </label>
+                      <textarea
+                        rows="5"
+                        name="address"
+                        id="address"
+                        class="form-control"
+                        data-interactive="true"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="phone" class="lb-phone">
+                        Phone
+                      </label>
+                      <input
+                        type="text"
+                        name="phone"
+                        id="phone"
+                        class="form-control"
+                        data-interactive="true"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="email" class="lb-email">
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="form-control"
+                        data-required="true"
+                        data-interactive="true"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="limits" class="lb-limits">
+                        $ Limits
+                      </label>
+                      <input
+                        type="text"
+                        name="limits"
+                        id="limits"
+                        class="form-control"
+                        data-interactive="true"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="location" class="lb-location">
+                        Preferred Location
+                      </label>
+                      <input
+                        type="text"
+                        name="location"
+                        id="location"
+                        class="form-control"
+                        data-interactive="true"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="features" class="lb-features">
+                        Desired features
+                      </label>
+                      <textarea
+                        rows="5"
+                        name="features"
+                        id="features"
+                        class="form-control"
+                        data-interactive="true"
+                      />
+                    </div>
+                    <div class="form-group opt">
+                      <label for="features" class="lb-features">
+                        Opt in
+                      </label>
+                      <input type="checkbox" name="optin" value="yes" />
+                      Yes, sign me up for quarterly updates!
+                    </div>
+                    <div>
+                      <button type="submit" class="btn btn-submit">
+                        Send Message
+                      </button>
+                    </div>
+                  </form>
+                )}
+                {overview.map((overviewitem, index) => (
+                  <div>
+                    <div key={index} id={overviewitem._key}>
+                      <h2>{overviewitem.title}</h2>
+                      <PortableText
+                        serializers={serializers}
+                        blocks={rawoverview[index].body}
+                        projectId="84iv1ine"
+                        dataset="production"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
-            )}
-            <ScrollUpButton />
-          </Container>
+              {sidebar && (
+                <div className="sidebar">
+                  {rawoverview && (
+                    <div
+                      className="sticky"
+                      style={{ height: this.state.innerHeight }}
+                    >
+                      {overview.map((overviewitem, index) => (
+                        <Scrollspy
+                          items={[overviewitem._key]}
+                          currentClassName="is-current"
+                          className="scrollspy"
+                        >
+                          <li key={index}>
+                            <a key={index} href={"#" + overviewitem._key}>
+                              {overviewitem.title}
+                            </a>
+                          </li>
+                        </Scrollspy>
+                      ))}
+                    </div>
+                  )}
+                  <PortableText
+                    serializers={serializers}
+                    blocks={sidebarBody}
+                    projectId="84iv1ine"
+                    dataset="production"
+                  />
+                </div>
+              )}
+              <ScrollUpButton />
+            </Container>
+          </div>
         </MainStyle>
       </Layout>
     )

@@ -10,7 +10,7 @@ import Img from "gatsby-image"
 const FooterStyle = styled.footer`
   background-size: cover;
   .footer-bg {
-    background-color: rgba(128, 119, 90, 0.7);
+    background-color: rgba(128, 119, 90, 0.6);
   }
   .footer-container {
     padding-top: 40px;
@@ -95,7 +95,8 @@ export const Footer = ({ mainmenu }) => {
 
   return (
     <FooterStyle className="ltx-footer">
-      <BackgroundImage fluid={footerbg} style={{ backgroundSize: "cover" }}>
+      {/* <BackgroundImage fluid={footerbg} style={{ backgroundSize: "cover" }}> */}
+      <div>
         <div className="footer-bg">
           <Container className="footer-container">
             <div className="footer-left">
@@ -141,7 +142,7 @@ export const Footer = ({ mainmenu }) => {
             </div>
           </Container>
         </div>
-      </BackgroundImage>
+      </div>
     </FooterStyle>
   )
 }

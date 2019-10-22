@@ -12,13 +12,16 @@ import { Helmet } from "react-helmet"
 // const Marker = ({ property }) => <div className="marker">{property.title}</div>
 
 const PropertiesStyle = styled.div`
+  .properties-teaser-container-container {
+    background-color: rgba(33, 35, 30, 0.9);
+    padding-top: 40px;
+  }
   .marker {
     cursor: pointer;
   }
   h1 {
-    padding: 0px 15px;
+    margin-top: 0px;
   }
-  background-color: ${variable.taupe};
   .properties-teaser-container-flex {
     display: flex;
     padding-bottom: 40px;
@@ -183,21 +186,22 @@ class PropertiesPostTemplate extends React.Component {
               ))}
             </GoogleMapReact>
           </div>
-
-          <Container className="properties-teaser-container">
-            <h1>Property Listings</h1>
-            <div className="properties-teaser-container-flex">
-              {properties.map((property, index) => (
-                <PropertyTeaser
-                  key={index}
-                  lat={property.location.lat}
-                  lng={property.location.lng}
-                  property={property}
-                  onMouseEnter={this.onChildHover}
-                />
-              ))}
-            </div>
-          </Container>
+          <div className="properties-teaser-container-container">
+            <Container className="properties-teaser-container">
+              <h1>Property Listings</h1>
+              <div className="properties-teaser-container-flex">
+                {properties.map((property, index) => (
+                  <PropertyTeaser
+                    key={index}
+                    lat={property.location.lat}
+                    lng={property.location.lng}
+                    property={property}
+                    onMouseEnter={this.onChildHover}
+                  />
+                ))}
+              </div>
+            </Container>
+          </div>
         </PropertiesStyle>
       </Layout>
     )

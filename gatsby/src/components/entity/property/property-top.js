@@ -13,7 +13,7 @@ import FullSlide from "../../fullslide"
 import Img from "gatsby-image"
 import { FaEnvelope } from "react-icons/fa"
 import { ShareButton } from "react-custom-share"
-const PropertyTopStyle = styled.div`
+const PropertyTopStyle = styled.div`  
   .share {
     -webkit-appearance: none;
     border: 0px;

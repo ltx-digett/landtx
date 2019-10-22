@@ -11,7 +11,9 @@ import Img from "gatsby-image"
 const PropertyTeaserStyle = styled.div`
   margin-bottom: 60px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-  background-color: ${variable.gray};
+  background-color: ${variable.taupe};
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   a {
     text-decoration: none;
     color: ${variable.black};
@@ -25,11 +27,19 @@ const PropertyTeaserStyle = styled.div`
     li {
       list-style: none;
       margin-bottom: 3px;
+      font-weight: bold;
+      &.teaser-desciption {
+        font-family: Tinos;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
     }
   }
   h3 {
-    font-size: 28px;
-    margin: 0px 0px 10px 0px;
+    font-size: 36px;
+    margin: 0px 0px 0px 0px;
     a {
       text-decoration: none;
       color: ${variable.black};
@@ -112,7 +122,9 @@ class PropertyTeaser extends React.Component {
               </Link>
             </h3>
             <ul className="teaser-list">
-              {property.description && <li>{property.description}</li>}
+              {property.description && (
+                <li className="teaser-desciption">{property.description}</li>
+              )}
               {property.acres && <li>{property.acres} Acres</li>}
               {property.county && <li>{property.county} County</li>}
               {property.price && <li>{formatter.format(property.price)}</li>}
