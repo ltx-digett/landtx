@@ -10,7 +10,7 @@ import Iframe from "react-iframe"
 
 const PropertyInteractiveStyle = styled.div`
   .prop-brown-container {
-    background-color: ${variable.taupe};
+    background-color: rgba(33, 35, 30, 0.9);
     padding: 20px 0px;
   }
   .overview {

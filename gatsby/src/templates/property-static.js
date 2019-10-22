@@ -66,7 +66,7 @@ const PropertyStaticStyle = styled.div`
     background-color: transparent;
   }
   .prop-brown-container {
-    background-color: ${variable.taupe};
+    background-color: rgba(33, 35, 30, 0.9);
     padding-bottom: 40px;
   }
   .static-slide {

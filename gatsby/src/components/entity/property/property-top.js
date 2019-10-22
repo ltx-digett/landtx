@@ -13,7 +13,8 @@ import FullSlide from "../../fullslide"
 import Img from "gatsby-image"
 import { FaEnvelope } from "react-icons/fa"
 import { ShareButton } from "react-custom-share"
-const PropertyTopStyle = styled.div`  
+const PropertyTopStyle = styled.div`
+  background-color: #ddd9cb;
   .share {
     -webkit-appearance: none;
     border: 0px;
@@ -25,7 +26,8 @@ const PropertyTopStyle = styled.div`
     cursor: pointer;
     display: flex;
     align-items: center;
-    color: ${variable.steelBlue};
+    color: #40413d;
+    background-color: transparent;
     svg {
       margin-right: 10px;
     }
@@ -36,10 +38,12 @@ const PropertyTopStyle = styled.div`
       width: calc(100% - 60px);
       display: inline;
       margin-right: 10px;
+      color: #40413d;
     }
     .status {
       width: 60px;
       display: inline;
+      color: #40413d;
     }
   }
   .popclose-parent {
@@ -81,29 +85,39 @@ const PropertyTopStyle = styled.div`
     padding: 0px;
     margin: 0px;
     margin-bottom: 40px;
+    color: #40413d;
     li {
       list-style: none;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
+      &.top-desc {
+        font-family: Tinos;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 22.5px;
+        margin-bottom: 25px;
+      }
       a {
-        color: ${variable.black};
+        color: #40413d;
         text-decoration: none;
       }
     }
   }
-  .blue-cta-prop {
+  .brown-cta-prop {
     color: white;
     padding: 15px 20px;
     text-decoration: none;
     display: block;
-    background: ${variable.steelBlue};
+    background: #40413d;
     margin-bottom: 20px;
     text-align: center;
+    border-radius: 5px;
   }
   .top-property-container {
     padding-top: 72px;
     padding-bottom: 72px;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     .top-details-left {
       width: 40%;
     }
@@ -246,8 +260,9 @@ class PropertyTop extends React.Component {
                 )}
               </div>
               <ul className="details">
-                {console.log(property)}
-                {property.description && <li>{property.description}</li>}
+                {property.description && (
+                  <li className="top-desc">{property.description}</li>
+                )}
                 {property.acres && (
                   <li>
                     {property.acres} acres in {property.county} County
@@ -263,17 +278,17 @@ class PropertyTop extends React.Component {
                 )}
                 <li>
                   <ShareButton {...shareButtonProps} className="share">
-                    <FaEnvelope /> Share This
+                    <FaEnvelope /> Share Listing
                   </ShareButton>
                 </li>
               </ul>
             </div>
             {property.status == "Active" && (
               <div>
-                <a className="blue-cta-prop" href="">
+                <a className="brown-cta-prop" href="">
                   Request a Bound Package
                 </a>
-                <a className="blue-cta-prop" href="">
+                <a className="brown-cta-prop" href="">
                   Ask About this Property
                 </a>
               </div>

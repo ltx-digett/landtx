@@ -15,7 +15,7 @@ import { Helmet } from "react-helmet"
 
 const PropertyStyle = styled.div`
   .prop-brown-container {
-    background-color: ${variable.taupe};
+    background-color: rgba(33, 35, 30, 0.9);
   }
   .overview {
     display: flex;
@@ -40,14 +40,14 @@ const PropertyStyle = styled.div`
         li {
           list-style: none;
           a {
-            color: ${variable.marine};
+            color: white;
             margin-bottom: 8px;
             display: block;
             font-size: 17px;
           }
           &.is-current {
             a {
-              color: ${variable.red};
+              color: ${variable.marine};
             }
           }
         }

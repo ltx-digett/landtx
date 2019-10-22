@@ -58,7 +58,7 @@ export const query = graphql`
         url
       }
     }
-    property: allSanityProperty(filter: { status: { eq: "Active" } }) {
+    property: allSanityProperty(filter: { status: { ne: "Sold" } }) {
       nodes {
         title
         id

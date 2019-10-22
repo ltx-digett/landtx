@@ -14,6 +14,21 @@ const PropertyTeaserStyle = styled.div`
   background-color: ${variable.taupe};
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  position: relative;
+  .pending-status {
+    color: white;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: #9b0000;
+    padding: 5px 0px;
+    z-index: 10;
+    text-align: center;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22.5px;
+  }
   a {
     text-decoration: none;
     color: ${variable.black};
@@ -102,6 +117,9 @@ class PropertyTeaser extends React.Component {
         onMouseLeave={() => this.setState({ autoplay: false })}
       >
         <Link to={"/property/" + property.slug.current}>
+          {property.status == "Contract Pending" && (
+            <div className="pending-status">{property.status}</div>
+          )}
           <AliceCarousel
             mouseDragEnabled
             buttonsDisabled
@@ -128,7 +146,6 @@ class PropertyTeaser extends React.Component {
               {property.acres && <li>{property.acres} Acres</li>}
               {property.county && <li>{property.county} County</li>}
               {property.price && <li>{formatter.format(property.price)}</li>}
-              {property.status && <li>{property.status}</li>}
             </ul>
           </div>
         </Link>

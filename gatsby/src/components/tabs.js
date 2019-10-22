@@ -5,6 +5,7 @@ import Container from "../components/container"
 import * as variable from "../components/variables"
 
 const TabsStyle = styled.div`
+  background-color: #ddd9cb;
   .tabs {
     display: flex;
     justify-content: space-between;
@@ -18,20 +19,20 @@ const TabsStyle = styled.div`
   }
   &.tab-container-interactive {
     .interactive-tab {
-      background-color: ${variable.taupe};
-      color: ${variable.black};
+      background-color: #40413d;
+      color: white;
     }
   }
   &.tab-container-overview {
     .overview-tab {
-      background-color: ${variable.taupe};
-      color: ${variable.black};
+      background-color: #40413d;
+      color: white;
     }
   }
   &.tab-container-static {
     .static-tab {
-      background-color: ${variable.taupe};
-      color: ${variable.black};
+      background-color: #40413d;
+      color: white;
     }
   }
   @media (max-width: ${variable.tabletWidth}) {
