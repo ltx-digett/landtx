@@ -9,8 +9,32 @@ import Tabs from "../components/tabs"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
 import Img from "gatsby-image"
-
+import FullStaticSlide from "../components/fullstaticslide"
+import fullscreen from "../images/Magnifier.png"
+import { PopupboxManager, PopupboxContainer } from "react-popupbox"
+import "react-popupbox/dist/react-popupbox.css"
 const PropertyStaticStyle = styled.div`
+  .prop-brown-container {
+    padding: 40px 0px;
+  }
+  .static {
+    display: flex;
+    flex-wrap: wrap;
+    .static-slide {
+      cursor:pointer;
+      margin-bottom: 40px;
+      flex-basis: calc((100%) / 3 - 14px);
+      margin-right: 20px;
+      &:nth-child(3n + 3) {
+        margin-right: 0px;
+      }
+      h3 {
+        margin-top: 0px;
+        border-radius: 0px 0px 7px 7px;
+        color: #3f4335;
+      }
+    }
+  }
   .alice-carousel__prev-btn {
     position: absolute;
     width: 25px;
@@ -79,6 +103,55 @@ const PropertyStaticStyle = styled.div`
       font-weight: 400;
     }
   }
+  @media (max-width: ${variable.mobileWidth}) {
+    .static {
+      flex-direction: column;
+      .static-slide {
+        width: 100%;
+        margin:-right:0px;
+      }
+    }
+  }
+  .popclose-parent {
+    filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+    z-index: 99999999999999;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  .popclose {
+    height: 60px !important;
+    width: 60px !important;
+    clip-path: polygon(
+      20% 0%,
+      0% 20%,
+      30% 50%,
+      0% 80%,
+      20% 100%,
+      50% 70%,
+      80% 100%,
+      100% 80%,
+      70% 50%,
+      100% 20%,
+      80% 0%,
+      50% 30%
+    );
+    background-color: white;
+    cursor: pointer;
+  }
+  .popupbox-content div:not(.nav):not(.indicators) {
+    height: 100%;
+  }
+  .popupbox-content {
+    padding: 0px;
+    max-height:100%;
+    img{
+      max-height:100%;
+    }
+    picture{
+      max-height:100%;
+    }
+  }
 `
 
 export const query = graphql`
@@ -98,6 +171,27 @@ export const query = graphql`
               sizes
             }
           }
+        }
+      }
+    }
+    largestatic: allSanityProperty(filter: { id: { eq: $id } }) {
+      nodes {
+        staticmaps {
+          image {
+            asset {
+              url
+              fluid(maxWidth: 1920) {
+                base64
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+              }
+            }
+          }
+          caption
         }
       }
     }
@@ -122,7 +216,7 @@ export const query = graphql`
           image {
             asset {
               url
-              fluid(maxWidth: 1200) {
+              fluid(maxWidth: 780) {
                 base64
                 aspectRatio
                 src
@@ -160,34 +254,64 @@ export const query = graphql`
 `
 
 class PropertyPostStaticTemplate extends React.Component {
+  openPopupbox(e, slideshow) {
+    const content = (
+      <div>
+        <FullStaticSlide slideshow={slideshow}></FullStaticSlide>
+        <div className="popclose-parent">
+          <div
+            className="popclose"
+            onClick={e => {
+              this.closePopupbox(e)
+            }}
+          ></div>
+        </div>
+      </div>
+    )
+    PopupboxManager.open({
+      content,
+      fadeInSpeed: 10,
+      config: {},
+    })
+  }
+  closePopupbox(e) {
+    PopupboxManager.close({
+      fadeInSpeed: 10,
+    })
+  }
   render() {
-    const { property, staticmaps, large } = this.props
+    const { property, staticmaps, large, largestatic } = this.props
 
     return (
       <Layout>
         <PropertyStaticStyle>
+          <PopupboxContainer />
           <PropertyTop property={property} large={large}></PropertyTop>
           <Tabs property={property} active="tab-container-static"></Tabs>
           <div className="prop-brown-container">
             <Container className="static">
-              <AliceCarousel
+              {/* <AliceCarousel
                 mouseDragEnabled
                 dotsDisabled
                 showSlideInfo
                 duration={1000}
-              >
-                {staticmaps !== null &&
-                  staticmaps.map((slide, index) => (
-                    <div className="static-slide">
-                      {console.log(slide)}
-                      <h3>{slide.caption}</h3>
-                      <Img
-                        fluid={slide.image.asset.fluid}
-                        className="prop-slide"
-                      />
-                    </div>
-                  ))}
-              </AliceCarousel>
+              > */}
+              {staticmaps !== null &&
+                staticmaps.map((slide, index) => (
+                  <div
+                    className="static-slide"
+                    onClick={e => {
+                      this.openPopupbox(e, largestatic.staticmaps)
+                    }}
+                  >
+                    <Img
+                      fluid={slide.image.asset.fluid}
+                      className="prop-slide"
+                    />
+                    <h3>{slide.caption}</h3>
+                  </div>
+                ))}
+              {/* </AliceCarousel> */}
             </Container>
           </div>
         </PropertyStaticStyle>
@@ -198,6 +322,8 @@ class PropertyPostStaticTemplate extends React.Component {
 const PropertyStatic = ({ data }) => {
   const { [0]: post } = data.content.nodes
   const { [0]: large } = data.large.nodes
+  const { [0]: largestatic } = data.largestatic.nodes
+
   return (
     <PropertyPostStaticTemplate
       overview={post.overview}
@@ -208,6 +334,7 @@ const PropertyStatic = ({ data }) => {
       staticmaps={post.staticmaps}
       property={post}
       large={large}
+      largestatic={largestatic}
     />
   )
 }

@@ -248,7 +248,7 @@ class PropertyTop extends React.Component {
     })
     return (
       <PropertyTopStyle>
-        <PopupboxContainer />
+        {/* <PopupboxContainer /> */}
         <Container className="top-property-container">
           <div className="top-details-left">
             <div className="title-details">
