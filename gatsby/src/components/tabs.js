@@ -15,23 +15,24 @@ const TabsStyle = styled.div`
       background-color: ${variable.rosyBrown};
       padding: 20px;
       text-decoration: none;
+      border-radius: 5px 5px 0px 0px;
     }
   }
   &.tab-container-interactive {
     .interactive-tab {
-      background-color: #40413d;
+      background: ${variable.darkBrown};
       color: white;
     }
   }
   &.tab-container-overview {
     .overview-tab {
-      background-color: #40413d;
+      background: ${variable.darkBrown};
       color: white;
     }
   }
   &.tab-container-static {
     .static-tab {
-      background-color: #40413d;
+      background: ${variable.darkBrown};
       color: white;
     }
   }

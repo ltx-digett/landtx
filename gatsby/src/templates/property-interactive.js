@@ -7,7 +7,10 @@ import * as variable from "../components/variables"
 import PropertyTop from "../components/entity/property/property-top"
 import Tabs from "../components/tabs"
 import Iframe from "react-iframe"
-
+import FullStaticSlide from "../components/fullstaticslide"
+import fullscreen from "../images/Magnifier.png"
+import { PopupboxManager, PopupboxContainer } from "react-popupbox"
+import "react-popupbox/dist/react-popupbox.css"
 const PropertyInteractiveStyle = styled.div`
   .prop-brown-container {
     background-color: rgba(33, 35, 30, 0.9);
@@ -36,6 +39,46 @@ const PropertyInteractiveStyle = styled.div`
   }
   iframe {
     border: 0px;
+  }
+  .popclose-parent {
+    filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+    z-index: 99999999999999;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  .popclose {
+    height: 60px !important;
+    width: 60px !important;
+    clip-path: polygon(
+      20% 0%,
+      0% 20%,
+      30% 50%,
+      0% 80%,
+      20% 100%,
+      50% 70%,
+      80% 100%,
+      100% 80%,
+      70% 50%,
+      100% 20%,
+      80% 0%,
+      50% 30%
+    );
+    background-color: white;
+    cursor: pointer;
+  }
+  .popupbox-content div:not(.nav):not(.indicators) {
+    height: 100%;
+  }
+  .popupbox-content {
+    padding: 0px;
+    max-height: 100%;
+    img {
+      max-height: 100%;
+    }
+    picture {
+      max-height: 100%;
+    }
   }
 `
 
@@ -131,7 +174,8 @@ class PropertyPostInteractiveTemplate extends React.Component {
     return (
       <Layout>
         <PropertyInteractiveStyle>
-          <PropertyTop property={property}></PropertyTop>
+          <PopupboxContainer />
+          <PropertyTop property={property} large={large}></PropertyTop>
           <Tabs property={property} active="tab-container-interactive"></Tabs>
           <div className="prop-brown-container">
             <div className="interactive">

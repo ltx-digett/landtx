@@ -12,6 +12,10 @@ import fitvids from "fitvids"
 import ScrollUpButton from "react-scroll-up-button"
 import Scrollspy from "react-scrollspy"
 import { Helmet } from "react-helmet"
+import FullStaticSlide from "../components/fullstaticslide"
+import fullscreen from "../images/Magnifier.png"
+import { PopupboxManager, PopupboxContainer } from "react-popupbox"
+import "react-popupbox/dist/react-popupbox.css"
 
 const PropertyStyle = styled.div`
   .prop-brown-container {
@@ -106,6 +110,46 @@ const PropertyStyle = styled.div`
       margin: 0 auto;
       border-top: thin solid ${variable.brown};
       margin-bottom: 50px;
+    }
+  }
+  .popclose-parent {
+    filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+    z-index: 99999999999999;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  .popclose {
+    height: 60px !important;
+    width: 60px !important;
+    clip-path: polygon(
+      20% 0%,
+      0% 20%,
+      30% 50%,
+      0% 80%,
+      20% 100%,
+      50% 70%,
+      80% 100%,
+      100% 80%,
+      70% 50%,
+      100% 20%,
+      80% 0%,
+      50% 30%
+    );
+    background-color: white;
+    cursor: pointer;
+  }
+  .popupbox-content div:not(.nav):not(.indicators) {
+    height: 100%;
+  }
+  .popupbox-content {
+    padding: 0px;
+    max-height: 100%;
+    img {
+      max-height: 100%;
+    }
+    picture {
+      max-height: 100%;
     }
   }
 `
@@ -249,6 +293,7 @@ class PropertyPostTemplate extends React.Component {
           <link rel="canonical" href={site.url + "/property/" + slug.current} />
         </Helmet>
         <PropertyStyle>
+          <PopupboxContainer />
           <PropertyTop property={property} large={large}></PropertyTop>
           <Tabs property={property} active="tab-container-overview"></Tabs>
           <div className="prop-brown-container">

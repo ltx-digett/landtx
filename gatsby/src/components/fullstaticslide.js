@@ -34,6 +34,7 @@ const FullStaticSlideStyle = styled.div`
 
 const properties = {
   duration: 5000,
+  autoplay: false,
   transitionDuration: 500,
   infinite: true,
   arrows: true,

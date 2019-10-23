@@ -73,9 +73,7 @@ class PropertyTeaser extends React.Component {
       autoplay: false,
     }
   }
-  componentDidMount() {
-    console.log(this.state)
-  }
+  componentDidMount() {}
   numberWithCommas(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }

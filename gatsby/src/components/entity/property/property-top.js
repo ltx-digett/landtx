@@ -41,8 +41,6 @@ const PropertyTopStyle = styled.div`
       color: #40413d;
     }
     .status {
-      width: 60px;
-      display: inline;
       color: #40413d;
     }
   }
@@ -79,7 +77,6 @@ const PropertyTopStyle = styled.div`
   }
   .status {
     font-style: italic;
-    margin-left: 10px;
   }
   ul.details {
     padding: 0px;
@@ -107,7 +104,7 @@ const PropertyTopStyle = styled.div`
     padding: 15px 20px;
     text-decoration: none;
     display: block;
-    background: #40413d;
+    background: ${variable.darkBrown};
     margin-bottom: 20px;
     text-align: center;
     border-radius: 5px;
@@ -254,10 +251,6 @@ class PropertyTop extends React.Component {
             <div className="title-details">
               <div className="title-status">
                 <h1>{property.title}</h1>
-
-                {property.status && (
-                  <span className="status">{property.status}</span>
-                )}
               </div>
               <ul className="details">
                 {property.description && (
@@ -269,6 +262,9 @@ class PropertyTop extends React.Component {
                   </li>
                 )}
                 {property.price && <li>{formatter.format(property.price)}</li>}
+                {property.status && (
+                  <li className="status">{property.status} Listing</li>
+                )}
                 {property.brochure && (
                   <li>
                     <a className="brochure" href={property.brochure.asset.url}>

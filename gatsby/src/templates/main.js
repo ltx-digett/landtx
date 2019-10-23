@@ -203,6 +203,7 @@ const MainStyle = styled.div`
         background: ${variable.steelBlue};
         display: table;
         width: 250px;
+        border-radius: 5px;
       }
     }
     .main-slide-button-container {
@@ -439,7 +440,6 @@ class MainPostTemplate extends React.Component {
                 <div className="main-slide-text-title">
                   <Container className="main-slide-container">
                     <div className="main-slide-text-inner">
-                      <h2>Welcome to "Solid Ground"</h2>
                       We welcome you to our highly functional, user-friendly
                       website, and invite you to examine the full scope of
                       services we provide, and the properties we offer for sale.

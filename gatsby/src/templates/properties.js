@@ -25,16 +25,28 @@ const PropertiesStyle = styled.div`
   .properties-teaser-container-flex {
     display: flex;
     padding-bottom: 40px;
-    justify-content: space-between;
     flex-wrap: wrap;
     .prop-teaser {
-      width: calc(33.333% - 15px);
+      margin-bottom: 40px;
+      width: calc((100%) / 3 - 14px);
+      margin-right: 20px;
+      &:nth-child(3n + 3) {
+        margin-right: 0px;
+      }
     }
   }
   @media (max-width: ${variable.tabletWidth}) {
     .properties-teaser-container {
       .prop-teaser {
-        width: calc(50% - 15px);
+        margin-bottom: 40px;
+        width: calc((100%) / 2 - 20px);
+        margin-right: 30px;
+        &:nth-child(2n + 2) {
+          margin-right: 0px;
+        }
+        &:nth-child(3n + 3) {
+          margin-right: 30px;
+        }
       }
     }
   }
