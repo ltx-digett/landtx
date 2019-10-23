@@ -62,6 +62,11 @@ export default {
       type: "file"
     },
     {
+      name: "flipbook",
+      title: "Flipbook",
+      type: "string"
+    },
+    {
       title: "Map Location",
       name: "location",
       type: "geopoint"

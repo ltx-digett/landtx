@@ -79,6 +79,7 @@ export const query = graphql`
         acres
         county
         description
+        flipbook
         brochure {
           asset {
             url

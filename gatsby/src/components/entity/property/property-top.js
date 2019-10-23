@@ -100,7 +100,7 @@ const PropertyTopStyle = styled.div`
     }
   }
   .brown-cta-prop {
-    color: white;
+    color: white !important;
     padding: 15px 20px;
     text-decoration: none;
     display: block;
@@ -267,8 +267,21 @@ class PropertyTop extends React.Component {
                 )}
                 {property.brochure && (
                   <li>
-                    <a className="brochure" href={property.brochure.asset.url}>
+                    <a
+                      className="brochure brown-cta-prop"
+                      href={property.brochure.asset.url}
+                    >
                       Download Property Brochure
+                    </a>
+                  </li>
+                )}
+                {property.flipbook && (
+                  <li>
+                    <a
+                      className="flipbook brown-cta-prop"
+                      href={property.flipbook}
+                    >
+                      Open Flipbook
                     </a>
                   </li>
                 )}

@@ -217,6 +217,7 @@ export const query = graphql`
         status
         metadescription
         description
+        flipbook
         brochure {
           asset {
             url
