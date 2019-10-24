@@ -333,6 +333,7 @@ class PropertyTop extends React.Component {
                   class="form-control"
                   data-required="true"
                   data-interactive="true"
+                  value={property.title}
                   required
                 />
               </div>
@@ -348,7 +349,6 @@ class PropertyTop extends React.Component {
                   class="form-control"
                   data-required="true"
                   data-interactive="true"
-                  value={property.title}
                   required
                 />
               </div>
