@@ -71,36 +71,6 @@ const PropertyStyle = styled.div`
       max-width: 220px;
     }
   }
-  @media (max-width: ${variable.mobileWidth}) {
-    .overview {
-      flex-direction: column-reverse;
-
-      .property-left {
-        div:first-of-type {
-          h2 {
-            margin-top: 40px;
-          }
-        }
-        div {
-          p:first-of-type {
-            margin-top: 10px;
-          }
-        }
-      }
-
-      .property-left {
-        width: 100%;
-      }
-      .property-right {
-        width: 100%;
-        padding-top: 0px;
-      }
-    }
-    .sticky {
-      position: relative;
-      top: unset;
-    }
-  }
   .disclaimer {
     padding-top: 40px;
     &:before {
@@ -152,6 +122,97 @@ const PropertyStyle = styled.div`
       max-height: 100%;
     }
   }
+  .prop-contact-container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    .property-contact {
+      width: 50%;
+      padding: 40px;
+      border-radius: 5px;
+      background-color: white;
+      .btn{
+        color: white !important;
+        padding: 10px 25px;
+        text-decoration: none;
+        display: block;
+        background: ${variable.darkBrown};
+        margin-bottom: 20px;
+        text-align: center;
+        border-radius: 5px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      input {
+        width: 100%;
+        border: thin solid ${variable.darkBrown};
+        padding: 10px 5px;
+      }
+      textarea {
+        width: 100%;
+        border: thin solid ${variable.darkBrown};
+        padding: 10px 5px;
+      }
+      label {
+        color: ${variable.darkBrown};
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .popupbox-content {
+    height: 100%;
+  }
+  .opt-in {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    input {
+      width: 20px !important;
+    }
+    .opt-label {
+      marign-left: 20px;
+      color: ${variable.darkBrown};
+    }
+    @media (max-width: ${variable.mobileWidth}) {
+      .prop-contact-container {
+        .property-contact{
+          width:100%;
+        }
+    }
+      .overview {
+        flex-direction: column-reverse;
+  
+        .property-left {
+          div:first-of-type {
+            h2 {
+              margin-top: 40px;
+            }
+          }
+          div {
+            p:first-of-type {
+              margin-top: 10px;
+            }
+          }
+        }
+  
+        .property-left {
+          width: 100%;
+        }
+        .property-right {
+          width: 100%;
+          padding-top: 0px;
+        }
+      }
+      .sticky {
+        position: relative;
+        top: unset;
+      }
+    }
 `
 const serializers = {
   types: {

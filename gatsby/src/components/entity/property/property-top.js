@@ -163,7 +163,13 @@ const PropertyTopStyle = styled.div`
       height: 7px;
     }
   }
-
+  .broc {
+    margin-top: 40px;
+  }
+  .more-info {
+    cursor: pointer;
+  }
+  }
   @media (max-width: ${variable.tabletWidth}) {
     .top-property-container {
       padding-top: 50px;
@@ -204,6 +210,109 @@ class PropertyTop extends React.Component {
     this.state = {
       showInfo: false,
     }
+  }
+  openForm(e, title) {
+    const content = (
+      <div className="prop-contact-container">
+        <form
+          className="property-contact"
+          name="property-contact"
+          method="post"
+          netlify-honeypot="bot-field"
+          data-netlify="true"
+        >
+          <input type="hidden" name="form-name" value="property-contact" />
+          <p hidden>
+            <label htmlFor="bot-field">
+              Don’t fill this out: <input name="bot-field" />
+            </label>
+          </p>
+          <div class="form-group">
+            <label for="name" class="lb-name">
+              Name *
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              data-required="true"
+              data-interactive="true"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email" class="lb-email">
+              Email *
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="form-control"
+              data-required="true"
+              data-interactive="true"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="hidden"
+              name="name"
+              id="name"
+              class="form-control"
+              data-required="true"
+              data-interactive="true"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name" class="question">
+              What is your question about this property? *
+            </label>
+            <textarea
+              rows="5"
+              type="hidden"
+              name="name"
+              id="name"
+              class="form-control"
+              data-required="true"
+              data-interactive="true"
+              required
+            />
+          </div>
+          <div class="form-group opt">
+            <label for="name" class="opt">
+              Opt in
+            </label>
+            <div className="opt-in">
+              <input type="checkbox" id="horns" name="horns" />
+              <div className="opt-label">
+                Yes, sign me up for quarterly updates!
+              </div>
+            </div>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-submit">
+              Submit
+            </button>
+          </div>
+        </form>
+        <div className="popclose-parent">
+          <div
+            className="popclose"
+            onClick={e => {
+              this.closePopupbox(e)
+            }}
+          ></div>
+        </div>
+      </div>
+    )
+    PopupboxManager.open({
+      content,
+      fadeInSpeed: 10,
+      config: {},
+    })
   }
 
   openPopupbox(e, slideshow, title) {
@@ -265,8 +374,13 @@ class PropertyTop extends React.Component {
                 {property.status && (
                   <li className="status">{property.status} Listing</li>
                 )}
+                <li>
+                  <ShareButton {...shareButtonProps} className="share">
+                    <FaEnvelope /> Share Listing
+                  </ShareButton>
+                </li>
                 {property.brochure && (
-                  <li>
+                  <li className="broc">
                     <a
                       className="brochure brown-cta-prop"
                       href={property.brochure.asset.url}
@@ -285,23 +399,18 @@ class PropertyTop extends React.Component {
                     </a>
                   </li>
                 )}
-                <li>
-                  <ShareButton {...shareButtonProps} className="share">
-                    <FaEnvelope /> Share Listing
-                  </ShareButton>
-                </li>
+                {property.status == "Active" && (
+                  <li
+                    className="brown-cta-prop more-info"
+                    onClick={e => {
+                      this.openForm(e, property.title)
+                    }}
+                  >
+                    Ask Us For More Information
+                  </li>
+                )}
               </ul>
             </div>
-            {property.status == "Active" && (
-              <div>
-                <a className="brown-cta-prop" href="">
-                  Request a Bound Package
-                </a>
-                <a className="brown-cta-prop" href="">
-                  Ask About this Property
-                </a>
-              </div>
-            )}
           </div>
           <div className="top-details-right">
             <AliceCarousel

@@ -73,7 +73,7 @@ h6 {
 .react-slideshow-wrapper,
 .popupbox-overlay,
 .popupbox-wrapper {
-  background-color: #3b3e39 !important;
+  background-color: rgba(59, 62, 57, 0.6) !important;
 }
 /* .slide-container {
   width: 70%;
