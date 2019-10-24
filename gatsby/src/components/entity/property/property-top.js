@@ -345,7 +345,7 @@ class PropertyTop extends React.Component {
                   rows="5"
                   type="hidden"
                   name="question"
-                  id="name"
+                  id="question"
                   class="form-control"
                   data-required="true"
                   data-interactive="true"

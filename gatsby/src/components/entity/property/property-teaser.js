@@ -33,6 +33,10 @@ const PropertyTeaserStyle = styled.div`
     text-decoration: none;
     color: ${variable.black};
   }
+  h3 {
+    text-decoration: none;
+    color: ${variable.black};
+  }
   .prop-teaser-bottom {
     padding: 30px 30px 30px 30px;
   }
@@ -58,6 +62,17 @@ const PropertyTeaserStyle = styled.div`
     a {
       text-decoration: none;
       color: ${variable.black};
+    }
+  }
+  .alice-carousel__dots {
+    display: flex;
+    width: 100%;
+    padding: 0px 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 0 15px;
+    li.alice-carousel__dots-item {
+      margin-right: 10px;
     }
   }
   @media (max-width: ${variable.mobileWidth}) {
@@ -114,29 +129,27 @@ class PropertyTeaser extends React.Component {
         onMouseEnter={() => this.setState({ autoplay: true })}
         onMouseLeave={() => this.setState({ autoplay: false })}
       >
-        <Link to={"/property/" + property.slug.current}>
-          {property.status == "Contract Pending" && (
-            <div className="pending-status">{property.status}</div>
-          )}
-          <AliceCarousel
-            mouseDragEnabled
-            buttonsDisabled
-            duration={1000}
-            stopAutoPlayOnHover={false}
-            autoPlay={autoplay}
-            autoPlayInterval={1500}
-          >
-            {property.slideshow.map((slide, index) => (
-              // <img src={slide.asset.url + "?w=800"} className="prop-slide" />
+        {property.status == "Contract Pending" && (
+          <div className="pending-status">{property.status}</div>
+        )}
+        <AliceCarousel
+          mouseDragEnabled
+          buttonsDisabled
+          duration={1000}
+          stopAutoPlayOnHover={false}
+          autoPlay={autoplay}
+          autoPlayInterval={3000}
+        >
+          {property.slideshow.map((slide, index) => (
+            // <img src={slide.asset.url + "?w=800"} className="prop-slide" />
+            <Link to={"/property/" + property.slug.current}>
               <Img fluid={slide.asset.fluid} className="prop-slide" />
-            ))}
-          </AliceCarousel>
+            </Link>
+          ))}
+        </AliceCarousel>
+        <Link to={"/property/" + property.slug.current}>
           <div className="prop-teaser-bottom">
-            <h3>
-              <Link to={"/property/" + property.slug.current}>
-                {property.title}
-              </Link>
-            </h3>
+            <h3>{property.title}</h3>
             <ul className="teaser-list">
               {property.description && (
                 <li className="teaser-desciption">{property.description}</li>
