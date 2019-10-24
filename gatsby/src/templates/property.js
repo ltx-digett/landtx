@@ -133,7 +133,7 @@ const PropertyStyle = styled.div`
       padding: 40px;
       border-radius: 5px;
       background-color: white;
-      .btn{
+      .btn {
         color: white !important;
         padding: 10px 25px;
         text-decoration: none;
@@ -178,41 +178,42 @@ const PropertyStyle = styled.div`
       marign-left: 20px;
       color: ${variable.darkBrown};
     }
-    @media (max-width: ${variable.mobileWidth}) {
-      .prop-contact-container {
-        .property-contact{
-          width:100%;
-        }
-    }
-      .overview {
-        flex-direction: column-reverse;
-  
-        .property-left {
-          div:first-of-type {
-            h2 {
-              margin-top: 40px;
-            }
-          }
-          div {
-            p:first-of-type {
-              margin-top: 10px;
-            }
-          }
-        }
-  
-        .property-left {
-          width: 100%;
-        }
-        .property-right {
-          width: 100%;
-          padding-top: 0px;
-        }
-      }
-      .sticky {
-        position: relative;
-        top: unset;
+  }
+  @media (max-width: ${variable.mobileWidth}) {
+    .prop-contact-container {
+      .property-contact {
+        width: 95%;
       }
     }
+    .overview {
+      flex-direction: column-reverse;
+
+      .property-left {
+        div:first-of-type {
+          h2 {
+            margin-top: 40px;
+          }
+        }
+        div {
+          p:first-of-type {
+            margin-top: 10px;
+          }
+        }
+      }
+
+      .property-left {
+        width: 100%;
+      }
+      .property-right {
+        width: 100%;
+        padding-top: 0px;
+      }
+    }
+    .sticky {
+      position: relative;
+      top: unset;
+    }
+  }
 `
 const serializers = {
   types: {

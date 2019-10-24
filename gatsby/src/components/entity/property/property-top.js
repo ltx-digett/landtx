@@ -170,6 +170,18 @@ const PropertyTopStyle = styled.div`
     cursor: pointer;
   }
   }
+  .prop-contact-modal{
+    display:none;
+    background-color: rgba(59, 62, 57, 0.9) !important;
+    position:fixed;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index:100000000000;
+  }
+  .contact-form-show{
+    display:block;
+  }
   @media (max-width: ${variable.tabletWidth}) {
     .top-property-container {
       padding-top: 50px;
@@ -209,109 +221,19 @@ class PropertyTop extends React.Component {
     super(props)
     this.state = {
       showInfo: false,
+      formShow: false,
     }
   }
-  openForm(e, title) {
-    const content = (
-      <div className="prop-contact-container">
-        <form
-          className="property-contact"
-          name="property-contact"
-          method="post"
-          netlify-honeypot="bot-field"
-          data-netlify="true"
-        >
-          <input type="hidden" name="form-name" value="property-contact" />
-          <p hidden>
-            <label htmlFor="bot-field">
-              Don’t fill this out: <input name="bot-field" />
-            </label>
-          </p>
-          <div class="form-group">
-            <label for="name" class="lb-name">
-              Name *
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              class="form-control"
-              data-required="true"
-              data-interactive="true"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="email" class="lb-email">
-              Email *
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              class="form-control"
-              data-required="true"
-              data-interactive="true"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="hidden"
-              name="name"
-              id="name"
-              class="form-control"
-              data-required="true"
-              data-interactive="true"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="name" class="question">
-              What is your question about this property? *
-            </label>
-            <textarea
-              rows="5"
-              type="hidden"
-              name="name"
-              id="name"
-              class="form-control"
-              data-required="true"
-              data-interactive="true"
-              required
-            />
-          </div>
-          <div class="form-group opt">
-            <label for="name" class="opt">
-              Opt in
-            </label>
-            <div className="opt-in">
-              <input type="checkbox" id="horns" name="horns" />
-              <div className="opt-label">
-                Yes, sign me up for quarterly updates!
-              </div>
-            </div>
-          </div>
-          <div>
-            <button type="submit" class="btn btn-submit">
-              Submit
-            </button>
-          </div>
-        </form>
-        <div className="popclose-parent">
-          <div
-            className="popclose"
-            onClick={e => {
-              this.closePopupbox(e)
-            }}
-          ></div>
-        </div>
-      </div>
-    )
-    PopupboxManager.open({
-      content,
-      fadeInSpeed: 10,
-      config: {},
+
+  openForm = () => {
+    this.setState({
+      formShow: true,
+    })
+  }
+
+  closeForm = () => {
+    this.setState({
+      formShow: false,
     })
   }
 
@@ -354,7 +276,111 @@ class PropertyTop extends React.Component {
     })
     return (
       <PropertyTopStyle>
-        {/* <PopupboxContainer /> */}
+        {console.log(this.state.formShow)}
+
+        <div
+          className={
+            this.state.formShow
+              ? "contact-form-show prop-contact-modal"
+              : "prop-contact-modal"
+          }
+        >
+          <div className="prop-contact-container">
+            <form
+              className="property-contact"
+              name="property-contact"
+              method="post"
+              netlify-honeypot="bot-field"
+              data-netlify="true"
+            >
+              <input type="hidden" name="form-name" value="property-contact" />
+              <p hidden>
+                <label htmlFor="bot-field">
+                  Don’t fill this out: <input name="bot-field" />
+                </label>
+              </p>
+              <div class="form-group">
+                <label for="name" class="lb-name">
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="form-control"
+                  data-required="true"
+                  data-interactive="true"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email" class="lb-email">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                  data-required="true"
+                  data-interactive="true"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="hidden"
+                  name="name"
+                  id="name"
+                  class="form-control"
+                  data-required="true"
+                  data-interactive="true"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="name" class="question">
+                  What is your question about this property? *
+                </label>
+                <textarea
+                  rows="5"
+                  type="hidden"
+                  name="name"
+                  id="name"
+                  class="form-control"
+                  data-required="true"
+                  data-interactive="true"
+                  required
+                />
+              </div>
+              <div class="form-group opt">
+                <label for="name" class="opt">
+                  Opt in
+                </label>
+                <div className="opt-in">
+                  <input type="checkbox" id="horns" name="horns" />
+                  <div className="opt-label">
+                    Yes, sign me up for quarterly updates!
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-submit">
+                  Submit
+                </button>
+              </div>
+            </form>
+            <div className="popclose-parent">
+              <div
+                className="popclose"
+                onClick={e => {
+                  this.closeForm(e)
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
         <Container className="top-property-container">
           <div className="top-details-left">
             <div className="title-details">
