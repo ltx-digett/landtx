@@ -276,8 +276,6 @@ class PropertyTop extends React.Component {
     })
     return (
       <PropertyTopStyle>
-        {console.log(this.state.formShow)}
-
         <div
           className={
             this.state.formShow
@@ -330,8 +328,8 @@ class PropertyTop extends React.Component {
               <div class="form-group">
                 <input
                   type="hidden"
-                  name="name"
-                  id="name"
+                  name="property"
+                  id="property"
                   class="form-control"
                   data-required="true"
                   data-interactive="true"
@@ -345,11 +343,12 @@ class PropertyTop extends React.Component {
                 <textarea
                   rows="5"
                   type="hidden"
-                  name="name"
+                  name="question"
                   id="name"
                   class="form-control"
                   data-required="true"
                   data-interactive="true"
+                  value={property.title}
                   required
                 />
               </div>
@@ -358,7 +357,7 @@ class PropertyTop extends React.Component {
                   Opt in
                 </label>
                 <div className="opt-in">
-                  <input type="checkbox" id="horns" name="horns" />
+                  <input type="checkbox" id="opt-in" name="opt-in" />
                   <div className="opt-label">
                     Yes, sign me up for quarterly updates!
                   </div>
