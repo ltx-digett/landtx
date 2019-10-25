@@ -69,7 +69,7 @@ const PropertyTeaserStyle = styled.div`
     width: 100%;
     padding: 0px 20px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0px 0 15px;
     li.alice-carousel__dots-item {
       margin-right: 10px;
