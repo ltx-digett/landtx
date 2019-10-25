@@ -186,11 +186,11 @@ module.exports = {
     //     ],
     //   },
     // },
-    // {
-    //   resolve: "gatsby-plugin-google-tagmanager",
-    //   options: {
-    //     id: "GTM-NTJTH2M",
-    //   },
-    // },
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-NTJTH2M",
+      },
+    },
   ],
 }
