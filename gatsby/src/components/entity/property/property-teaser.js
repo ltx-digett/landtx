@@ -139,6 +139,7 @@ class PropertyTeaser extends React.Component {
           stopAutoPlayOnHover={false}
           autoPlay={autoplay}
           autoPlayInterval={3000}
+          fadeOutAnimation
         >
           {property.slideshow.map((slide, index) => (
             // <img src={slide.asset.url + "?w=800"} className="prop-slide" />

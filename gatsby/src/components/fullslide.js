@@ -6,6 +6,7 @@ import Container from "../components/container"
 import * as variable from "../components/variables"
 import { Slide } from "react-slideshow-image"
 import Img from "gatsby-image"
+import { Fade } from "react-slideshow-image"
 
 const FullSlideStyle = styled.div``
 
@@ -29,7 +30,7 @@ class FullSlide extends React.Component {
     return (
       <div>
         <FullSlideStyle>
-          <Slide {...properties}>
+          <Fade {...properties}>
             {this.props.slideshow.map((slide, index) => (
               <div key={index} className="each-slide-full">
                 <div className="slide-full">
@@ -37,7 +38,7 @@ class FullSlide extends React.Component {
                 </div>
               </div>
             ))}
-          </Slide>
+          </Fade>
         </FullSlideStyle>
       </div>
     )

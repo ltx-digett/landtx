@@ -488,6 +488,7 @@ class PropertyTop extends React.Component {
               buttonsDisabled
               autoPlayInterval={5000}
               duration={1000}
+              fadeOutAnimation
             >
               {property.slideshow.map((slide, index) => (
                 <Img fluid={slide.asset.fluid} className="prop-slide" />
