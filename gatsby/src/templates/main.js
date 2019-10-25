@@ -145,13 +145,18 @@ const MainStyle = styled.div`
     margin-bottom: 20px;
     label {
       display: block;
+      margin-bottom: 5px;
     }
     input {
       width: 100%;
       padding: 10px 10px;
+      border-radius: 5px;
+      border: 0px;
     }
     textarea {
       width: 100%;
+      border-radius: 5px;
+      border: 0px;
     }
     &.opt {
       input {
@@ -169,6 +174,7 @@ const MainStyle = styled.div`
     text-align: center;
     font-size: 22px;
     cursor: pointer;
+    border-radius: 5px;
   }
   .main-slide {
     position: relative;

@@ -43,38 +43,74 @@ module.exports = {
         link: "/market-activity",
         submenu: [
           {
-            name: "Trend Graph '04-Present",
-            link: "/market-activity",
+            name: "Resources",
+            link: "/resources",
           },
           {
-            name: "Market Summary '04-Present",
-            link: "/market-summary-04-present",
+            name: "Territory Review 2019",
+            link: "/market-activity/2019",
           },
           {
-            name: "Southwest Texas '04-Present",
-            link: "/southwest-texas-04-present",
+            name: "Territory Review 2018",
+            link: "/market-activity/2018",
           },
           {
-            name: "Western & Northern Hill Country '04-Present",
-            link: "/western-northern-hill-country-04-present",
+            name: "Territory Review 2017",
+            link: "/market-activity/2017",
           },
           {
-            name: "Central & Eastern Hill Country '04-Present",
-            link: "/central-eastern-southern-hill-country-04-present",
+            name: "Territory Review 2016",
+            link: "/market-activity/2016",
           },
           {
-            name: "Inland Plains & Upper South Texas '04-Present",
-            link: "/inland-plains-upper-south-texas-04-present",
+            name: "Territory Review 2015",
+            link: "/market-activity/2015",
           },
           {
-            name: "Sold Properties",
-            link: "/sold-properties",
+            name: "Territory Review 2014",
+            link: "/market-activity/2014",
+          },
+          {
+            name: "Territory Review 2013",
+            link: "/market-activity/2013",
+          },
+          {
+            name: "Territory Review 2012",
+            link: "/market-activity/2012",
+          },
+          {
+            name: "Territory Review 2011",
+            link: "/market-activity/2011",
+          },
+          {
+            name: "Territory Review 2010",
+            link: "/market-activy/2010",
+          },
+          {
+            name: "Territory Review 2009",
+            link: "/market-activity/2009",
+          },
+          {
+            name: "Territory Review 2008",
+            link: "/market-activity/2008",
+          },
+          {
+            name: "Territory Review 2007",
+            link: "/market-activity/2007",
+          },
+          {
+            name: "Territory Review 2006",
+            link: "/market-activity/2006",
+          },
+          {
+            name: "Territory Review 2005",
+            link: "/market-activity/2005",
           },
         ],
       },
       {
-        name: "Resources",
-        link: "/resources",
+        name: "Sold Properties",
+        link: "/sold-properties",
       },
       {
         name: "Contact",

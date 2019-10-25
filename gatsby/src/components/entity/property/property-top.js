@@ -182,6 +182,12 @@ const PropertyTopStyle = styled.div`
   .contact-form-show{
     display:block;
   }
+  .address-bound{
+    display:none;
+    &.address-bound-show{
+      display:block;
+    }
+  }
   @media (max-width: ${variable.tabletWidth}) {
     .top-property-container {
       padding-top: 50px;
@@ -222,6 +228,7 @@ class PropertyTop extends React.Component {
     this.state = {
       showInfo: false,
       formShow: false,
+      addressShow: false,
     }
   }
 
@@ -235,6 +242,12 @@ class PropertyTop extends React.Component {
     this.setState({
       formShow: false,
     })
+  }
+
+  showAddress = () => {
+    this.setState(prevState => ({
+      showAddress: !prevState.showAddress,
+    }))
   }
 
   openPopupbox(e, slideshow, title) {
@@ -343,7 +356,6 @@ class PropertyTop extends React.Component {
                 </label>
                 <textarea
                   rows="5"
-                  type="hidden"
                   name="question"
                   id="question"
                   class="form-control"
@@ -362,6 +374,38 @@ class PropertyTop extends React.Component {
                     Yes, sign me up for quarterly updates!
                   </div>
                 </div>
+              </div>
+              <div class="form-group opt">
+                <div className="opt-in">
+                  <input
+                    type="checkbox"
+                    id="bound"
+                    name="bound"
+                    onClick={e => {
+                      this.showAddress(e)
+                    }}
+                  />
+                  <div className="opt-label">Send me a bound package</div>
+                </div>
+              </div>
+              <div
+                className={
+                  this.state.showAddress
+                    ? "address-bound form-group address-bound-show"
+                    : "address-bound form-group"
+                }
+              >
+                <label for="name" class="question">
+                  Address to send bound package *
+                </label>
+                <textarea
+                  rows="5"
+                  name="address"
+                  id="address"
+                  class="form-control"
+                  data-required="true"
+                  data-interactive="true"
+                />
               </div>
               <div>
                 <button type="submit" class="btn btn-submit">

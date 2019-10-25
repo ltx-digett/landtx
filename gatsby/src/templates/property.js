@@ -150,11 +150,13 @@ const PropertyStyle = styled.div`
         width: 100%;
         border: thin solid ${variable.darkBrown};
         padding: 10px 5px;
+        border-radius: 5px;
       }
       textarea {
         width: 100%;
         border: thin solid ${variable.darkBrown};
         padding: 10px 5px;
+        border-radius: 5px;
       }
       label {
         color: ${variable.darkBrown};
