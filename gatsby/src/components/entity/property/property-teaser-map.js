@@ -16,10 +16,12 @@ const PropertyTeaserStyle = styled.div`
     li {
       list-style: none;
       margin-bottom: 5px;
+      color: ${variable.black};
     }
   }
   a {
     text-decoration: none;
+    color: ${variable.steelBlue};
   }
   h3 {
     font-size: 16px;
@@ -39,6 +41,7 @@ class PropertyTeaser extends React.Component {
 
   render() {
     const { property } = this.props
+    console.log(property)
     const formatter = new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
@@ -46,6 +49,7 @@ class PropertyTeaser extends React.Component {
     })
     return (
       <PropertyTeaserStyle className="prop-teaser">
+        {console.log(property)}
         <h3>
           <Link to={"/property/" + property.slug.current}>
             {property.title}
