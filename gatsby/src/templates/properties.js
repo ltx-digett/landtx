@@ -71,12 +71,9 @@ export const query = graphql`
       }
     }
     property: allSanityProperty(
-      filter: { status: { ne: "Sold" } },
-      sort: {
-        fields: price
-        order: DESC
-      }
-      ) {
+      filter: { status: { ne: "Sold" }, location: { lat: { ne: null } } }
+      sort: { fields: price, order: DESC }
+    ) {
       nodes {
         title
         id

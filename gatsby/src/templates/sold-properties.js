@@ -57,11 +57,9 @@ export const query = graphql`
         url
       }
     }
-    property: allSanityProperty(filter: { status: { eq: "Sold" } },
-    sort: {
-      fields: price
-      order: DESC
-    }
+    property: allSanityProperty(
+      filter: { status: { eq: "Sold" } }
+      sort: { fields: price, order: DESC }
     ) {
       nodes {
         title
@@ -92,10 +90,6 @@ export const query = graphql`
         }
         slug {
           current
-        }
-        location {
-          lat
-          lng
         }
       }
     }
@@ -175,8 +169,6 @@ class SoldPropertiesPostTemplate extends React.Component {
               {properties.map((property, index) => (
                 <PropertyTeaser
                   key={index}
-                  lat={property.location.lat}
-                  lng={property.location.lng}
                   property={property}
                   onMouseEnter={this.onChildHover}
                 />
