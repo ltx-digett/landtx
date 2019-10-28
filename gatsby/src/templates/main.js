@@ -328,12 +328,13 @@ const serializers = {
     ),
     blocks: props => (
       <div id={props.node.blockid && props.node.blockid}>
+        {console.log(props)}
         <PortableText
           serializers={serializers}
           blocks={props.node.body}
           projectId="84iv1ine"
           dataset="production"
-          imageOptions={{ w: 320, fit: "max" }}
+          imageOptions={{ w: 700, fit: "max" }}
         />
       </div>
     ),
