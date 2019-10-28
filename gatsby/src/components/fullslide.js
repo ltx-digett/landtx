@@ -23,7 +23,7 @@ const properties = {
   infinite: true,
   arrows: true,
   indicators: true,
-  autoplay: false,
+  autoplay: true,
 }
 
 class FullSlide extends React.Component {
@@ -34,9 +34,10 @@ class FullSlide extends React.Component {
       showInfo: false,
     }
   }
-
   componentDidMount() {
-    this.ref.current.goTo(this.props.index - 1)
+    if (this.props.index != 1) {
+      this.ref.current.goTo(this.props.index - 1)
+    }
   }
   componentDidUpdate() {
     this.ref.current.goTo(this.props.index - 1)

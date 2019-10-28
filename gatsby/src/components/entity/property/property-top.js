@@ -506,6 +506,7 @@ class PropertyTop extends React.Component {
           </div>
           <div className="top-details-right">
             <AliceCarousel
+              autoPlay
               mouseDragEnabled
               buttonsDisabled
               autoPlayInterval={5000}
