@@ -8,7 +8,14 @@ import { Slide } from "react-slideshow-image"
 import Img from "gatsby-image"
 import { Fade } from "react-slideshow-image"
 
-const FullSlideStyle = styled.div``
+const FullSlideStyle = styled.div`
+  button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 9999999999;
+  }
+`
 
 const properties = {
   duration: 5000,
@@ -16,21 +23,30 @@ const properties = {
   infinite: true,
   arrows: true,
   indicators: true,
+  autoplay: false,
 }
 
 class FullSlide extends React.Component {
   constructor(props) {
     super(props)
+    this.ref = React.createRef()
     this.state = {
       showInfo: false,
     }
+  }
+
+  componentDidMount() {
+    this.ref.current.goTo(this.props.index - 1)
+  }
+  componentDidUpdate() {
+    this.ref.current.goTo(this.props.index - 1)
   }
 
   render() {
     return (
       <div>
         <FullSlideStyle>
-          <Fade {...properties}>
+          <Fade {...properties} ref={this.ref}>
             {this.props.slideshow.map((slide, index) => (
               <div key={index} className="each-slide-full">
                 <div className="slide-full">

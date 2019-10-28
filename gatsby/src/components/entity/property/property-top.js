@@ -188,6 +188,9 @@ const PropertyTopStyle = styled.div`
       display:block;
     }
   }
+  .full-prop-img-container{
+    cursor:pointer;
+  }
   @media (max-width: ${variable.tabletWidth}) {
     .top-property-container {
       padding-top: 50px;
@@ -250,10 +253,30 @@ class PropertyTop extends React.Component {
     }))
   }
 
+  getElementIndex(node) {
+    var index = 0
+    while ((node = node.previousElementSibling)) {
+      index++
+    }
+    return index
+  }
+
   openPopupbox(e, slideshow, title) {
+    const active = document.getElementsByClassName(
+      ".alice-carousel__stage-item.__active"
+    )
+    var target = e.target
+    var parent = target.parentElement
+    var pparent = parent.parentElement
+    var ppparent = pparent.parentElement
+    var pppparent = ppparent.parentElement
+
+    var index = this.getElementIndex(pppparent)
+    console.log(index)
+
     const content = (
       <div>
-        <FullSlide slideshow={slideshow}></FullSlide>
+        <FullSlide slideshow={slideshow} index={index}></FullSlide>
         <div className="popclose-parent">
           <div
             className="popclose"
@@ -483,7 +506,6 @@ class PropertyTop extends React.Component {
           </div>
           <div className="top-details-right">
             <AliceCarousel
-              autoPlay
               mouseDragEnabled
               buttonsDisabled
               autoPlayInterval={5000}
@@ -491,7 +513,14 @@ class PropertyTop extends React.Component {
               fadeOutAnimation
             >
               {property.slideshow.map((slide, index) => (
-                <Img fluid={slide.asset.fluid} className="prop-slide" />
+                <div
+                  className="full-prop-img-container"
+                  onClick={e => {
+                    this.openPopupbox(e, large.slideshow, property.title)
+                  }}
+                >
+                  <Img fluid={slide.asset.fluid} className="prop-slide" />
+                </div>
               ))}
             </AliceCarousel>
 
