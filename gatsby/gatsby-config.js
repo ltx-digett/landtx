@@ -44,7 +44,7 @@ module.exports = {
         submenu: [
           {
             name: "Trend Graph",
-            link: "trend-graph"
+            link: "trend-graph",
           },
           {
             name: "Territory Review 2019",

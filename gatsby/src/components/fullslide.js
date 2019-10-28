@@ -42,7 +42,6 @@ class FullSlide extends React.Component {
   componentDidUpdate() {
     this.ref.current.goTo(this.props.index - 1)
   }
-
   render() {
     return (
       <div>
