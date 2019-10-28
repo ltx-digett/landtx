@@ -15,7 +15,7 @@ const SoldPropertiesStyle = styled.div`
   .marker {
     cursor: pointer;
   }
-  background-color: ${variable.taupe};
+  background-color: rgba(33, 35, 30, 0.9);
   padding-top: 60px;
   h1 {
     margin-top: 0px;
@@ -24,10 +24,14 @@ const SoldPropertiesStyle = styled.div`
   .properties-teaser-container-flex {
     display: flex;
     padding-bottom: 40px;
-    justify-content: space-between;
     flex-wrap: wrap;
     .prop-teaser {
-      width: calc(33.333% - 15px);
+      margin-bottom: 40px;
+      width: calc((100%) / 3 - 14px);
+      margin-right: 20px;
+      &:nth-child(3n + 3) {
+        margin-right: 0px;
+      }
     }
   }
   @media (max-width: ${variable.tabletWidth}) {
