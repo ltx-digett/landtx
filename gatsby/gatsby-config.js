@@ -9,7 +9,7 @@ module.exports = {
     title: `LANDTX`,
     description: `LANDTX gatsby site.`,
     author: `Alexander Fountain`,
-    googleMapsKey: process.env.GOOGLE_MAPS_KEY,
+    googleMapsKey: 'sdfsdsdsdf',
     url: `https://landtx.netlify.com`,
     mainmenu: [
       {
@@ -43,8 +43,8 @@ module.exports = {
         link: "/market-activity",
         submenu: [
           {
-            name: "Resources",
-            link: "/resources",
+            name: "Trend Graph",
+            link: "trend-graph"
           },
           {
             name: "Territory Review 2019",
@@ -105,6 +105,10 @@ module.exports = {
           {
             name: "Territory Review 2005",
             link: "/market-activity/2005",
+          },
+          {
+            name: "Resources",
+            link: "/resources",
           },
         ],
       },
