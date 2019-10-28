@@ -57,7 +57,12 @@ export const query = graphql`
         url
       }
     }
-    property: allSanityProperty(filter: { status: { eq: "Sold" } }) {
+    property: allSanityProperty(filter: { status: { eq: "Sold" } },
+    sort: {
+      fields: price
+      order: DESC
+    }
+    ) {
       nodes {
         title
         id

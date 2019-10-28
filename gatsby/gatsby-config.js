@@ -9,7 +9,7 @@ module.exports = {
     title: `LANDTX`,
     description: `LANDTX gatsby site.`,
     author: `Alexander Fountain`,
-    googleMapsKey: 'sdfsdsdsdf',
+    googleMapsKey: process.env.GOOGLE_MAPS_KEY,
     url: `https://landtx.netlify.com`,
     mainmenu: [
       {
