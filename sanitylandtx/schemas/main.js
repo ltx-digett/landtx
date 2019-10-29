@@ -24,6 +24,12 @@ export default {
       rows: 3
     },
     {
+      title: 'Text Over Slideshow',
+      name: 'textover',
+      type: 'text',
+      rows: 3
+    },
+    {
       name: "slideshow",
       title: "Slideshow",
       type: "array",

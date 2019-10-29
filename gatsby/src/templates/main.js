@@ -367,6 +367,7 @@ export const query = graphql`
           current
         }
         metadescription
+        textover
         _rawBody(resolveReferences: { maxDepth: 10 })
         _rawSidebar(resolveReferences: { maxDepth: 10 })
         overview {
@@ -417,6 +418,7 @@ class MainPostTemplate extends React.Component {
       slug,
       rawoverview,
       overview,
+      textover
     } = this.props
     if (rawoverview != null || sidebarBody != null) {
       var sidebar = true
@@ -442,14 +444,12 @@ class MainPostTemplate extends React.Component {
         </Helmet>
         <MainStyle>
           <div className="main-slide">
-            {slug == "front" && (
+            {textover && (
               <div className="main-slide-text">
                 <div className="main-slide-text-title">
                   <Container className="main-slide-container">
                     <div className="main-slide-text-inner">
-                      We welcome you to our highly functional, user-friendly
-                      website, and invite you to examine the full scope of
-                      services we provide, and the properties we offer for sale.
+                      {textover}
                     </div>
                     <Link to="/properties">View Property Listings</Link>
                   </Container>
@@ -655,6 +655,7 @@ const Main = ({ data }) => {
       rawoverview={post._rawOverview}
       sidebarBody={post._rawSidebar}
       metadescription={post.metadescription}
+      textover={post.textover}
       site={siteMetadata}
       slug={post.slug.current}
     />

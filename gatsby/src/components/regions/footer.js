@@ -108,7 +108,7 @@ export const Footer = ({ mainmenu }) => {
                   <Link to="/properties">View our Property Listings</Link>
                 </li>
                 <li>
-                  <Link to="/market-activity">
+                  <Link to="/trend-graph">
                     Read our Market Activity Reports
                   </Link>
                 </li>
