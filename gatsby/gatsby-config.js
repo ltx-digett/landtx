@@ -40,7 +40,7 @@ module.exports = {
       },
       {
         name: "Market Activity",
-        link: "/market-activity",
+        link: "/trend-graph",
         submenu: [
           {
             name: "Trend Graph",
