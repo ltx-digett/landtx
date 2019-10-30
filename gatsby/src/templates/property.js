@@ -419,15 +419,16 @@ const Property = ({ data }) => {
   const { [0]: post } = data.content.nodes
   const { [0]: large } = data.large.nodes
   const { siteMetadata } = data.site
+  console.log(post)
   return (
     <PropertyPostTemplate
       overview={post.overview}
-      rawoverview={post._rawOverview}
+      rawoverview={post._rawOverview ? post._rawOverview : ""}
       slideshow={post.slideshow}
-      _rawSidebar={post._rawSidebar}
+      _rawSidebar={post._rawSidebar ? post._rawSidebar : ""}
       interactivemap={post.interactivemap}
       staticmaps={post.staticmaps}
-      disclaimer={post.disclaimer._rawBody}
+      disclaimer={post.disclaimer ? post.disclaimer._rawBody : ""}
       property={post}
       large={large}
       metadescription={post.metadescription}
