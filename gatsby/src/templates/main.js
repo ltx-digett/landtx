@@ -305,7 +305,6 @@ const MainStyle = styled.div`
     }
   }
 `
-
 const serializers = {
   types: {
     code: props => (
@@ -418,7 +417,7 @@ class MainPostTemplate extends React.Component {
       slug,
       rawoverview,
       overview,
-      textover
+      textover,
     } = this.props
     if (rawoverview != null || sidebarBody != null) {
       var sidebar = true
@@ -448,9 +447,7 @@ class MainPostTemplate extends React.Component {
               <div className="main-slide-text">
                 <div className="main-slide-text-title">
                   <Container className="main-slide-container">
-                    <div className="main-slide-text-inner">
-                      {textover}
-                    </div>
+                    <div className="main-slide-text-inner">{textover}</div>
                     <Link to="/properties">View Property Listings</Link>
                   </Container>
                 </div>
