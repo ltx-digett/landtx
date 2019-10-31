@@ -254,10 +254,23 @@ export const query = graphql`
 `
 
 class PropertyPostStaticTemplate extends React.Component {
+  getElementIndex(node) {
+    var index = 0
+    while ((node = node.previousElementSibling)) {
+      index++
+    }
+    return index
+  }
   openPopupbox(e, slideshow) {
+    var target = e.target
+    var parent = target.parentElement
+    var pparent = parent.parentElement
+    var ppparent = pparent.parentElement
+    var index = this.getElementIndex(ppparent)
+    console.log(index)
     const content = (
       <div>
-        <FullStaticSlide slideshow={slideshow}></FullStaticSlide>
+        <FullStaticSlide slideshow={slideshow} index={index}></FullStaticSlide>
         <div className="popclose-parent">
           <div
             className="popclose"

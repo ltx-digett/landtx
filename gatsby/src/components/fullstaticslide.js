@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Layout from "./layout"
 import Container from "./container"
 import * as variable from "./variables"
-import { Slide } from "react-slideshow-image"
+import { Fade } from "react-slideshow-image"
 import Img from "gatsby-image"
 import static1 from "../images/static1.webp"
 
@@ -44,16 +44,26 @@ const properties = {
 class FullStaticSlide extends React.Component {
   constructor(props) {
     super(props)
+    this.ref = React.createRef()
     this.state = {
       showInfo: false,
     }
   }
-
+  componentDidMount() {
+    // if (this.props.index != 1) {
+    //   this.ref.current.goTo(this.props.index)
+    // }
+    console.log(this.props.index)
+    this.ref.current.goTo(this.props.index)
+  }
+  componentDidUpdate() {
+    this.ref.current.goTo(this.props.index)
+  }
   render() {
     return (
       <div>
         <FullStaticSlideStyle>
-          <Slide {...properties}>
+          <Fade {...properties} ref={this.ref}>
             {this.props.slideshow.map((slide, index) => (
               <div key={index} className="each-slide-full">
                 <div className="slide-full slide-full-static">
@@ -63,7 +73,7 @@ class FullStaticSlide extends React.Component {
                 </div>
               </div>
             ))}
-          </Slide>
+          </Fade>
         </FullStaticSlideStyle>
       </div>
     )
