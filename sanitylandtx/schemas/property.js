@@ -58,6 +58,11 @@ export default {
       }
     },
     {
+      title: "Sold date",
+      name: "soldDate",
+      type: "date"
+    },
+    {
       name: "brochure",
       title: "Brochure",
       type: "file"

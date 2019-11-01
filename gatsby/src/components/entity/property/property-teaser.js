@@ -15,6 +15,7 @@ const PropertyTeaserStyle = styled.div`
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   position: relative;
+  color: ${variable.black};
   .pending-status {
     color: white;
     width: 100%;
@@ -28,6 +29,7 @@ const PropertyTeaserStyle = styled.div`
     font-style: normal;
     font-weight: normal;
     font-size: 22.5px;
+    color: ${variable.black};
   }
   a {
     text-decoration: none;
@@ -141,14 +143,18 @@ class PropertyTeaser extends React.Component {
           autoPlayInterval={3000}
           fadeOutAnimation
         >
-          {property.slideshow.map((slide, index) => (
+          {property.slideshow.map((slide, index) =>
             // <img src={slide.asset.url + "?w=800"} className="prop-slide" />
-            <Link to={"/property/" + property.slug.current}>
-              <Img fluid={slide.asset.fluid} className="prop-slide" />
-            </Link>
-          ))}
+            this.props.click == false ? (
+              <Img fluid={slide.asset.fluid} className="prop-slide link" />
+            ) : (
+              <Link to={"/property/" + property.slug.current}>
+                <Img fluid={slide.asset.fluid} className="prop-slide no" />
+              </Link>
+            )
+          )}
         </AliceCarousel>
-        <Link to={"/property/" + property.slug.current}>
+        {this.props.click == false ? (
           <div className="prop-teaser-bottom">
             <h3>{property.title}</h3>
             <ul className="teaser-list">
@@ -160,7 +166,21 @@ class PropertyTeaser extends React.Component {
               {property.price && <li>{formatter.format(property.price)}</li>}
             </ul>
           </div>
-        </Link>
+        ) : (
+          <Link to={"/property/" + property.slug.current}>
+            <div className="prop-teaser-bottom">
+              <h3>{property.title}</h3>
+              <ul className="teaser-list">
+                {property.description && (
+                  <li className="teaser-desciption">{property.description}</li>
+                )}
+                {property.acres && <li>{property.acres} Acres</li>}
+                {property.county && <li>{property.county} County</li>}
+                {property.price && <li>{formatter.format(property.price)}</li>}
+              </ul>
+            </div>
+          </Link>
+        )}
       </PropertyTeaserStyle>
     )
   }

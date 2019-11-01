@@ -213,6 +213,7 @@ class PropertiesPostTemplate extends React.Component {
                     lng={property.location.lng}
                     property={property}
                     onMouseEnter={this.onChildHover}
+                    click={true}
                   />
                 ))}
               </div>

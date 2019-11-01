@@ -71,7 +71,7 @@ export const query = graphql`
     }
     property: allSanityProperty(
       filter: { status: { eq: "Sold" } }
-      sort: { fields: price, order: DESC }
+      sort: { fields: soldDate, order: DESC }
     ) {
       nodes {
         title
@@ -81,6 +81,7 @@ export const query = graphql`
         acres
         county
         description
+        soldDate
         brochure {
           asset {
             url
@@ -183,6 +184,7 @@ class SoldPropertiesPostTemplate extends React.Component {
                   key={index}
                   property={property}
                   onMouseEnter={this.onChildHover}
+                  click={false}
                 />
               ))}
             </div>
