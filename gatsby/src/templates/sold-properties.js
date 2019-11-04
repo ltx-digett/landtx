@@ -8,12 +8,64 @@ import Marker from "../components/marker"
 import PropertyTeaser from "../components/entity/property/property-teaser"
 import * as variable from "../components/variables"
 import { Helmet } from "react-helmet"
+import PortableText from "@sanity/block-content-to-react"
+import RawImage from "../components/rawImage"
 
 // const Marker = ({ property }) => <div className="marker">{property.title}</div>
 
+const serializers = {
+  types: {
+    code: props => (
+      <pre data-language={props.node.language}>
+        <code>{props.node.code}</code>
+      </pre>
+    ),
+    image: props => (
+      // props.node.asset !== null && <div>{console.log(props.node.asset)}
+
+      // </div>
+      <div className="rawimage">
+        <RawImage id={props.node.asset.id} />
+      </div>
+    ),
+    group: props => (
+      <div className="group">
+        <PortableText serializers={serializers} blocks={props.node.group} />
+      </div>
+    ),
+    blocks: props => (
+      <div id={props.node.blockid && props.node.blockid}>
+        {console.log(props)}
+        <PortableText
+          serializers={serializers}
+          blocks={props.node.body}
+          projectId="84iv1ine"
+          dataset="production"
+          imageOptions={{ w: 700, fit: "max" }}
+        />
+      </div>
+    ),
+  },
+}
+
 const SoldPropertiesStyle = styled.div`
+  .sold-block {
+    h2 {
+      font-size: 34px;
+      margin-top: 70px;
+      &:nth-child(1) {
+        margin-top: 0px;
+      }
+    }
+    h3 {
+      strong {
+        font-weight: 400;
+      }
+    }
+  }
   .properties-teaser-container-container {
     padding-top: 40px;
+    overflow: hidden;
   }
   .marker {
     cursor: pointer;
@@ -71,6 +123,14 @@ export const query = graphql`
         url
       }
     }
+    block: allSanityBlocks(
+      filter: { id: { eq: "ba571684-7541-5df2-b202-62983726558b" } }
+    ) {
+      nodes {
+        title
+        _rawBody
+      }
+    }
     property: allSanityProperty(
       filter: { status: { eq: "Sold" } }
       sort: { fields: soldDate, order: DESC }
@@ -83,7 +143,7 @@ export const query = graphql`
         acres
         county
         description
-        soldDate
+        soldDate(formatString: "MMMM Y")
         brochure {
           asset {
             url
@@ -169,7 +229,7 @@ class SoldPropertiesPostTemplate extends React.Component {
   //   this.hide()
   // }
   render() {
-    const { properties, googleMapsKey, site } = this.props
+    const { properties, googleMapsKey, site, block } = this.props
     return (
       <Layout>
         <Helmet>
@@ -219,6 +279,14 @@ class SoldPropertiesPostTemplate extends React.Component {
                   />
                 ))}
               </div>
+              {block && (
+                <div className="sold-block">
+                  <PortableText
+                    serializers={serializers}
+                    blocks={block._rawBody}
+                  />
+                </div>
+              )}
             </Container>
           </div>
         </SoldPropertiesStyle>
@@ -231,12 +299,13 @@ const SoldProperties = ({ data }) => {
   const { nodes } = data.property
   const { googleMapsKey } = data.site.siteMetadata
   const { siteMetadata } = data.site
-
+  const block = data.block.nodes[0]
   return (
     <SoldPropertiesPostTemplate
       properties={nodes}
       googleMapsKey={googleMapsKey}
       site={siteMetadata}
+      block={block}
     />
   )
 }

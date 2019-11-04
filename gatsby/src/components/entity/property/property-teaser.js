@@ -164,6 +164,7 @@ class PropertyTeaser extends React.Component {
               {property.acres && <li>{property.acres} Acres</li>}
               {property.county && <li>{property.county} County</li>}
               {property.price && <li>{formatter.format(property.price)}</li>}
+              {property.soldDate && <li>Sold {property.soldDate}</li>}
             </ul>
           </div>
         ) : (
