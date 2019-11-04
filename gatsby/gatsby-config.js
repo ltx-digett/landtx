@@ -106,11 +106,11 @@ module.exports = {
             name: "Territory Review 2005",
             link: "/market-activity/2005",
           },
-          {
-            name: "Resources",
-            link: "/resources",
-          },
         ],
+      },
+      {
+        name: "Resources",
+        link: "/resources",
       },
       {
         name: "Sold Properties",

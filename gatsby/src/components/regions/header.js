@@ -89,7 +89,7 @@ const HeaderStyle = styled.header`
         a {
           color: white;
           text-decoration: none;
-          font-size: 20px;
+          font-size: 16px;
           font-weight: bold;
           &:hover {
             text-decoration: underline;

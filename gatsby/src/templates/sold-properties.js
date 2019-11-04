@@ -12,11 +12,13 @@ import { Helmet } from "react-helmet"
 // const Marker = ({ property }) => <div className="marker">{property.title}</div>
 
 const SoldPropertiesStyle = styled.div`
+  .properties-teaser-container-container {
+    padding-top: 40px;
+  }
   .marker {
     cursor: pointer;
   }
   background-color: rgba(33, 35, 30, 0.9);
-  padding-top: 60px;
   h1 {
     margin-top: 0px;
     padding: 0px 15px;
@@ -104,6 +106,10 @@ export const query = graphql`
         slug {
           current
         }
+        location {
+          lat
+          lng
+        }
       }
     }
   }
@@ -176,19 +182,45 @@ class SoldPropertiesPostTemplate extends React.Component {
           <link rel="canonical" href={site.url + "/sold-properties"} />
         </Helmet>
         <SoldPropertiesStyle>
-          <Container className="properties-teaser-container">
-            <h1>Sold Properties</h1>
-            <div className="properties-teaser-container-flex">
-              {properties.map((property, index) => (
-                <PropertyTeaser
-                  key={index}
-                  property={property}
-                  onMouseEnter={this.onChildHover}
-                  click={false}
-                />
-              ))}
-            </div>
-          </Container>
+          <div style={{ height: "500px", width: "100%" }}>
+            <GoogleMapReact
+              // onChildClick={this._onChildClick}
+              bootstrapURLKeys={{
+                key: googleMapsKey,
+              }}
+              defaultCenter={this.props.center}
+              defaultZoom={this.props.zoom}
+              center={this.state.center}
+            >
+              {properties.map(
+                (property, index) =>
+                  property.location && (
+                    <Marker
+                      lat={property.location.lat}
+                      lng={property.location.lng}
+                      property={property}
+                      onToggle={this.onChildToggle}
+                      selected={this.state.selections}
+                    />
+                  )
+              )}
+            </GoogleMapReact>
+          </div>
+          <div className="properties-teaser-container-container">
+            <Container className="properties-teaser-container">
+              <h1>Sold Properties</h1>
+              <div className="properties-teaser-container-flex">
+                {properties.map((property, index) => (
+                  <PropertyTeaser
+                    key={index}
+                    property={property}
+                    onMouseEnter={this.onChildHover}
+                    click={false}
+                  />
+                ))}
+              </div>
+            </Container>
+          </div>
         </SoldPropertiesStyle>
       </Layout>
     )
