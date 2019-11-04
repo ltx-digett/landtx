@@ -8,6 +8,7 @@ import { Link } from "gatsby"
 const Style404 = styled.div`
   .body-container-container {
     background-color: rgba(33, 35, 30, 0.9);
+    overflow: hidden;
   }
 `
 
