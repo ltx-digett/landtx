@@ -44,6 +44,39 @@ const MobileContainer = styled.div`
       padding: 0px;
     }
   }
+  @media (max-width: ${variable.desktopWidth}) {
+    display: block;
+    .bm-menu-wrap {
+      top: 0px;
+      width: 100% !important;
+      ul {
+        margin-top: 10px;
+        li {
+          a {
+            font-size: 14px !important;
+          }
+        }
+      }
+    }
+    .bm-overlay {
+      left: 0;
+      top: 0;
+    }
+    .bm-cross {
+      background: #bdc3c7;
+    }
+    .bm-burger-bars {
+      background: white;
+      border-radius: 10px;
+    }
+    .bm-menu {
+      background-color: rgba(128, 119, 90, 0.7);
+    }
+    .bm-menu-wrap {
+      background-image: url(${bgimage});
+      background-size: cover;
+    }
+  }
   @media (max-width: ${variable.mobileWidth}) {
     display: block;
     .bm-menu-wrap {

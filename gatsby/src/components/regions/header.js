@@ -98,7 +98,13 @@ const HeaderStyle = styled.header`
       }
     }
   }
-
+  @media (max-width: ${variable.desktopWidth}) {
+    .header-menu-logo {
+      .main-menu {
+        display: none;
+      }
+    }
+  }
   @media (max-width: ${variable.tabletWidth}) {
     .header-menu-logo {
       img {
