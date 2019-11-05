@@ -224,6 +224,9 @@ const PropertyTopStyle = styled.div`
     }
   }
 `
+function numberWithCommas(price) {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
 
 class PropertyTop extends React.Component {
   constructor(props) {
@@ -459,7 +462,8 @@ class PropertyTop extends React.Component {
                 )}
                 {property.acres && (
                   <li>
-                    {property.acres} acres in {property.county} County
+                    {numberWithCommas(property.acres)} acres in{" "}
+                    {property.county} County
                   </li>
                 )}
                 {property.price && <li>{formatter.format(property.price)}</li>}

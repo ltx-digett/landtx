@@ -17,7 +17,7 @@ const PropertyTeaserStyle = styled.div`
   position: relative;
   color: ${variable.black};
   .pending-status {
-    color: white;
+    color: white !important;
     width: 100%;
     position: absolute;
     top: 0;
@@ -81,6 +81,9 @@ const PropertyTeaserStyle = styled.div`
     margin-bottom: 15px;
   }
 `
+function numberWithCommas(price) {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
 
 class PropertyTeaser extends React.Component {
   constructor(props) {
@@ -161,7 +164,9 @@ class PropertyTeaser extends React.Component {
               {property.description && (
                 <li className="teaser-desciption">{property.description}</li>
               )}
-              {property.acres && <li>{property.acres} Acres</li>}
+              {property.acres && (
+                <li>{numberWithCommas(property.acres)} Acres</li>
+              )}
               {property.county && <li>{property.county} County</li>}
               {property.price && <li>{formatter.format(property.price)}</li>}
               {property.soldDate && <li>Sold {property.soldDate}</li>}
@@ -175,7 +180,9 @@ class PropertyTeaser extends React.Component {
                 {property.description && (
                   <li className="teaser-desciption">{property.description}</li>
                 )}
-                {property.acres && <li>{property.acres} Acres</li>}
+                {property.acres && (
+                  <li>{numberWithCommas(property.acres)} Acres</li>
+                )}
                 {property.county && <li>{property.county} County</li>}
                 {property.price && <li>{formatter.format(property.price)}</li>}
               </ul>
