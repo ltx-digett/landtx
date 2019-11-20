@@ -10,7 +10,7 @@ module.exports = {
     description: `LANDTX gatsby site.`,
     author: `Alexander Fountain`,
     googleMapsKey: "AIzaSyCscj1R_Vnimtvx2zvMaVd4GxJPpxAFsOI",
-    url: `https://landtx.netlify.com`,
+    url: `https://www.landtx.com`,
     mainmenu: [
       {
         name: "About",
