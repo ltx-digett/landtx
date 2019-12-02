@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "https://landtx.netlify.com/*"
-  to = "https://www.landtx.com/:splat"
-  force = true
