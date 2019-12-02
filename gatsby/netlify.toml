@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://landtx.netlify.com/*"
+  to = "https://www.landtx.com/:splat"
+  status = 301
+  force = true
