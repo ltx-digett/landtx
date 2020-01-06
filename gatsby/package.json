@@ -9,6 +9,7 @@
     "browser-monads": "^1.0.0",
     "dotenv": "^8.2.0",
     "emotion": "^10.0.23",
+    "favicons": "^5.5.0",
     "fitvids": "^2.1.1",
     "gatsby": "^2.18.15",
     "gatsby-background-image": "^0.8.19",
