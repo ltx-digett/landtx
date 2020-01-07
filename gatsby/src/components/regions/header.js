@@ -131,18 +131,6 @@ const HeaderStyle = styled.header`
 `
 
 export const Header = ({ mainmenu }) => {
-  var deferredPrompt
-  if (typeof window !== "undefined") {
-    window.addEventListener("beforeinstallprompt", function(e) {
-      // Prevent Chrome 67 and earlier from automatically showing the prompt
-      e.preventDefault()
-      // Stash the event so it can be triggered later.
-      deferredPrompt = e
-
-      console.log("beforeinstallprompt fired.")
-    })
-  }
-
   const data = useStaticQuery(graphql`
     query {
       headerbg: file(relativePath: { eq: "bg-topo-14.png" }) {
