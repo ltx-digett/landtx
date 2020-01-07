@@ -225,7 +225,7 @@ module.exports = {
     cacheId: `gatsby-plugin-offline`,
     skipWaiting: true,
     clientsClaim: true,
-    directoryIndex: 'index.html',,  
+    directoryIndex: 'index.html',
   }
 },
     // {
