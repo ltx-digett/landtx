@@ -212,10 +212,8 @@ export const Header = ({ mainmenu }) => {
               <Link className="logo" to="/">
                 <Img fluid={logo} />
               </Link>
+              <div className="ad2hs-prompt">Add to Home Screen.</div>
               <ul className="main-menu">
-                <li className="ad2hs-prompt">
-                  <a href="#">Add to Home Screen.</a>
-                </li>
                 {mainmenu.map((menuitem, index) => (
                   <li key={index}>
                     <Link
