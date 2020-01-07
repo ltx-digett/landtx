@@ -11,7 +11,7 @@ import Img from "gatsby-image"
 
 const HeaderStyle = styled.header`
   .ad2hs-prompt {
-    display: none;
+    // display: none;
     cursor: pointer;
   }
   background-size: cover;
