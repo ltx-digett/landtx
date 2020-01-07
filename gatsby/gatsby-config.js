@@ -150,7 +150,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#2C2E29`,
         theme_color: `#2C2E29`,
-        display: `minimal-ui`,
+        display: `standalone`,
         icon: `./src/images/fav.png`, // This path is relative to the root of the site.
       },
     },
@@ -216,12 +216,7 @@ module.exports = {
     // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        precachePages: [`/*`],
-      },
-    },
+    `gatsby-plugin-offline`,
     // {
     //   resolve: "gatsby-plugin-preconnect",
     //   options: {
