@@ -8,8 +8,44 @@ import Marker from "../components/marker"
 import PropertyTeaser from "../components/entity/property/property-teaser"
 import * as variable from "../components/variables"
 import { Helmet } from "react-helmet"
+import PortableText from "@sanity/block-content-to-react"
+import RawImage from "../components/rawImage"
 
 // const Marker = ({ property }) => <div className="marker">{property.title}</div>
+
+const serializers = {
+  types: {
+    code: props => (
+      <pre data-language={props.node.language}>
+        <code>{props.node.code}</code>
+      </pre>
+    ),
+    image: props => (
+      // props.node.asset !== null && <div>{console.log(props.node.asset)}
+
+      // </div>
+      <div className="rawimage">
+        <RawImage id={props.node.asset.id} />
+      </div>
+    ),
+    group: props => (
+      <div className="group">
+        <PortableText serializers={serializers} blocks={props.node.group} />
+      </div>
+    ),
+    blocks: props => (
+      <div id={props.node.blockid && props.node.blockid}>
+        <PortableText
+          serializers={serializers}
+          blocks={props.node.body}
+          projectId="84iv1ine"
+          dataset="production"
+          imageOptions={{ w: 700, fit: "max" }}
+        />
+      </div>
+    ),
+  },
+}
 
 const PropertiesStyle = styled.div`
   .properties-teaser-container-container {
@@ -68,6 +104,15 @@ export const query = graphql`
         googleMapsKey
         title
         url
+      }
+    }
+    propertiesConfig: allSanityAuxiliaryPageData(
+      filter: { _id: { eq: "d5a4142b-4dbc-497d-abd5-374ae75b9857" } }
+    ) {
+      nodes {
+        pagetitle
+        metadescription
+        _rawBody(resolveReferences: { maxDepth: 10 })
       }
     }
     property: allSanityProperty(
@@ -146,12 +191,10 @@ class PropertiesPostTemplate extends React.Component {
     })
   }
   onChildHover = props => {
-    console.log(props)
     var id = props.id
     var selections = this.state.selections
 
     selections = id
-    // console.log(props)
     this.setState({
       selections: selections,
     })
@@ -168,16 +211,21 @@ class PropertiesPostTemplate extends React.Component {
   //   this.hide()
   // }
   render() {
-    const { properties, googleMapsKey, site } = this.props
+    const {
+      properties,
+      googleMapsKey,
+      site,
+      propertiesConfig,
+      body,
+    } = this.props
     return (
       <Layout>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Property Listings | {site.title}</title>
-          <meta
-            property="og:description"
-            content="Investment, recreational, ranch and farmland in an area comprising 45 counties in central Texas."
-          />
+          <title>
+            {propertiesConfig.pagetitle} | {site.title}
+          </title>
+          <meta name="description" content={propertiesConfig.metadescription} />
           <link rel="canonical" href={site.url + "/properties"} />
         </Helmet>
         <PropertiesStyle>
@@ -204,7 +252,16 @@ class PropertiesPostTemplate extends React.Component {
           </div>
           <div className="properties-teaser-container-container">
             <Container className="properties-teaser-container">
-              <h1>Property Listings</h1>
+              <h1>{propertiesConfig.pagetitle}</h1>
+              <div className="body-outer">
+                <PortableText
+                  serializers={serializers}
+                  blocks={body}
+                  projectId="84iv1ine"
+                  dataset="production"
+                  className="body-outer"
+                />
+              </div>
               <div className="properties-teaser-container-flex">
                 {properties.map((property, index) => (
                   <PropertyTeaser
@@ -229,12 +286,16 @@ const Properties = ({ data }) => {
   const { nodes } = data.property
   const { googleMapsKey } = data.site.siteMetadata
   const { siteMetadata } = data.site
-
+  const propertiesConfig = data.propertiesConfig.nodes[0]
+  const body = data.propertiesConfig.nodes[0]._rawBody
   return (
     <PropertiesPostTemplate
       properties={nodes}
       googleMapsKey={googleMapsKey}
       site={siteMetadata}
+      propertiesConfig={propertiesConfig}
+      body={body}
+      // _rawBody={post._rawBody}
     />
   )
 }

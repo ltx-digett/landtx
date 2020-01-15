@@ -49,6 +49,9 @@ const serializers = {
 }
 
 const SoldPropertiesStyle = styled.div`
+  .body-outer {
+    padding: 0px 0px;
+  }
   .sold-block {
     h2 {
       font-size: 34px;
@@ -73,7 +76,7 @@ const SoldPropertiesStyle = styled.div`
   background-color: rgba(33, 35, 30, 0.9);
   h1 {
     margin-top: 0px;
-    padding: 0px 15px;
+    padding: 0px 0px;
   }
   .properties-teaser-container-flex {
     display: flex;
@@ -104,6 +107,13 @@ const SoldPropertiesStyle = styled.div`
     }
   }
   @media (max-width: ${variable.mobileWidth}) {
+    h1 {
+      margin-top: 0px;
+      padding: 0px 15px;
+    }
+    .body-outer {
+      padding: 0px 15px;
+    }
     .properties-teaser-container {
       flex-direction: column;
       padding: 0px;
@@ -121,6 +131,15 @@ export const query = graphql`
         googleMapsKey
         title
         url
+      }
+    }
+    propertiesConfig: allSanityAuxiliaryPageData(
+      filter: { _id: { eq: "cc126a25-3525-4174-81ff-95eab947dc4f" } }
+    ) {
+      nodes {
+        pagetitle
+        metadescription
+        _rawBody(resolveReferences: { maxDepth: 10 })
       }
     }
     block: allSanityBlocks(
@@ -229,16 +248,22 @@ class SoldPropertiesPostTemplate extends React.Component {
   //   this.hide()
   // }
   render() {
-    const { properties, googleMapsKey, site, block } = this.props
+    const {
+      properties,
+      googleMapsKey,
+      site,
+      block,
+      propertiesConfig,
+      body,
+    } = this.props
     return (
       <Layout>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Sold Properties | {site.title}</title>
-          <meta
-            property="og:description"
-            content="Investment, recreational, ranch and farmland in an area comprising 45 counties in central Texas."
-          />
+          <title>
+            {propertiesConfig.pagetitle} | {site.title}
+          </title>
+          <meta name="description" content={propertiesConfig.metadescription} />
           <link rel="canonical" href={site.url + "/sold-properties"} />
         </Helmet>
         <SoldPropertiesStyle>
@@ -268,7 +293,16 @@ class SoldPropertiesPostTemplate extends React.Component {
           </div>
           <div className="properties-teaser-container-container">
             <Container className="properties-teaser-container">
-              <h1>Sold Properties</h1>
+              <h1>{propertiesConfig.pagetitle}</h1>
+              <div className="body-outer">
+                <PortableText
+                  serializers={serializers}
+                  blocks={body}
+                  projectId="84iv1ine"
+                  dataset="production"
+                  className="body-outer"
+                />
+              </div>
               <div className="properties-teaser-container-flex">
                 {properties.map((property, index) => (
                   <PropertyTeaser
@@ -300,12 +334,17 @@ const SoldProperties = ({ data }) => {
   const { googleMapsKey } = data.site.siteMetadata
   const { siteMetadata } = data.site
   const block = data.block.nodes[0]
+  const propertiesConfig = data.propertiesConfig.nodes[0]
+  const body = data.propertiesConfig.nodes[0]._rawBody
+
   return (
     <SoldPropertiesPostTemplate
       properties={nodes}
       googleMapsKey={googleMapsKey}
       site={siteMetadata}
       block={block}
+      propertiesConfig={propertiesConfig}
+      body={body}
     />
   )
 }
