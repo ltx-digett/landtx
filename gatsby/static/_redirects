@@ -1,7 +1,7 @@
 https://landtx.netlify.com https://www.landtx.com 301!
 https://landtx.netlify.com/* https://www.landtx.com/:splat 301!
-/welcome-landtx-solid-ground /our-services
-/market-activity /market-activity/2019
-/request-bound /contact-us
-/email-listing /properties
-/ask-question /contact-us
+/welcome-landtx-solid-ground /our-services 301!
+/market-activity /market-activity/2019 301!
+/request-bound /contact-us 301!
+/email-listing /properties 301!
+/ask-question /contact-us 301!
