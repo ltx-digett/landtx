@@ -228,15 +228,15 @@ module.exports = {
         directoryIndex: "index.html",
       },
     },
-    {
-      resolve: "gatsby-plugin-preconnect",
-      options: {
-        domains: [
-          "https://www.google-analytics.com",
-          "https://fonts.gstatic.com",
-        ],
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-preconnect",
+    //   options: {
+    //     domains: [
+    //       "https://www.google-analytics.com",
+    //       "https://fonts.gstatic.com",
+    //     ],
+    //   },
+    // },
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
