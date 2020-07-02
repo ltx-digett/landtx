@@ -377,12 +377,14 @@ export const query = graphql`
         slideshow {
           asset {
             url
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
-              }
+            fluid(maxWidth: 1200) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
             }
           }
         }
@@ -458,7 +460,7 @@ class MainPostTemplate extends React.Component {
                 <div className="each-slide">
                   <BackgroundImage
                     className="slide"
-                    fluid={slide.asset.localFile.childImageSharp.fluid}
+                    fluid={slide.asset.fluid}
                   ></BackgroundImage>
                 </div>
               ))}
