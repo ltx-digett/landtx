@@ -83,7 +83,6 @@ export const Footer = ({ mainmenu }) => {
       }
     }
   `)
-  const footerbg = data.footerbg.childImageSharp.fluid
   const digettlogo = data.digettlogo.childImageSharp.fixed
 
   return (
