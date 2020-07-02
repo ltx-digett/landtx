@@ -377,14 +377,12 @@ export const query = graphql`
         slideshow {
           asset {
             url
-            fluid(maxWidth: 1920) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                }
+              }
             }
           }
         }

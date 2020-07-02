@@ -32,6 +32,7 @@
     "gatsby-remark-responsive-iframe": "^2.4.2",
     "gatsby-source-filesystem": "^2.3.5",
     "gatsby-source-sanity": "^5.0.6",
+    "gatsby-source-sanity-transform-images": "0.0.7",
     "gatsby-transformer-sharp": "^2.5.2",
     "google-map-react": "^1.1.7",
     "prop-types": "^15.7.2",
