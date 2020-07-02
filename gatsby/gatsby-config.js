@@ -216,24 +216,24 @@ module.exports = {
     // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    { 
-  resolve: `gatsby-plugin-offline`, 
-  options: {
-    importWorkboxFrom: `local`,
-    globDirectory: 'public',
-    globPatterns: ['*/**'],
-    cacheId: `gatsby-plugin-offline`,
-    skipWaiting: true,
-    clientsClaim: true,
-    directoryIndex: 'index.html',
-  }
-},
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        importWorkboxFrom: `local`,
+        globDirectory: "public",
+        globPatterns: ["*/**"],
+        cacheId: `gatsby-plugin-offline`,
+        skipWaiting: true,
+        clientsClaim: true,
+        directoryIndex: "index.html",
+      },
+    },
     // {
     //   resolve: "gatsby-plugin-preconnect",
     //   options: {
     //     domains: [
     //       "https://www.googletagmanager.com",
-    //       "https://fonts.googleapis.com",
+    //       "https://fonts.gstatic.com",
     //     ],
     //   },
     // },
