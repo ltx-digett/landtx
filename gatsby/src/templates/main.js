@@ -378,13 +378,7 @@ export const query = graphql`
           asset {
             url
             fluid(maxWidth: 1920) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
+              ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
         }
