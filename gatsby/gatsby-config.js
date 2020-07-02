@@ -185,9 +185,9 @@ module.exports = {
         version: "1.0",
 
         icons: {
-          android: true,
-          appleIcon: true,
-          appleStartup: true,
+          android: false,
+          appleIcon: false,
+          appleStartup: false,
           coast: false,
           favicons: true,
           firefox: true,
@@ -228,15 +228,15 @@ module.exports = {
         directoryIndex: "index.html",
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-preconnect",
-    //   options: {
-    //     domains: [
-    //       "https://www.googletagmanager.com",
-    //       "https://fonts.gstatic.com",
-    //     ],
-    //   },
-    // },
+    {
+      resolve: "gatsby-plugin-preconnect",
+      options: {
+        domains: [
+          "https://www.google-analytics.com",
+          "https://fonts.gstatic.com",
+        ],
+      },
+    },
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
