@@ -74,13 +74,6 @@ const FooterStyle = styled.footer`
 export const Footer = ({ mainmenu }) => {
   const data = useStaticQuery(graphql`
     query {
-      footerbg: file(relativePath: { eq: "topo-1250.webp" }) {
-        childImageSharp {
-          fluid(maxWidth: 1920) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
       digettlogo: file(relativePath: { eq: "digett-logo-all-white.png" }) {
         childImageSharp {
           fixed(width: 100) {
@@ -95,7 +88,6 @@ export const Footer = ({ mainmenu }) => {
 
   return (
     <FooterStyle className="ltx-footer">
-      {/* <BackgroundImage fluid={footerbg} style={{ backgroundSize: "cover" }}> */}
       <div>
         <div className="footer-bg">
           <Container className="footer-container">

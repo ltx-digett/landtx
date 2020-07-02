@@ -133,13 +133,6 @@ const HeaderStyle = styled.header`
 export const Header = ({ mainmenu }) => {
   const data = useStaticQuery(graphql`
     query {
-      headerbg: file(relativePath: { eq: "bg-topo-14.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 1920) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
       headerbgtracks: file(relativePath: { eq: "tiretracks.png" }) {
         childImageSharp {
           fluid(maxWidth: 1920) {
@@ -156,53 +149,52 @@ export const Header = ({ mainmenu }) => {
       }
     }
   `)
-  const headerbg = data.headerbg.childImageSharp.fluid
   const headerbgtracks = data.headerbgtracks.childImageSharp.fluid
   const logo = data.logo.childImageSharp.fluid
 
   return (
     <HeaderStyle className="ltx-header">
-      <BackgroundImage fluid={headerbg}>
-        <div className="header-bg">
-          <BackgroundImage
-            fluid={headerbgtracks}
-            style={{ backgroundSize: "cover" }}
-          >
-            <Container className="header-menu-logo">
-              <Link className="logo" to="/">
-                <Img fluid={logo} />
-              </Link>
-              <ul className="main-menu">
-                {mainmenu.map((menuitem, index) => (
-                  <li key={index}>
-                    <Link
-                      activeStyle={{ color: variable.black }}
-                      to={menuitem.link}
-                    >
-                      {menuitem.name}
-                    </Link>
-                    {menuitem.submenu && (
-                      <ul className="sub-menu">
-                        {menuitem.submenu.map((submenuitem, index) => (
-                          <li key={index}>
-                            <Link
-                              activeStyle={{ color: variable.steelBlue }}
-                              to={submenuitem.link}
-                            >
-                              {submenuitem.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-              <MobileMenu></MobileMenu>
-            </Container>
-          </BackgroundImage>
-        </div>
-      </BackgroundImage>
+      {/* <BackgroundImage fluid={headerbg}> */}
+      <div className="header-bg">
+        <BackgroundImage
+          fluid={headerbgtracks}
+          style={{ backgroundSize: "cover" }}
+        >
+          <Container className="header-menu-logo">
+            <Link className="logo" to="/">
+              <Img fluid={logo} />
+            </Link>
+            <ul className="main-menu">
+              {mainmenu.map((menuitem, index) => (
+                <li key={index}>
+                  <Link
+                    activeStyle={{ color: variable.black }}
+                    to={menuitem.link}
+                  >
+                    {menuitem.name}
+                  </Link>
+                  {menuitem.submenu && (
+                    <ul className="sub-menu">
+                      {menuitem.submenu.map((submenuitem, index) => (
+                        <li key={index}>
+                          <Link
+                            activeStyle={{ color: variable.steelBlue }}
+                            to={submenuitem.link}
+                          >
+                            {submenuitem.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <MobileMenu></MobileMenu>
+          </Container>
+        </BackgroundImage>
+      </div>
+      {/* </BackgroundImage> */}
     </HeaderStyle>
   )
 }
