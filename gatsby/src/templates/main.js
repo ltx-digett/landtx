@@ -458,7 +458,7 @@ class MainPostTemplate extends React.Component {
                 <div className="each-slide">
                   <BackgroundImage
                     className="slide"
-                    fluid={slide.asset.fluid}
+                    fluid={slide.asset.localFile.childImageSharp.fluid}
                   ></BackgroundImage>
                 </div>
               ))}
