@@ -196,12 +196,27 @@ module.exports = {
         },
       },
     },
+    // {
+    //   resolve: "gatsby-plugin-web-font-loader",
+    //   options: {
+    //     google: {
+    //       families: ["Gothic A1:400,700", "Open Sans:300,400,400i,700"],
+    //     },
+    //   },
+    // },
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        google: {
-          families: ["Gothic A1:400,700", "Open Sans:300,400,400i,700"],
-        },
+        fonts: [
+          {
+            family: `Gothic A1`,
+            variants: [`400`, `700`],
+          },
+          {
+            family: `Open Sans`,
+            variants: [`300`, `400`, `400i`, `700`],
+          },
+        ],
       },
     },
     // {
