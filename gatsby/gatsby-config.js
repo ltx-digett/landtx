@@ -142,6 +142,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-source-sanity-transform-images`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -185,9 +186,9 @@ module.exports = {
         version: "1.0",
 
         icons: {
-          android: true,
-          appleIcon: true,
-          appleStartup: true,
+          android: false,
+          appleIcon: false,
+          appleStartup: false,
           coast: false,
           favicons: true,
           firefox: true,
@@ -196,12 +197,27 @@ module.exports = {
         },
       },
     },
+    // {
+    //   resolve: "gatsby-plugin-web-font-loader",
+    //   options: {
+    //     google: {
+    //       families: ["Gothic A1:400,700", "Open Sans:300,400,400i,700"],
+    //     },
+    //   },
+    // },
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        google: {
-          families: ["Gothic A1:400,700", "Open Sans:300,400,400i,700"],
-        },
+        fonts: [
+          {
+            family: `Gothic A1`,
+            variants: [`400`, `700`],
+          },
+          {
+            family: `Open Sans`,
+            variants: [`300`, `400`, `400i`, `700`],
+          },
+        ],
       },
     },
     // {
@@ -216,24 +232,24 @@ module.exports = {
     // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    { 
-  resolve: `gatsby-plugin-offline`, 
-  options: {
-    importWorkboxFrom: `local`,
-    globDirectory: 'public',
-    globPatterns: ['*/**'],
-    cacheId: `gatsby-plugin-offline`,
-    skipWaiting: true,
-    clientsClaim: true,
-    directoryIndex: 'index.html',
-  }
-},
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        importWorkboxFrom: `local`,
+        globDirectory: "public",
+        globPatterns: ["*/**"],
+        cacheId: `gatsby-plugin-offline`,
+        skipWaiting: true,
+        clientsClaim: true,
+        directoryIndex: "index.html",
+      },
+    },
     // {
     //   resolve: "gatsby-plugin-preconnect",
     //   options: {
     //     domains: [
-    //       "https://www.googletagmanager.com",
-    //       "https://fonts.googleapis.com",
+    //       "https://www.google-analytics.com",
+    //       "https://fonts.gstatic.com",
     //     ],
     //   },
     // },

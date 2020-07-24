@@ -48,7 +48,9 @@ const MobileContainer = styled.div`
     display: block;
     .bm-menu-wrap {
       top: 0px;
-      width: 100% !important;
+      .bm-menu {
+        padding: 0px 20px;
+      }
       ul {
         margin-top: 10px;
         li {
@@ -81,7 +83,6 @@ const MobileContainer = styled.div`
     display: block;
     .bm-menu-wrap {
       top: 0px;
-      width: 100% !important;
       ul {
         margin-top: 10px;
         li {
@@ -103,7 +104,7 @@ const MobileContainer = styled.div`
       border-radius: 10px;
     }
     .bm-menu {
-      background-color: rgba(128, 119, 90, 0.7);
+      background-color: rgba(128, 119, 90, 0.9);
     }
     .bm-menu-wrap {
       background-image: url(${bgimage});
@@ -158,6 +159,7 @@ class Mobilemenu extends React.Component {
               <Menu
                 right
                 noOverlay
+                width={320}
                 isOpen={this.state.menuOpen}
                 onStateChange={state => this.handleStateChange(state)}
               >
